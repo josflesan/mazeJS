@@ -1,0 +1,26 @@
+{
+  "name": "mazejs",
+  "version": "1.0.0",
+  "description": "Maze Generation and Solving Algorithms using JavaScript and HTML5 Canvas",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/josflesan/mazeJS.git"
+  },
+  "keywords": [
+    "maze",
+    "javascript"
+  ],
+  "author": "joflesan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/josflesan/mazeJS/issues"
+  },
+  "homepage": "https://github.com/josflesan/mazeJS#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
