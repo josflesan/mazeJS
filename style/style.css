@@ -1,12 +1,14 @@
 body {
-    background: #111;
+    background: #CCD8F0;
     color: #f8f8f8;
+    margin: 0;
     height: 100%;
 }
 
 canvas {
     background: #f8f8f8;
-    padding: 0;
+    padding: 5px;
+    display: block;
 }
 
 .canvas-container {
