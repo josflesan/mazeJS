@@ -1,16 +1,19 @@
 class Cell {
 
-    constructor(x, y, column, row, size) {
+    constructor(x, y, column, row, size, gridSize) {
         this.x = x
         this.y = y
         this.column = column
         this.row = row
         this.size = size
+
+        this.visited = false;
+
         // Walls: Top, Right, Bottom, Left. By default, all walls present
         this.walls = {
             "top": true,
-            "right": true,
-            "bottom": true,
+            "right": this.column == gridSize-3? true:false,
+            "bottom": this.row == gridSize-3? true:false,
             "left": true
         }
     }
@@ -23,19 +26,19 @@ class Cell {
                 
             switch (wall) {
                 case "top":
-                    neighbours["top"].walls["bottom"] = false
+                    neighbours[wall].walls["bottom"] = false
                     break
                 
                 case "right":
-                    neighbours["right"].walls["left"] = false
+                    neighbours[wall].walls["left"] = false
                     break
                 
                 case "bottom":
-                    neighbours["bottom"].walls["top"] = false
+                    neighbours[wall].walls["top"] = false
                     break
                 
                 case "left":
-                    neighbours["left"].walls["right"] = false
+                    neighbours[wall].walls["right"] = false
                     break
             }
 
@@ -43,11 +46,16 @@ class Cell {
 
     }
 
-    displayCellWalls(ctx) {
+    toString() {
+        return `Row: ${this.row},\nColumn: ${this.column}\n`
+    }
+
+    displayCellWalls(ctx, grid) {
 
         ctx.beginPath();
 
         for (const [key, val] of Object.entries(this.walls)) {
+
             // If wall exists, check which one it is and draw it
             if (val) {
 
@@ -83,16 +91,21 @@ class Cell {
         }
     }
 
+    isVisited() {
+        return this.visited;
+    }
+
     // Fill cell in yellow colour when selected
     selectCell(ctx) {
         ctx.fillStyle = '#effd5f'
-        ctx.fillRect(this.x, this.y, this.size, this.size)
+        ctx.fillRect(this.x+5, this.y+5, this.size-10, this.size-10)
     }
 
     // Fill cell in blue colour is visited
     visitedCell(ctx) {
         ctx.fillStyle = '#4548A3'
-        ctx.fillRect(this.x, this.y, this.size, this.size)
+        ctx.fillRect(this.x+5, this.y+5, this.size-10, this.size-10)
+        this.visited = true;
     }
 
 
