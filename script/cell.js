@@ -103,7 +103,7 @@ class Cell {
 
     // Fill cell in blue colour is visited
     visitedCell(ctx) {
-        ctx.fillStyle = '#4548A3'
+        ctx.fillStyle = '#AAD6F0'
         ctx.fillRect(this.x+5, this.y+5, this.size-10, this.size-10)
         this.visited = true;
     }

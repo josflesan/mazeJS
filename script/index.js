@@ -1,6 +1,6 @@
 ;(function() {
 
-    let canvas, ctx, cellSize, gridSize, stack
+    let canvas, ctx, cellSize, gridSize, stack, visited
     let grid = []
 
     // intial setup of config variables
@@ -15,23 +15,27 @@
         createGrid()
 
         // Declare starting cell, remove wall 
-        let startCell = grid[0][0]
-        startCell.deleteWall("left", getNeighbours(startCell))  // Delete wall from start cell
-
+        let startCell = grid[Math.floor(Math.random() * grid.length)][Math.floor(Math.random() * grid[0].length)]
+        grid[0][0].deleteWall("left", getNeighbours(startCell))  // Delete wall from start cell
+        let endCell = grid[grid.length-1][gridSize-3]
+        endCell.deleteWall("right", getNeighbours(endCell))
+        
         drawGrid()
         // test()
         randomizedDFS(startCell)
+
     }
 
     function test() {
         let startCell = grid[0][0]
-        startCell.deleteWall("right", getNeighbours(startCell))
+        startCell.deleteWall("left", getNeighbours(startCell))
+        startCell.visitedCell(ctx)
         drawGrid()
-        grid[0][1].deleteWall("bottom", getNeighbours(grid[0][1]))
+        startCell.deleteWall("bottom", getNeighbours(startCell))
+        grid[0][1].visitedCell(ctx)
         drawGrid()
 
-
-        console.log(hasUnvisitedNeighbours(startCell))
+        getUnvisitedNeighbours(grid[1][1])
 
         drawGrid()
     }
@@ -60,7 +64,7 @@
                 cell.displayCellWalls(ctx, grid)
 
                 if (cell.isVisited()) {
-                    //cell.visitedCell(ctx)
+                    cell.visitedCell(ctx)
                 }
             }
         }
@@ -73,8 +77,9 @@
 
     function getUnvisitedNeighbours(cell) {
         let dict = getNeighbours(cell);
+        console.log(dict)
         let filtered = Object.keys(dict).reduce(function (filtered, key) {
-            if (dict[key] != false) filtered[key] = dict[key];
+            if (dict[key] != false && !dict[key].isVisited()) filtered[key] = dict[key];
             return filtered;
         }, {});
 
@@ -89,9 +94,9 @@
         let right = cell.column + 1
 
         return {
-            "top": up>0? grid[up][cell.column]:false,
+            "top": up>=0? grid[up][cell.column]:false,
             "bottom": down<grid.length? grid[down][cell.column]:false,
-            "left": left>0? grid[cell.row][left]:false,
+            "left": left>=0? grid[cell.row][left]:false,
             "right": right<grid[0].length? grid[cell.row][right]:false
         }
 
@@ -100,37 +105,35 @@
     function randomizedDFS(currentCell) {
 
         currentCell.visitedCell(ctx) // Mark current cell as visited
-        // stack.push(currentCell);  // Add starting Cell to stack
-        
-        while (hasUnvisitedNeighbours(currentCell)) {
+        stack.push(currentCell);  // Add starting Cell to stack
+
+        while (!stack.isEmpty()) {
 
             // Pop cell from stack and make it current
-            // let currentCell = stack.pop();
+            let currentCell = stack.pop();
 
             // If current cell has any unvisited neighbours
-            //if (hasUnvisitedNeighbours(currentCell)) {
+            if (hasUnvisitedNeighbours(currentCell)) {
 
-            // Push current cell
-            // stack.push(currentCell);
+                // Push current cell
+                stack.push(currentCell);
 
-            // Choose one of the unvisited neighbours
-            let unvisited = getUnvisitedNeighbours(currentCell)
-            let directions = Object.keys(unvisited)
-            let chosenDirection = directions[Math.floor(Math.random() * directions.length)]
-            let chosenCell = unvisited[chosenDirection]
+                // Visit neighbours and choose one of the unvisited neighbours
+                let unvisited = getUnvisitedNeighbours(currentCell)
+                let directions = Object.keys(unvisited)
+                let chosenDirection = directions[Math.floor(Math.random() * directions.length)]
+                let chosenCell = unvisited[chosenDirection]
 
-            chosenCell.selectCell(ctx)
+                chosenCell.selectCell(ctx)
 
-            // Remove wall between current and chosen cells
-            currentCell.deleteWall(chosenDirection, getNeighbours(currentCell))
+                // Remove wall between current and chosen cells
+                currentCell.deleteWall(chosenDirection, getNeighbours(currentCell))
 
-            // Mark chosen cell as visited and push it to the stack
-            chosenCell.visitedCell(ctx)
-            // stack.push(chosenCell)
+                // Mark chosen cell as visited and push it to the stack
+                chosenCell.visitedCell(ctx)
+                stack.push(chosenCell)
 
-            randomizedDFS(chosenCell)
-
-            //} 
+            } 
           
             drawGrid()
         
