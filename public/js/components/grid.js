@@ -67,14 +67,17 @@ class Grid {
      * Function that draws the grid on the canvas
      * @param {CanvasRenderingContext2D} ctx    Context of HTML5 Canvas 
      */
-    draw(ctx) {
+    draw(ctx, color) {
 
         // We need to re-draw the whole state of the grid each time
         for (var y = 0; y < this.getLength()["y"]; y++) {
             for (var x = 0; x < this.getLength()["x"]; x++) {
                 let cell = this.getCell(y, x)
                 cell.displayCellWalls(ctx, this.grid)
-                cell.colorCell(ctx)
+
+                if (color) {
+                    cell.colorCell(ctx)
+                }
             }
         }
 

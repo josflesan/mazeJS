@@ -2,16 +2,17 @@ class Cell {
 
     visitedColour = '#aad6f0'
     selectedColour = '#effd5f'
+    noNeighbourColour = '#55d481'
 
     /**
      * Constructor that initializes the position, size and walls of a
      * Cell object
-     * @param {int} x   The x coordinate of the Cell object
-     * @param {*} y     The y coordinate of the Cell object
-     * @param {*} column The column of the grid in which the Cell object resides
-     * @param {*} row   The row of the grid in which the Cell object resides
-     * @param {*} size  The size of the Cell object (assuming square for grid)
-     * @param {*} gridSize The size of the grid (assuming square)
+     * @param {int} x     The x coordinate of the Cell object
+     * @param {int} y     The y coordinate of the Cell object
+     * @param {int} column The column of the grid in which the Cell object resides
+     * @param {int} row   The row of the grid in which the Cell object resides
+     * @param {int} size  The size of the Cell object (assuming square for grid)
+     * @param {int} gridSize The size of the grid (assuming square)
      */
     constructor(x, y, column, row, size, gridSize) {
         this.x = x
@@ -22,6 +23,7 @@ class Cell {
 
         this.visited = false;
         this.selected = false;
+        this.deadEnd = false;
 
         // Walls: Top, Right, Bottom, Left
         /*
@@ -200,11 +202,19 @@ class Cell {
 
     /**
      * Function that marks a Cell in the grid as visited by flagging its
-     * visited colour when the cell is marked as visited by the algorithm
+     * visited attribute when the cell is marked as visited by the algorithm
      */
     visitedCell() {
         this.visited = true;
         this.selected = false;
+    }
+
+    /**
+     * Function that marks a Cell in the grid as a dead end by flagging its
+     * deadEnd attribute when the cell no longer has any unvisited neighbours
+     */
+    deadEndCell() {
+        this.deadEnd = true;
     }
 
     /**
@@ -215,11 +225,15 @@ class Cell {
     colorCell(ctx) {
         if (this.selected) {
             ctx.fillStyle = this.selectedColour
-            ctx.fillRect(this.x+5, this.y+5, this.size-10, this.size-10)
-        } else if (this.visited) {
+            ctx.fillRect(this.x, this.y, this.size, this.size)
+        } else if (this.visited && !this.deadEnd) {
             ctx.fillStyle = this.visitedColour
-            ctx.fillRect(this.x+5, this.y+5, this.size-10, this.size-10)
+            ctx.fillRect(this.x, this.y, this.size, this.size)
+        } else if (this.deadEnd) {
+            ctx.fillStyle = this.noNeighbourColour
+            ctx.fillRect(this.x, this.y, this.size, this.size)
         }
+        
     }
 
 }

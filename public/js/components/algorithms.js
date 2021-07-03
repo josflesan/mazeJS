@@ -13,7 +13,6 @@ class Algorithms {
 
         // Create stack
         let stack = new Stack()  
-        let framesPerSecond = 120;
 
         // Mark current cell as visited and push to stack
         currentCell.visitedCell(ctx) 
@@ -41,25 +40,29 @@ class Algorithms {
                     let chosenCell = unvisited[chosenDirection]
     
                     chosenCell.selectCell(ctx)
-    
-                    update()
+
+                    update(true)
     
                     // Remove wall between current and chosen cells
                     currentCell.deleteWall(chosenDirection, currentCell.getNeighbours(grid))
-    
+                    
                     // Mark chosen cell as visited and push it to the stack
                     chosenCell.visitedCell(ctx)
                     stack.push(chosenCell)
     
+                } else {
+                    currentCell.deadEndCell()
+                    update(true)
                 }
             
             } 
 
+            await Control.sleep(1000)
+
         }
 
-        newIteration()
-
-        update()
+        // Call new iteration and then clear grid once finished
+        newIteration().then(() => update(false))
 
     }
 
