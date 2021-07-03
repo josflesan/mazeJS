@@ -21,6 +21,7 @@ class Cell {
         this.size = size
 
         this.visited = false;
+        this.selected = false;
 
         // Walls: Top, Right, Bottom, Left
         /*
@@ -175,31 +176,50 @@ class Cell {
 
     /**
      * Function that determines whether a cell has been visited or not
-     * @returns {Boolean}   True of cell visited attribute is true, else false
+     * @returns {Boolean}   True if cell visited attribute is true, else false
      */
     isVisited() {
         return this.visited;
     }
 
     /**
-     * Function that colours in a Cell in the grid using a yellow colour
-     * when the cell is selected by the algorithm
-     * @param {CanvasRenderingContext2D} ctx    The HTML5 Canvas Context
+     * Function that determines whether a cell has been selected or not
+     * @returns {Boolean}   True if cell selected attribute is true, else false
      */
-    selectCell(ctx) {
-        ctx.fillStyle = this.selectedColour
-        ctx.fillRect(this.x+5, this.y+5, this.size-10, this.size-10)
+     isSelected() {
+        return this.selected;
     }
 
     /**
-     * Function that colours in a Cell in the grid using a blue colour
-     * when the cell is marked as visited by the algorithm
-     * @param {CanvasRenderingContext2D} ctx    The HTML5 Canvas Context
+     * Function that selects a Cell in the grid by flagging its selected attribute
+     * when the cell is selected by the algorithm
      */
-    visitedCell(ctx) {
-/*         ctx.fillStyle = this.visitedColour
-        ctx.fillRect(this.x+5, this.y+5, this.size-10, this.size-10) */
+    selectCell() {
+        this.selected = true;
+    }
+
+    /**
+     * Function that marks a Cell in the grid as visited by flagging its
+     * visited colour when the cell is marked as visited by the algorithm
+     */
+    visitedCell() {
         this.visited = true;
+        this.selected = false;
+    }
+
+    /**
+     * Function that colours a cell yellow if it is currently selected 
+     * or blue if it has been visited by the algorithm
+     * @param {CanvasRenderingContext2D} ctx    HTML5 Canvas Rendering Context 
+     */
+    colorCell(ctx) {
+        if (this.selected) {
+            ctx.fillStyle = this.selectedColour
+            ctx.fillRect(this.x+5, this.y+5, this.size-10, this.size-10)
+        } else if (this.visited) {
+            ctx.fillStyle = this.visitedColour
+            ctx.fillRect(this.x+5, this.y+5, this.size-10, this.size-10)
+        }
     }
 
 }

@@ -69,18 +69,12 @@ class Grid {
      */
     draw(ctx) {
 
-        // Clear grid before re-drawing
-        ctx.clearRect(0, 0, this.totalWidth, this.totalHeight)
-
         // We need to re-draw the whole state of the grid each time
         for (var y = 0; y < this.getLength()["y"]; y++) {
             for (var x = 0; x < this.getLength()["x"]; x++) {
                 let cell = this.getCell(y, x)
                 cell.displayCellWalls(ctx, this.grid)
-
-                if (cell.isVisited()) {
-                    cell.visitedCell(ctx)
-                }
+                cell.colorCell(ctx)
             }
         }
 
