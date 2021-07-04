@@ -1,0 +1,11 @@
+.menu-item {
+    height: 100vh;
+    width: auto;
+}
+
+@media (max-width: 900px) {
+    .menu-item {
+        height: auto;
+        width: 100vw;
+    }
+}

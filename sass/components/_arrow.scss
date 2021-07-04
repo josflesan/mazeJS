@@ -1,0 +1,34 @@
+@import '../utilities/mixins';
+
+.arrow-container {
+    @include absolute-horizontal-center;
+    @include center-items;
+    height: 7vw;
+    width: 7vw;
+    border-radius: 50%;
+    bottom: $top-bottom-separator;
+
+    .arrow {
+        box-sizing: border-box;
+        height: 5vh;
+        width: 5vh;
+        border-style: solid;
+        border-color: black;
+        border-width: 0px 1px 1px 0px;
+        transform: rotate(45deg);
+        transition: border-width 150ms ease-in-out;
+    }
+
+    &:hover {
+
+        cursor: pointer;
+
+        .arrow {
+            border-color: $dark-grey;
+            border-bottom-width: 4px;
+            border-right-width: 4px;
+        }
+    }
+
+
+}

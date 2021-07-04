@@ -1,0 +1,120 @@
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+#mazeJS {
+  margin: 0;
+  font-family: "Press Start 2P", cursive;
+  font-weight: 100;
+  font-size: 7rem; }
+  #mazeJS span {
+    color: #FCE196; }
+
+#subtitle {
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-size: 2rem; }
+
+*,
+*:after,
+*:before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; }
+
+body {
+  margin: 0;
+  box-sizing: border-box;
+  background-color: #FFFFF4; }
+
+.arrow-container {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: grid;
+  place-items: center;
+  height: 7vw;
+  width: 7vw;
+  border-radius: 50%;
+  bottom: 5vh; }
+  .arrow-container .arrow {
+    box-sizing: border-box;
+    height: 5vh;
+    width: 5vh;
+    border-style: solid;
+    border-color: black;
+    border-width: 0px 1px 1px 0px;
+    transform: rotate(45deg);
+    transition: border-width 150ms ease-in-out; }
+  .arrow-container:hover {
+    cursor: pointer; }
+    .arrow-container:hover .arrow {
+      border-color: #7F807A;
+      border-bottom-width: 4px;
+      border-right-width: 4px; }
+
+.menu-item {
+  height: 100vh;
+  width: auto; }
+
+@media (max-width: 900px) {
+  .menu-item {
+    height: auto;
+    width: 100vw; } }
+
+header {
+  width: 100vw;
+  height: 10vh;
+  margin: 0; }
+
+.banner {
+  position: absolute;
+  display: flex;
+  justify-content: flex-end; }
+  .banner-socials {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 5vh;
+    margin-right: 5vw;
+    width: 15vw;
+    height: auto; }
+    .banner-socials-icon {
+      width: 36px;
+      height: 36px;
+      opacity: 0.5;
+      transition: opacity 150ms ease-in-out; }
+      .banner-socials-icon:hover {
+        cursor: pointer;
+        opacity: 1;
+        transform: scale(1.4); }
+
+#menu {
+  display: grid;
+  width: 100vw;
+  background-color: black;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+
+#main {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  width: 100vw; }
+  #main-logo {
+    width: auto;
+    text-align: justify; }
+
+#generate {
+  background-color: #7F807A; }
+
+#solve {
+  background-color: #FCE196; }
+
+#build {
+  background-color: #FFFFF4; }
+
+#about {
+  background-color: #7E8054; }

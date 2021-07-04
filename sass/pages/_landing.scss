@@ -1,0 +1,31 @@
+// Main Section
+
+#main {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    width: 100vw;
+
+    &-logo {
+        width: auto;
+        text-align: justify;
+    }
+}
+
+// Menu Section
+
+#generate {
+    background-color: $dark-grey;
+}
+
+#solve {
+    background-color: $yellow;
+}
+
+#build {
+    background-color: $white;
+}
+
+#about {
+    background-color: $brown;
+}

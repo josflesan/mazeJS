@@ -1,8 +1,8 @@
 class Cell {
 
-    visitedColour = '#aad6f0'
-    selectedColour = '#effd5f'
-    noNeighbourColour = '#55d481'
+    visitedColour = '#CCCCC3'
+    selectedColour = '#FCE196'
+    noNeighbourColour = '#7E8054'
 
     /**
      * Constructor that initializes the position, size and walls of a
