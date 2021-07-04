@@ -14,7 +14,8 @@ $brown: #7E8054;
 $retro-font: 'Press Start 2P', cursive;
 $subtle-font: 'Roboto', sans-serif;
 
-$main-title-size: 7rem;
+$main-title-size: clamp(4rem, calc(4vw + 1rem), 5rem);
+$main-title-size-mobile: 4rem;
 
 // Sizes
 $banner-height: 10vh;

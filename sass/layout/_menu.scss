@@ -1,6 +1,29 @@
 #menu {
     display: grid;
     width: 100vw;
-    background-color: black;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 1200px) {
+    #menu {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+
+        div {
+            width: 50vw;
+            height: 50vh;
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    #menu {
+        grid-template-columns: none;
+        grid-template-rows: repeat(4, 1fr);
+
+        div {
+            width: 100vw;
+            height: 50vh;
+        }
+    }
 }
