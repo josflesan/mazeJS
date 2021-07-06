@@ -2,6 +2,7 @@ header {
     width: 100vw;
     height: $banner-height;
     margin: 0;
+    z-index: 1;
 }
 
 .banner {
@@ -21,7 +22,7 @@ header {
         &-icon {
             width: 36px;
             height: 36px;
-            opacity: 0.5;
+            opacity: 0.8;
             transition: opacity 150ms ease-in-out;
 
             &:hover {

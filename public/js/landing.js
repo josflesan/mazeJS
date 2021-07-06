@@ -1,36 +1,43 @@
-// Implementation of ripple effect
+import { createRipple } from './animations/ripple.js';
+import { Grid } from './components/grid.js'
+import { Algorithms } from './components/algorithms.js'
 
-function createRipple(event) {
+let canvas, ctx, gridSize, grid, cellSize, startCell
 
-    const tile = event.currentTarget
+function init() {
 
-    const viewportHeight = document.documentElement.clientHeight;
+    // Canvas Background Animation
+    canvas = document.getElementById("landing-bg")
 
-    const circle = document.createElement("span")
-    const diameter = Math.max(tile.clientWidth, tile.clientHeight)
-    const radius = diameter / 2
+    // Resize canvas so it occupies the full page
+    canvas.width = window.innerWidth
+    canvas.height = window.innerHeight
 
-    const ripple = tile.getElementsByClassName("ripple")[0]
+    ctx = canvas.getContext('2d')
 
-    if (ripple) {
-        ripple.remove()
-    }
+    gridSize = 50  // 20x20 grid
+    cellSize = canvas.height/gridSize
 
-    circle.style.width = circle.style.height = `${diameter}px`;
-    circle.style.left = `${event.clientX - (tile.offsetLeft + radius)}px`
-    circle.style.top = `${event.clientY - (tile.offsetTop + radius) + viewportHeight}px`
-    circle.classList.add("ripple");
+    grid = new Grid(gridSize, cellSize, canvas.height, canvas.width)
+    startCell = grid.getRandom()
 
-    console.log({
-        "Offset Top": tile.offsetTop,
-        "X": event.clientX,
-        "Y": event.clientY
-    })
+    grid.draw(ctx, false)
 
-    tile.appendChild(circle)
+    Algorithms.randomizedDFS(startCell, ctx, grid, update)
 
 }
 
+function update(color) {
+    // Clear grid before re-drawing
+    ctx.clearRect(0, 0, grid.totalWidth, grid.totalHeight)
+    grid.draw(ctx, color)
+}
+
+// wait for HTML to load
+document.addEventListener('DOMContentLoaded', init)
+
+
+// Ripple Animation Implementation
 const tiles = document.getElementsByClassName("menu-item")
 for (const tile of tiles) {
     tile.addEventListener("click", createRipple)

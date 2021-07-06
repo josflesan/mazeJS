@@ -3,6 +3,8 @@
     font-family: $retro-font;
     font-weight: 100;
     font-size: $main-title-size;
+    text-align: center;
+    text-shadow: 1px 1px 5px rgba(10, 10, 10, 0.7);
 
     span {
         color: $yellow;
@@ -17,6 +19,7 @@
     font-family: $subtle-font;
     font-weight: 400;
     font-size: 2rem;
+    letter-spacing: 20px;
 }
 
 .menu-item-title {
@@ -29,9 +32,15 @@
 
 span.ripple {
     position: absolute;
-    z-index: 5;
+    z-index: 3;
     border-radius: 50%;
     transform: scale(0);
     animation: ripple 600ms linear;
     background-color: rgba(255, 255, 255, 0.7);
+}
+
+@media (max-width: 900px) {
+    #subtitle {
+        letter-spacing: 10px;
+    }
 }

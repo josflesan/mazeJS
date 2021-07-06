@@ -1,5 +1,15 @@
-// Main Section
+// Canvas Background
+#landing-bg {
+    z-index: -1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    filter: opacity(40%);
+}
 
+// Main Section
 #main {
     display: grid;
     place-items: center;
@@ -7,6 +17,7 @@
     width: 100vw;
 
     .main-logo {
+        z-index: 1;
         width: auto;
         text-align: justify;
     }

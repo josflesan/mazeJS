@@ -10,7 +10,9 @@
   margin: 0;
   font-family: "Press Start 2P", cursive;
   font-weight: 100;
-  font-size: clamp(4rem, calc(4vw + 1rem), 5rem); }
+  font-size: clamp(4rem, calc(4vw + 1rem), 5rem);
+  text-align: center;
+  text-shadow: 1px 1px 5px rgba(10, 10, 10, 0.7); }
   #mazeJS span {
     color: #FCE196; }
 
@@ -21,7 +23,8 @@
   justify-content: space-between;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
-  font-size: 2rem; }
+  font-size: 2rem;
+  letter-spacing: 20px; }
 
 .menu-item-title {
   margin: -50px;
@@ -32,11 +35,15 @@
 
 span.ripple {
   position: absolute;
-  z-index: 5;
+  z-index: 3;
   border-radius: 50%;
   transform: scale(0);
   animation: ripple 600ms linear;
   background-color: rgba(255, 255, 255, 0.7); }
+
+@media (max-width: 900px) {
+  #subtitle {
+    letter-spacing: 10px; } }
 
 *,
 *:after,
@@ -44,6 +51,9 @@ span.ripple {
   margin: 0;
   padding: 0;
   box-sizing: inherit; }
+
+html {
+  scroll-behavior: smooth; }
 
 body {
   margin: 0;
@@ -90,6 +100,7 @@ a, a:hover, a:focus, a:active {
   filter: brightness(70%); }
   .menu-item-title {
     display: block;
+    z-index: 4;
     position: absolute;
     left: -5%;
     bottom: 15vh;
@@ -146,7 +157,8 @@ a, a:hover, a:focus, a:active {
 header {
   width: 100vw;
   height: 10vh;
-  margin: 0; }
+  margin: 0;
+  z-index: 1; }
 
 .banner {
   position: absolute;
@@ -163,7 +175,7 @@ header {
     .banner-socials-icon {
       width: 36px;
       height: 36px;
-      opacity: 0.5;
+      opacity: 0.8;
       transition: opacity 150ms ease-in-out; }
       .banner-socials-icon:hover {
         cursor: pointer;
@@ -191,11 +203,21 @@ header {
       width: 100vw;
       height: 50vh; } }
 
+#landing-bg {
+  z-index: -1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  filter: opacity(40%); }
+
 #main {
   display: grid;
   place-items: center;
   height: 100vh;
   width: 100vw; }
   #main .main-logo {
+    z-index: 1;
     width: auto;
     text-align: justify; }

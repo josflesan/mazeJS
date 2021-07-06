@@ -20,9 +20,9 @@ class Grid {
         this.totalWidth = canvasW
 
         // Before displaying the grid, we have to populate the grid 2D array with Cell objects
-        for (var y = cellSize; y < this.totalHeight-cellSize; y+=cellSize) {
+        for (var y = 0; y < this.totalHeight-cellSize; y+=cellSize) {
             let cellRow = []
-            for (var x = cellSize; x < this.totalWidth-cellSize; x+=cellSize) {
+            for (var x = 0; x < this.totalWidth-cellSize; x+=cellSize) {
                 let cell = new Cell(x, y, cellRow.length, this.grid.length, this.cellSize, this.gridSize)
                 cellRow.push(cell)  // Add cell to row
             }
