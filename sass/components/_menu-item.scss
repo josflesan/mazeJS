@@ -1,10 +1,11 @@
 .menu-item {
     height: 100vh;
     width: auto;
-    // overflow: hidden;
+    overflow: hidden;
     position: relative;
 
-    filter: brightness(80%);
+    box-shadow: 0 0 0 0 black;
+    filter: brightness(70%);
 
     &-title {
         display: block;
@@ -12,7 +13,6 @@
         left: -5%;
         bottom: 15vh;
         transform: rotate(-90deg);
-        // transform: rotate(-90deg);
     }
 
 }
@@ -25,7 +25,7 @@
 }
 
 #generate {
-    background-color: $dark-grey;
+    background-color: $light-grey;
     // @include bg-image(url('../../public/img/generate\ column\ background.jpg'));
     @include menu-item-hover;
 

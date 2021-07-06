@@ -26,10 +26,13 @@
 }
 
 @mixin menu-item-hover {
-    transition: filter 300ms ease-in-out;
+    transition: all 300ms ease-in-out;
+    transition-property: filter box-shadow;
 
     &:hover {
         cursor: pointer;
+        z-index: 2;
+        box-shadow: 0 0 50px 10px black;
         filter: brightness(100%);
     }
 }
