@@ -1,6 +1,20 @@
 .menu-item {
     height: 100vh;
     width: auto;
+    // overflow: hidden;
+    position: relative;
+
+    filter: brightness(80%);
+
+    &-title {
+        display: block;
+        position: absolute;
+        left: -5%;
+        bottom: 15vh;
+        transform: rotate(-90deg);
+        // transform: rotate(-90deg);
+    }
+
 }
 
 @media (max-width: 900px) {
@@ -8,4 +22,33 @@
         height: auto;
         width: 100vw;
     }
+}
+
+#generate {
+    background-color: $dark-grey;
+    // @include bg-image(url('../../public/img/generate\ column\ background.jpg'));
+    @include menu-item-hover;
+
+    p {
+        left: -17%;
+        bottom: 22vh;
+    }
+}
+
+#solve {
+    background-color: $yellow;
+    // @include bg-image(url('../../public/img/solve\ column\ background.jpg'));
+    @include menu-item-hover;
+}
+
+#build {
+    background-color: $white;
+    // @include bg-image(url('../../public/img/build\ column\ background.jpg'));
+    @include menu-item-hover;
+}
+
+#about {
+    background-color: $brown;
+    // @include bg-image(url('../../public/img/about\ column\ background.jpg'));
+    @include menu-item-hover;
 }

@@ -15,9 +15,11 @@ $retro-font: 'Press Start 2P', cursive;
 $subtle-font: 'Roboto', sans-serif;
 
 $main-title-size: clamp(4rem, calc(4vw + 1rem), 5rem);
-$main-title-size-mobile: 4rem;
 
 // Sizes
 $banner-height: 10vh;
 $side-separator: 5vw;
 $top-bottom-separator: 5vh;
+
+$text-bottom-separator: 10vh;
+$text-left-separator: -5vw;

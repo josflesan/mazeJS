@@ -10,4 +10,11 @@ body {
     margin: 0;
     box-sizing: border-box;
     background-color: $white;
+    // Hide horizontal scroll-bar
+    overflow-x: hidden;
+}
+
+a, a:hover, a:focus, a:active {
+    text-decoration: none;
+    color: inherit;
 }

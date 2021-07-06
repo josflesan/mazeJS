@@ -15,3 +15,31 @@
     display: grid;
     place-items: center;
 }
+
+@mixin bg-image($image) {
+    background-image: $image;
+    opacity: 0.5;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: center;
+}
+
+@mixin menu-item-hover {
+    transition: filter 300ms ease-in-out;
+
+    &:hover {
+        cursor: pointer;
+        filter: brightness(100%);
+    }
+}
+
+@mixin check-light-bg($is-light) {
+    @if $is-light {
+        color: black;
+    }
+
+    @else {
+        color: $white;
+    }
+}
