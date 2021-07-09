@@ -1,0 +1,29 @@
+.screen-footer {
+    height: $footer-height;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: red;
+    margin: 0;
+
+    div {
+        height: 80%;
+        background-color: blue;
+    }
+
+    &-sizebtn {
+        width: 15%;
+        margin-left: $small-side-separator;
+    }
+
+    &-playbtn { 
+        width: 10%;
+    }
+
+    &-savebtn {
+        width: 15%;
+        margin-right: $small-side-separator;
+    }
+
+}

@@ -1,0 +1,17 @@
+#return-button {
+    height: 30px;
+    width: 30px;
+    display: block;
+    background: url('../../public/img/Back\ Arrow.png') left top;
+    background-repeat: no-repeat;
+    float: left;
+    margin: 5px 5px 0 0;
+
+    transition: transform 250ms linear;
+
+    &:hover {
+        cursor: pointer;
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 5px $yellow);
+    }
+}

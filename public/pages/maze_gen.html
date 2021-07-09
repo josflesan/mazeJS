@@ -6,14 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MazeJS</title>
 
-    <link rel="stylesheet" href="public/css/generate.css">
+    <link rel="stylesheet" href="public/css/main.css">
     <script type="module" src="public/js/generate.js"></script>
 </head>
-<body>
+<body id="generate-bg">
+
+    <header class="screen-banner">
+        <h3 id="screen-title">
+            <a href="/"><span id="return-button"></span></a>
+            01/GENERATE
+        </h3>
+        <div class="theme-toggle">
+            <div class="theme-toggle-button"></div>
+        </div>
+    </header>
 
     <div class="canvas-container">
-        <canvas id="gameCanvas" width="800" height="800"></canvas>
+        <canvas id="gameCanvas"></canvas>
     </div>
+
+    <footer class="screen-footer">
+        <div class="screen-footer-sizebtn"></div>
+        <div class="screen-footer-playbtn"></div>
+        <div class="screen-footer-savebtn"></div>
+    </footer>
 
 </body>
 </html>

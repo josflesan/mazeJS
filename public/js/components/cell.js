@@ -34,8 +34,8 @@ class Cell {
         */
         this.walls = {
             "top": true,
-            "right": this.column == gridSize-3? true:false,
-            "bottom": this.row == gridSize-3? true:false,
+            "right": this.column == gridSize-1? true:false,
+            "bottom": this.row == gridSize-1? true:false,
             "left": true
         }
     }

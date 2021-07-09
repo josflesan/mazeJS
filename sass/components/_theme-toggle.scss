@@ -1,0 +1,23 @@
+.theme-toggle { 
+    width: 100px;
+    height: 50px;
+    margin-right: $small-side-separator;
+    border-radius: 25px;
+
+    background-color: blue;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    &-button {
+        margin-left: 2px;
+        margin-right: 2px;
+        border-radius: 50%;
+        height: 45px;
+        width: 45px;
+        background-color: green;
+    }
+
+
+}

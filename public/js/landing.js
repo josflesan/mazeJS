@@ -7,7 +7,7 @@ let canvas, ctx, gridSize, grid, cellSize, startCell
 function init() {
 
     // Canvas Background Animation
-    canvas = document.getElementById("landing-bg")
+    canvas = document.getElementById("animation")
 
     // Resize canvas so it occupies the full page
     canvas.width = window.innerWidth

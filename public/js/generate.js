@@ -12,7 +12,11 @@ import { Algorithms } from './components/algorithms.js'
     function init() {
         canvas = document.getElementById('gameCanvas')
         ctx = canvas.getContext('2d')
-        gridSize = 50  // 20x20 grid
+
+        ctx.canvas.width = window.innerHeight * 0.5;
+        ctx.canvas.height = window.innerHeight * 0.5;
+
+        gridSize = 30  // 20x20 grid
         cellSize = canvas.height/gridSize
 
         grid = new Grid(gridSize, cellSize, canvas.height, canvas.width)
@@ -20,7 +24,7 @@ import { Algorithms } from './components/algorithms.js'
         // Declare starting cell, remove wall 
         let startCell = grid.getRandom()
         grid.getCell(0, 0).deleteWall("left", startCell.getNeighbours(grid))  // Delete wall from start cell
-        let endCell = grid.getCell(gridSize-3, gridSize-3)
+        let endCell = grid.getCell(gridSize-1, gridSize-1)
         endCell.deleteWall("right", endCell.getNeighbours(grid))
 
         grid.draw(ctx, false)

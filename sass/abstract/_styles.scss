@@ -4,7 +4,7 @@
     font-weight: 100;
     font-size: $main-title-size;
     text-align: center;
-    text-shadow: 1px 1px 5px rgba(10, 10, 10, 0.7);
+    text-shadow: 1px 1px 10px rgba(10, 10, 10, 0.7);
 
     span {
         color: $yellow;
@@ -43,4 +43,14 @@ span.ripple {
     #subtitle {
         letter-spacing: 10px;
     }
+}
+
+
+#screen-title {
+    margin-left: $small-side-separator;
+    font-family: $retro-font;
+    font-weight: 100;
+    font-size: $screen-title-size;
+    text-align: left;
+    text-decoration: underline;
 }

@@ -12,7 +12,7 @@
   font-weight: 100;
   font-size: clamp(4rem, calc(4vw + 1rem), 5rem);
   text-align: center;
-  text-shadow: 1px 1px 5px rgba(10, 10, 10, 0.7); }
+  text-shadow: 1px 1px 10px rgba(10, 10, 10, 0.7); }
   #mazeJS span {
     color: #FCE196; }
 
@@ -44,6 +44,14 @@ span.ripple {
 @media (max-width: 900px) {
   #subtitle {
     letter-spacing: 10px; } }
+
+#screen-title {
+  margin-left: 30px;
+  font-family: "Press Start 2P", cursive;
+  font-weight: 100;
+  font-size: clamp(2rem, calc(2vw + 1rem), 2.5rem);
+  text-align: left;
+  text-decoration: underline; }
 
 *,
 *:after,
@@ -154,6 +162,37 @@ a, a:hover, a:focus, a:active {
     box-shadow: 0 0 50px 10px black;
     filter: brightness(100%); }
 
+#return-button {
+  height: 30px;
+  width: 30px;
+  display: block;
+  background: url("../../public/img/Back Arrow.png") left top;
+  background-repeat: no-repeat;
+  float: left;
+  margin: 5px 5px 0 0;
+  transition: transform 250ms linear; }
+  #return-button:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 5px #FCE196); }
+
+.theme-toggle {
+  width: 100px;
+  height: 50px;
+  margin-right: 30px;
+  border-radius: 25px;
+  background-color: blue;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; }
+  .theme-toggle-button {
+    margin-left: 2px;
+    margin-right: 2px;
+    border-radius: 50%;
+    height: 45px;
+    width: 45px;
+    background-color: green; }
+
 header {
   width: 100vw;
   height: 10vh;
@@ -182,6 +221,35 @@ header {
         opacity: 1;
         transform: scale(1.4); }
 
+.screen-banner {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw; }
+
+.screen-footer {
+  height: 15vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: red;
+  margin: 0; }
+  .screen-footer div {
+    height: 80%;
+    background-color: blue; }
+  .screen-footer-sizebtn {
+    width: 15%;
+    margin-left: 30px; }
+  .screen-footer-playbtn {
+    width: 10%; }
+  .screen-footer-savebtn {
+    width: 15%;
+    margin-right: 30px; }
+
 #menu {
   display: grid;
   width: 100vw;
@@ -204,13 +272,16 @@ header {
       height: 50vh; } }
 
 #landing-bg {
+  background-color: #FFFFF4; }
+
+#animation {
   z-index: -1;
   position: absolute;
   left: 0;
   top: 0;
   bottom: 0;
   right: 0;
-  filter: opacity(40%); }
+  filter: opacity(35%); }
 
 #main {
   display: grid;
@@ -221,3 +292,20 @@ header {
     z-index: 1;
     width: auto;
     text-align: justify; }
+
+#generate-bg {
+  background-color: #CCCCC3;
+  margin: 0;
+  height: 100%; }
+
+canvas {
+  background: #f8f8f8;
+  padding: 5px;
+  display: block; }
+
+.canvas-container {
+  width: 100vw;
+  height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center; }

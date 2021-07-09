@@ -15,7 +15,7 @@ header {
         flex-direction: row;
         justify-content: space-between;
         margin-top: $top-bottom-separator;
-        margin-right: $side-separator;
+        margin-right: $large-side-separator;
         width: 20vw;
         height: auto;
 
@@ -35,5 +35,15 @@ header {
 
     }
 
+}
+
+.screen-banner {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
 }
 
