@@ -2,28 +2,42 @@
     height: $footer-height;
     width: 100vw;
     display: flex;
+    // position: absolute;
+    // bottom: 0;
     align-items: center;
     justify-content: space-between;
-    background-color: red;
     margin: 0;
 
     div {
         height: 80%;
-        background-color: blue;
     }
 
     &-sizebtn {
         width: 15%;
+        @include bg-image-center(url('../../public/img/8-Bit\ Button.png'));
         margin-left: $small-side-separator;
     }
 
     &-playbtn { 
         width: 10%;
+        @include bg-image-center(url('../../public/img/Play\ Icon.png'));
+        @include button-hover;
     }
 
     &-savebtn {
         width: 15%;
+        display: grid;
+        place-items: center;
+        @include bg-image-center(url('../../public/img/8-Bit\ Button.png'));
+        @include button-hover;
         margin-right: $small-side-separator;
+        padding: $small-button-inner-padding;
+
+        #save-icon {
+            height: 50%;
+            width: 50%;
+            @include bg-image-center(url('../../public/img/Save\ Icon.png'));
+        }
     }
 
 }

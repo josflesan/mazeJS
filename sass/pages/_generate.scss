@@ -1,19 +1,15 @@
 #generate-bg {
     background-color: $light-grey;
+    display: grid;
+    grid-template-rows: 0.2fr 1fr 0.2fr;
+    place-items: center;
+    align-items: center;
     margin: 0;
-    height: 100%;
+    height: 100vh;
 }
 
 canvas {
     background: #f8f8f8;
     padding: 5px;
     display: block;
-}
-
-.canvas-container {
-    width: 100vw;
-    height: 85vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }

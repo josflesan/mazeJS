@@ -25,6 +25,13 @@
     background-position: center;
 }
 
+@mixin bg-image-center($image) {
+    background-image: $image;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
 @mixin menu-item-hover {
     transition: all 300ms ease-in-out;
     transition-property: filter box-shadow;
@@ -34,6 +41,17 @@
         z-index: 2;
         box-shadow: 0 0 50px 10px black;
         filter: brightness(100%);
+    }
+}
+
+@mixin button-hover {
+    transition: all 300ms ease-in-out;
+    transition-property: filter transform;
+
+    &:hover {
+        cursor: pointer;
+        filter: brightness(1.5);
+        transform: scale(1.1);
     }
 }
 

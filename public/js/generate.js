@@ -4,32 +4,45 @@ import { Algorithms } from './components/algorithms.js'
 
 ;(function() {
 
-    let canvas, ctx, cellSize, gridSize, grid
+    let canvas, ctx, cellSize, gridSize, grid, container
 
     /**
      * Function for intial setup of config variables
      */
     function init() {
-        canvas = document.getElementById('gameCanvas')
+        canvas = document.getElementById('monitor-canvas')
+        container = document.querySelector('#canvas-container')
         ctx = canvas.getContext('2d')
 
-        ctx.canvas.width = window.innerHeight * 0.5;
-        ctx.canvas.height = window.innerHeight * 0.5;
+        container.width = innerWidth * 0.9 * 0.5
+        container.height = innerHeight * 0.7 * 0.6
 
-        gridSize = 30  // 20x20 grid
+        ctx.canvas.height = container.height;
+        ctx.canvas.width = canvas.height;
+
+        gridSize = 30  // 30x30 grid
+
         cellSize = canvas.height/gridSize
 
         grid = new Grid(gridSize, cellSize, canvas.height, canvas.width)
 
         // Declare starting cell, remove wall 
         let startCell = grid.getRandom()
-        grid.getCell(0, 0).deleteWall("left", startCell.getNeighbours(grid))  // Delete wall from start cell
+        grid.getCell(0, 0).deleteWall("left", grid.getCell(0, 0).getNeighbours(grid))  // Delete wall from start cell
         let endCell = grid.getCell(gridSize-1, gridSize-1)
         endCell.deleteWall("right", endCell.getNeighbours(grid))
 
         grid.draw(ctx, false)
         
-        Algorithms.randomizedDFS(startCell, ctx, grid, update)    
+        // Implement play button functionality
+        let playbtn = document.getElementById("playbtn");
+
+        playbtn.addEventListener("click", e => {
+            // Choose appropriate algorithm and play animation
+            Algorithms.randomizedDFS(startCell, ctx, grid, update)    
+
+            //TODO: Change play button to pause/stop button?
+        })
 
     }
 

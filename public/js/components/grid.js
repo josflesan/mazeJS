@@ -20,9 +20,9 @@ class Grid {
         this.totalWidth = canvasW
 
         // Before displaying the grid, we have to populate the grid 2D array with Cell objects
-        for (var y = 0; y < this.totalHeight; y+=cellSize) {
+        for (var y = 0; y < canvasH; y+=cellSize) {
             let cellRow = []
-            for (var x = 0; x < this.totalWidth; x+=cellSize) {
+            for (var x = 0; x < canvasW; x+=cellSize) {
                 let cell = new Cell(x, y, cellRow.length, this.grid.length, this.cellSize, this.gridSize)
                 cellRow.push(cell)  // Add cell to row
             }
@@ -46,8 +46,8 @@ class Grid {
      * @returns {Cell}  Random cell object in grid
      */
     getRandom() {
-        return this.getCell(Math.floor(Math.random() * (this.gridSize-3)), 
-                        Math.floor(Math.random() * (this.gridSize-3)))
+        return this.getCell(Math.floor(Math.random() * (this.gridSize-1)), 
+                        Math.floor(Math.random() * (this.gridSize-1)))
     }
 
     /**

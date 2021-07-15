@@ -12,7 +12,7 @@ class Cell {
      * @param {int} column The column of the grid in which the Cell object resides
      * @param {int} row   The row of the grid in which the Cell object resides
      * @param {int} size  The size of the Cell object (assuming square for grid)
-     * @param {int} gridSize The size of the grid (assuming square)
+     * @param {int} gridSize The size of the grid with vertical and horizontal keys
      */
     constructor(x, y, column, row, size, gridSize) {
         this.x = x

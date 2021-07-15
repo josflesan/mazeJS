@@ -162,6 +162,32 @@ a, a:hover, a:focus, a:active {
     box-shadow: 0 0 50px 10px black;
     filter: brightness(100%); }
 
+.monitor {
+  width: 100%;
+  height: 95%;
+  display: grid;
+  grid-template-rows: 0.8fr 0.2fr;
+  grid-gap: 0px;
+  align-items: center;
+  justify-items: center; }
+  .monitor-canvas-container {
+    width: 540px;
+    height: 100%;
+    background-image: url("../../public/img/Frame.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+  .monitor-base {
+    width: 90%;
+    height: 100%;
+    background-image: url("../../public/img/Chin.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat; }
+
 #return-button {
   height: 30px;
   width: 30px;
@@ -222,7 +248,6 @@ header {
         transform: scale(1.4); }
 
 .screen-banner {
-  position: absolute;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -236,19 +261,51 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: red;
   margin: 0; }
   .screen-footer div {
-    height: 80%;
-    background-color: blue; }
+    height: 80%; }
   .screen-footer-sizebtn {
     width: 15%;
+    background-image: url("../../public/img/8-Bit Button.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
     margin-left: 30px; }
   .screen-footer-playbtn {
-    width: 10%; }
+    width: 10%;
+    background-image: url("../../public/img/Play Icon.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: all 300ms ease-in-out;
+    transition-property: filter transform; }
+    .screen-footer-playbtn:hover {
+      cursor: pointer;
+      filter: brightness(1.5);
+      transform: scale(1.1); }
   .screen-footer-savebtn {
     width: 15%;
-    margin-right: 30px; }
+    display: grid;
+    place-items: center;
+    background-image: url("../../public/img/8-Bit Button.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: all 300ms ease-in-out;
+    transition-property: filter transform;
+    margin-right: 30px;
+    padding: 10px; }
+    .screen-footer-savebtn:hover {
+      cursor: pointer;
+      filter: brightness(1.5);
+      transform: scale(1.1); }
+    .screen-footer-savebtn #save-icon {
+      height: 50%;
+      width: 50%;
+      background-image: url("../../public/img/Save Icon.png");
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat; }
 
 #menu {
   display: grid;
@@ -295,17 +352,14 @@ header {
 
 #generate-bg {
   background-color: #CCCCC3;
+  display: grid;
+  grid-template-rows: 0.2fr 1fr 0.2fr;
+  place-items: center;
+  align-items: center;
   margin: 0;
-  height: 100%; }
+  height: 100vh; }
 
 canvas {
   background: #f8f8f8;
   padding: 5px;
   display: block; }
-
-.canvas-container {
-  width: 100vw;
-  height: 85vh;
-  display: flex;
-  align-items: center;
-  justify-content: center; }
