@@ -40,11 +40,12 @@ import { Algorithms } from './components/algorithms.js'
         playbtn.addEventListener("click", e => {
             // Choose appropriate algorithm and play animation
             changeButton()
-            Algorithms.randomizedDFS(startCell, ctx, grid, update)  
+            Algorithms.randomizedDFS(startCell, ctx, grid, update, playbtn)  
             
             if (buttonState == "PAUSED") {
                 grid.clear(ctx)  // If stopped, clear grid
             }
+
         })
 
     }
@@ -103,15 +104,25 @@ import { Algorithms } from './components/algorithms.js'
      * selected algorithm
      */
     function changeButton() {
-        if (buttonState == "PAUSED") {
-            buttonState = "PLAY"
-            playbtn.style.backgroundImage = "url('../../public/img/Stop\ Icon.png')"
-            Algorithms.playAlgorithm()
-        }
-        else {
-            buttonState = "PAUSED"
-            playbtn.style.backgroundImage = "url('../../public/img/Play\ Icon.png')"
-            Algorithms.stopAlgorithm()
+
+        switch (buttonState) {
+
+            case "PAUSED":
+                buttonState = "PLAY"
+                playbtn.style.backgroundImage = "url('../../public/img/Stop\ Icon.png')"
+                Algorithms.playAlgorithm()
+                break
+
+            case "PLAY":
+                buttonState = "PAUSED"
+                playbtn.style.backgroundImage = "url('../../public/img/Play\ Icon.png')"
+                Algorithms.stopAlgorithm()
+                break
+
+            case "FINISHED":
+                buttonState = "PAUSED"
+                playbtn.style.backgroundImage = "url('../../public/img/Play\ Icon.png')"
+                break
         }
     }
 

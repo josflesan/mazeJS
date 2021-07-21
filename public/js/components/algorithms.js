@@ -4,14 +4,16 @@ import { Stack } from './stack.js'
 class Algorithms {
 
     RUN = false
+    FINISHED = false
 
     /**
      * Randomized Depth-First Search (DFS) iterative implementation
      * @param {Cell} currentCell                Current cell object being considered by algorithm 
      * @param {CanvasRenderingContext2D} ctx    HTML5 Canvas Context
      * @param {Grid} grid                       Grid object modelling the grid
+     * @param {HTML Div} playbtn                Play Button used to update button state once algorithm finished
      */
-    static randomizedDFS(currentCell, ctx, grid, update) {
+    static randomizedDFS(currentCell, ctx, grid, update, playbtn) {
 
         // Create stack
         let stack = new Stack()  
@@ -64,6 +66,10 @@ class Algorithms {
             
             } 
 
+            if (stack.isEmpty) {
+                this.finished(playbtn)
+            }
+
             await Control.sleep(1000)
 
         }
@@ -87,6 +93,17 @@ class Algorithms {
      */
     static playAlgorithm() {
         this.RUN = true
+    }
+
+    /**
+     * Function to update play button once algorithm execution is finished
+     * @param {HTML Div}    Div element representing the button in the HTML
+     */
+    static finished(playbtn) {
+        this.FINISHED = true  // Update finished to true
+        this.stopAlgorithm()  // Stop the algorithm
+
+        playbtn.style.backgroundImage = "url('../../public/img/Repeat\ Icon.png')"
     }
 
 }
