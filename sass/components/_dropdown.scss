@@ -1,0 +1,35 @@
+#gridSizeForm {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#gridSizeList {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    position: relative;
+
+    border-radius: 2px;
+    background-image: url('../../public/img/Drop-Down\ Icon.png');
+    background-size: 10%;
+    background-repeat: no-repeat;
+    background-position: center right;
+
+    border: none;
+    font-size: $dropdown-text-font-size;
+    background-color: $dark-grey;
+    font-family: $retro-font;
+    width: 100%;
+    word-spacing: -10px;
+    letter-spacing: -5px;
+    padding: 5px;
+    padding-right: 30px;
+    
+    option {
+        text-align: center;
+    }
+
+}

@@ -11,6 +11,10 @@
     }
 
     &-sizebtn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
         width: 20%;
         @include bg-image-center(url('../../public/img/8-Bit\ Button.png'));
         margin-left: $small-side-separator;

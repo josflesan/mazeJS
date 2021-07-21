@@ -99,6 +99,34 @@ a, a:hover, a:focus, a:active {
       border-bottom-width: 4px;
       border-right-width: 4px; }
 
+#gridSizeForm {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+#gridSizeList {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  position: relative;
+  border-radius: 2px;
+  background-image: url("../../public/img/Drop-Down Icon.png");
+  background-size: 10%;
+  background-repeat: no-repeat;
+  background-position: center right;
+  border: none;
+  font-size: 2em;
+  background-color: #7F807A;
+  font-family: "Press Start 2P", cursive;
+  width: 100%;
+  word-spacing: -10px;
+  letter-spacing: -5px;
+  padding: 5px;
+  padding-right: 30px; }
+  #gridSizeList option {
+    text-align: center; }
+
 .menu-item {
   height: 100vh;
   width: auto;
@@ -265,6 +293,9 @@ header {
   .screen-footer div {
     height: 80%; }
   .screen-footer-sizebtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 20%;
     background-image: url("../../public/img/8-Bit Button.png");
     background-size: contain;
