@@ -67,7 +67,7 @@ class Algorithms {
             
             } 
 
-            if (stack.isEmpty) {
+            if (stack.isEmpty && this.RUN) {
                 this.finished(playbtn)
             }
 
@@ -102,7 +102,7 @@ class Algorithms {
      */
     static finished(playbtn) {
         this.FINISHED = true  // Update finished to true
-        this.stopAlgorithm()  // Stop the algorithm
+        // this.stopAlgorithm()  // Stop the algorithm
 
         playbtn.style.backgroundImage = "url('../../public/img/Repeat\ Icon.png')"
     }

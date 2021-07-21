@@ -95,11 +95,6 @@ import { Algorithms } from './components/algorithms.js'
     /**
      * Function that runs the appropriate algoritm based on which one is selected
      * in the dropdown menu
-     * @param {Cell} startCell                  The starting cell needed by some algorithms
-     * @param {CanvasRenderingContext2D} ctx    The HTML5 Canvas Drawing Context
-     * @param {Grid} grid                       The grid object modelling the state of the maze
-     * @param {Function} update                 The update function required to re-draw the state of the maze
-     * @param {HTML Div} playbtn                The div element representing the play button to start the animation
      */
     function getSelectedAlgorithm() {
         let algorithmList = document.getElementById("algorithmList");
