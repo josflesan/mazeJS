@@ -265,7 +265,7 @@ header {
   .screen-footer div {
     height: 80%; }
   .screen-footer-sizebtn {
-    width: 15%;
+    width: 20%;
     background-image: url("../../public/img/8-Bit Button.png");
     background-size: contain;
     background-position: center;
@@ -284,7 +284,7 @@ header {
       filter: brightness(1.5);
       transform: scale(1.1); }
   .screen-footer-savebtn {
-    width: 15%;
+    width: 20%;
     display: grid;
     place-items: center;
     background-image: url("../../public/img/8-Bit Button.png");

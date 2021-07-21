@@ -3,6 +3,8 @@ import { Stack } from './stack.js'
 
 class Algorithms {
 
+    RUN = false
+
     /**
      * Randomized Depth-First Search (DFS) iterative implementation
      * @param {Cell} currentCell                Current cell object being considered by algorithm 
@@ -13,14 +15,14 @@ class Algorithms {
 
         // Create stack
         let stack = new Stack()  
-
+        
         // Mark current cell as visited and push to stack
         currentCell.visitedCell(ctx) 
         stack.push(currentCell);
 
         const newIteration = async () => {
 
-            while (!stack.isEmpty()) {
+            while (!stack.isEmpty() && this.RUN) {
 
                 await Control.sleep(50)
     
@@ -42,6 +44,11 @@ class Algorithms {
                     chosenCell.selectCell(ctx)
 
                     update(true)
+
+                    // Check if algorithm was stopped
+                    if (!this.RUN) {
+                        break
+                    }
     
                     // Remove wall between current and chosen cells
                     currentCell.deleteWall(chosenDirection, currentCell.getNeighbours(grid))
@@ -61,9 +68,25 @@ class Algorithms {
 
         }
 
-        // Call new iteration and then clear grid once finished
-        newIteration().then(() => update(false))
+        if (this.RUN) {
+            // Call new iteration and then clear grid once finished
+            newIteration().then(() => update(false))
+        }
 
+    }
+
+    /**
+     * Function to stop algorithm that is currently being executed
+     */
+    static stopAlgorithm() {
+        this.RUN = false
+    }
+
+    /**
+     * Function to replay algorithm that previously paused
+     */
+    static playAlgorithm() {
+        this.RUN = true
     }
 
 }

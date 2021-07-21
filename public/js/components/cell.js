@@ -1,8 +1,10 @@
 class Cell {
 
-    visitedColour = '#CCCCC3'
-    selectedColour = '#FCE196'
-    noNeighbourColour = '#7E8054'
+    VISITED_COLOUR = '#CCCCC3'
+    SELECTED_COLOUR = '#FCE196'
+    NO_NEIGHBOUR_COLOUR = '#7E8054'
+
+    GRID_SIZE = null
 
     /**
      * Constructor that initializes the position, size and walls of a
@@ -24,6 +26,8 @@ class Cell {
         this.visited = false;
         this.selected = false;
         this.deadEnd = false;
+
+        this.GRID_SIZE = gridSize
 
         // Walls: Top, Right, Bottom, Left
         /*
@@ -224,16 +228,33 @@ class Cell {
      */
     colorCell(ctx) {
         if (this.selected) {
-            ctx.fillStyle = this.selectedColour
+            ctx.fillStyle = this.SELECTED_COLOUR
             ctx.fillRect(this.x, this.y, this.size, this.size)
         } else if (this.visited && !this.deadEnd) {
-            ctx.fillStyle = this.visitedColour
+            ctx.fillStyle = this.VISITED_COLOUR
             ctx.fillRect(this.x, this.y, this.size, this.size)
         } else if (this.deadEnd) {
-            ctx.fillStyle = this.noNeighbourColour
+            ctx.fillStyle = this.NO_NEIGHBOUR_COLOUR
             ctx.fillRect(this.x, this.y, this.size, this.size)
         }
         
+    }
+
+    /**
+     * Function to reset the colour and walls of a cell by resetting dictionary to original state
+     * and resetting the flags to false
+     */
+    resetCell() {
+        this.visited = false;
+        this.selected = false;
+        this.deadEnd = false;
+
+        this.walls = {
+            "top": true,
+            "right": this.column == this.GRID_SIZE-1? true:false,
+            "bottom": this.row == this.GRID_SIZE-1? true:false,
+            "left": true
+        }
     }
 
 }

@@ -4,7 +4,8 @@ import { Algorithms } from './components/algorithms.js'
 
 ;(function() {
 
-    let canvas, ctx, cellSize, gridSize, grid, container
+    let canvas, ctx, cellSize, gridSize, grid, container, playbtn
+    let buttonState = "PAUSED"
 
     /**
      * Function for intial setup of config variables
@@ -35,13 +36,16 @@ import { Algorithms } from './components/algorithms.js'
         grid.draw(ctx, false)
         
         // Implement play button functionality
-        let playbtn = document.getElementById("playbtn");
+        playbtn = document.getElementById("playbtn");
 
         playbtn.addEventListener("click", e => {
             // Choose appropriate algorithm and play animation
-            Algorithms.randomizedDFS(startCell, ctx, grid, update)    
-
-            //TODO: Change play button to pause/stop button?
+            changeButton()
+            Algorithms.randomizedDFS(startCell, ctx, grid, update)  
+            
+            if (buttonState == "PAUSED") {
+                grid.clear(ctx)  // If stopped, clear grid
+            }
         })
 
     }
@@ -50,6 +54,23 @@ import { Algorithms } from './components/algorithms.js'
         // Clear grid before re-drawing
         ctx.clearRect(0, 0, grid.totalWidth, grid.totalHeight)
         grid.draw(ctx, color)
+    }
+
+    function onClickButton() {
+        
+    }
+
+    function changeButton() {
+        if (buttonState == "PAUSED") {
+            buttonState = "PLAY"
+            playbtn.style.backgroundImage = "url('../../public/img/Stop\ Icon.png')"
+            Algorithms.playAlgorithm()
+        }
+        else {
+            buttonState = "PAUSED"
+            playbtn.style.backgroundImage = "url('../../public/img/Play\ Icon.png')"
+            Algorithms.stopAlgorithm()
+        }
     }
 
     // wait for HTML to load
