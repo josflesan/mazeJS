@@ -11,6 +11,7 @@ class Algorithms {
      * @param {Cell} currentCell                Current cell object being considered by algorithm 
      * @param {CanvasRenderingContext2D} ctx    HTML5 Canvas Context
      * @param {Grid} grid                       Grid object modelling the grid
+     * @param {Function} update                 The update function required to re-draw the state of the maze
      * @param {HTML Div} playbtn                Play Button used to update button state once algorithm finished
      */
     static randomizedDFS(currentCell, ctx, grid, update, playbtn) {

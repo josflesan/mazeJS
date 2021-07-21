@@ -99,33 +99,40 @@ a, a:hover, a:focus, a:active {
       border-bottom-width: 4px;
       border-right-width: 4px; }
 
-#gridSizeForm {
+.dropdownForm {
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center; }
 
-#gridSizeList {
+.dropdown {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   position: relative;
   border-radius: 2px;
   background-image: url("../../public/img/Drop-Down Icon.png");
-  background-size: 10%;
   background-repeat: no-repeat;
   background-position: center right;
   border: none;
   font-size: 2em;
   background-color: #7F807A;
   font-family: "Press Start 2P", cursive;
-  width: 100%;
   word-spacing: -10px;
   letter-spacing: -5px;
   padding: 5px;
   padding-right: 30px; }
-  #gridSizeList option {
-    text-align: center; }
+  .dropdown option {
+    text-align: center;
+    word-spacing: -10px;
+    letter-spacing: -5px; }
+
+#gridSizeList {
+  width: 100%;
+  background-size: 10%; }
+
+#algorithmList {
+  background-size: 5%; }
 
 .menu-item {
   height: 100vh;

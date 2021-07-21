@@ -26,14 +26,19 @@
             <canvas id="monitor-canvas"></canvas>
         </div>
         <div class="monitor-base">
-            
+            <form class="dropdownForm">
+                <select id="algorithmList" class="dropdown">
+                    <option>01 Randomized DFS</option>
+                    <option>02 Test Function</option>
+                </select>
+            </form>
         </div>
     </div>
 
     <footer class="screen-footer">
         <div class="screen-footer-sizebtn">
-            <form id="gridSizeForm">
-                <select id="gridSizeList">
+            <form class="dropdownForm">
+                <select id="gridSizeList" class="dropdown">
                     <option>5 x 5</option>
                     <option>10 x 10</option>
                     <option>15 x 15</option>
