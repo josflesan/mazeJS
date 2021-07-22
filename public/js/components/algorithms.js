@@ -1,4 +1,5 @@
 import { Control } from '../helpers/control.js';
+import { CustomWeakMap } from '../data structures/CustomWeakMap.js';
 import { Stack } from './stack.js'
 
 class Algorithms {
@@ -84,12 +85,17 @@ class Algorithms {
 
     static randomizedPrim(grid) {
 
+        let wallList = new CustomWeakMap()
+
         // Pick a cell, mark it as part of the maze
         let startCell = grid.getRandom()
         startCell.selectCell()
         startCell.visitedCell()
 
         // Add walls of the cell to the wall list
+        wallList.set(startCell, startCell.getCellWalls(grid))
+
+        console.log(wallList.length)
 
         // While there are walls in the list...
 
