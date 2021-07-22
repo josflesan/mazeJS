@@ -43,16 +43,16 @@ class Algorithms {
                     let directions = Object.keys(unvisited)
                     let chosenDirection = directions[Math.floor(Math.random() * directions.length)]
                     let chosenCell = unvisited[chosenDirection]
-    
-                    chosenCell.selectCell(ctx)
-
-                    update(true)
-
+                    
                     // Check if algorithm was stopped
                     if (!this.RUN) {
                         break
-                    }
-    
+                    }                    
+
+                    chosenCell.selectCell(ctx)
+
+                    update(true)
+                    
                     // Remove wall between current and chosen cells
                     currentCell.deleteWall(chosenDirection, currentCell.getNeighbours(grid))
                     
@@ -102,7 +102,7 @@ class Algorithms {
      */
     static finished(playbtn) {
         this.FINISHED = true  // Update finished to true
-        // this.stopAlgorithm()  // Stop the algorithm
+        this.stopAlgorithm()  // Stop the algorithm
 
         playbtn.style.backgroundImage = "url('../../public/img/Repeat\ Icon.png')"
     }

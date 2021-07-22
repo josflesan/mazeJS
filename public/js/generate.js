@@ -1,6 +1,7 @@
 import { Grid } from './components/grid.js'
 import { Algorithms } from './components/algorithms.js'
 
+//TODO: FIX STOP BEHAVIOUR
 
 ;(function() {
 
@@ -55,6 +56,7 @@ import { Algorithms } from './components/algorithms.js'
             
             if (buttonState == "PAUSED") {
                 grid.clear(ctx)  // If stopped, clear grid
+                openMaze()
             }
 
         })
@@ -88,7 +90,6 @@ import { Algorithms } from './components/algorithms.js'
             ctx.clearRect(0, 0, canvas.width, canvas.height)
             
             openMaze()
-            grid.draw(ctx, false)
         }
     }
 
@@ -127,6 +128,7 @@ import { Algorithms } from './components/algorithms.js'
         // Declare ending cell, remove wall
         let endCell = grid.getCell(gridSize-1, gridSize-1)
         endCell.deleteWall("right", endCell.getNeighbours(grid))
+        grid.draw(ctx, false)
 
         return startCell
     }
@@ -155,6 +157,8 @@ import { Algorithms } from './components/algorithms.js'
             case "FINISHED":
                 buttonState = "PAUSED"
                 playbtn.style.backgroundImage = "url('../../public/img/Play\ Icon.png')"
+                Algorithms.stopAlgorithm()
+                openMaze()
                 break
         }
     }
