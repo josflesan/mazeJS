@@ -12,12 +12,13 @@
 
     &-sizebtn {
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         
-        width: 20%;
-        @include bg-image-center(url('../../public/img/8-Bit\ Button.png'));
+        width: 25%;
+        @include bg-image-position(url('../../public/img/8-Bit\ Button.png'), center left);
         margin-left: $small-side-separator;
+        padding-left: $small-button-inner-padding;
     }
 
     &-playbtn { 
@@ -27,10 +28,10 @@
     }
 
     &-savebtn {
-        width: 20%;
+        width: 25%;
         display: grid;
         place-items: center;
-        @include bg-image-center(url('../../public/img/8-Bit\ Button.png'));
+        @include bg-image-position(url('../../public/img/8-Bit\ Button.png'), center right);
         @include button-hover;
         margin-right: $small-side-separator;
         padding: $small-button-inner-padding;
@@ -38,7 +39,7 @@
         #save-icon {
             height: 50%;
             width: 50%;
-            @include bg-image-center(url('../../public/img/Save\ Icon.png'));
+            @include bg-image-position(url('../../public/img/Save\ Icon.png'), center right);
         }
     }
 

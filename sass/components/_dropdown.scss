@@ -28,8 +28,6 @@
     
     option {
         text-align: center;
-        word-spacing: -10px;
-        letter-spacing: -5px;
     }
 
 }
@@ -37,6 +35,7 @@
 #gridSizeList {
     width: 100%;
     background-size: 10%;
+    word-spacing: -20px;
 }
 
 #algorithmList {

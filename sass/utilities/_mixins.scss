@@ -22,7 +22,14 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: scroll;
-    background-position: center;
+    background-position: $position;
+}
+
+@mixin bg-image-position($image, $position) {
+    background-image: $image;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: $position;
 }
 
 @mixin bg-image-center($image) {

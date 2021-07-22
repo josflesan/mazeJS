@@ -123,13 +123,12 @@ a, a:hover, a:focus, a:active {
   padding: 5px;
   padding-right: 30px; }
   .dropdown option {
-    text-align: center;
-    word-spacing: -10px;
-    letter-spacing: -5px; }
+    text-align: center; }
 
 #gridSizeList {
   width: 100%;
-  background-size: 10%; }
+  background-size: 10%;
+  word-spacing: -20px; }
 
 #algorithmList {
   background-size: 5%; }
@@ -301,14 +300,15 @@ header {
     height: 80%; }
   .screen-footer-sizebtn {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    width: 20%;
+    width: 25%;
     background-image: url("../../public/img/8-Bit Button.png");
     background-size: contain;
-    background-position: center;
     background-repeat: no-repeat;
-    margin-left: 30px; }
+    background-position: center left;
+    margin-left: 30px;
+    padding-left: 10px; }
   .screen-footer-playbtn {
     width: 10%;
     background-image: url("../../public/img/Play Icon.png");
@@ -322,13 +322,13 @@ header {
       filter: brightness(1.5);
       transform: scale(1.1); }
   .screen-footer-savebtn {
-    width: 20%;
+    width: 25%;
     display: grid;
     place-items: center;
     background-image: url("../../public/img/8-Bit Button.png");
     background-size: contain;
-    background-position: center;
     background-repeat: no-repeat;
+    background-position: center right;
     transition: all 300ms ease-in-out;
     transition-property: filter transform;
     margin-right: 30px;
@@ -342,8 +342,8 @@ header {
       width: 50%;
       background-image: url("../../public/img/Save Icon.png");
       background-size: contain;
-      background-position: center;
-      background-repeat: no-repeat; }
+      background-repeat: no-repeat;
+      background-position: center right; }
 
 #menu {
   display: grid;
