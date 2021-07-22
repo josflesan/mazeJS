@@ -40,6 +40,10 @@ class CustomWeakMap {
         return this
     }
 
+    isEmpty() {
+        return this._length == 0
+    }
+
 
 }
 

@@ -1,6 +1,7 @@
 import { Control } from '../helpers/control.js';
 import { CustomWeakMap } from '../data structures/CustomWeakMap.js';
 import { Stack } from './stack.js'
+import { randomProperty } from '../helpers/misc.js'
 
 class Algorithms {
 
@@ -89,17 +90,20 @@ class Algorithms {
 
         // Pick a cell, mark it as part of the maze
         let startCell = grid.getRandom()
-        startCell.selectCell()
         startCell.visitedCell()
 
         // Add walls of the cell to the wall list
         wallList.set(startCell, startCell.getCellWalls(grid))
 
-        console.log(wallList.length)
-
         // While there are walls in the list...
+        while (!wallList.isEmpty()) {
 
             // Pick random wall from the list
+            let randomCell = Math.floor(Math.random() * wallList.length())
+            let selectedCell = wallList.keys()[randomCell]
+            let randomWall = randomProperty(wallList.get(selectedCell))
+            console.log(randomWall)
+            break
 
             // If only one of the cells that the wall divides is visited
 
@@ -110,6 +114,11 @@ class Algorithms {
                 // Add neighbouring walls of the cell to wall list
 
             // Remove wall from the list
+
+
+
+
+        }
 
     }
 
