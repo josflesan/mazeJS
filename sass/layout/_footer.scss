@@ -29,17 +29,27 @@
 
     &-savebtn {
         width: 25%;
-        display: grid;
-        place-items: center;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
         @include bg-image-position(url('../../public/img/8-Bit\ Button.png'), center right);
         @include button-hover;
         margin-right: $small-side-separator;
-        padding: $small-button-inner-padding;
+        padding-right: $small-button-inner-padding;
 
         #save-icon {
             height: 50%;
             width: 50%;
-            @include bg-image-position(url('../../public/img/Save\ Icon.png'), center right);
+            @include bg-image-position(url('../../public/img/Save\ Icon.png'), center center);
+        }
+    }
+
+}
+
+@media only screen and (max-width: 1600px) {
+    .screen-footer {
+        &-savebtn {
+            justify-content: center;
         }
     }
 
