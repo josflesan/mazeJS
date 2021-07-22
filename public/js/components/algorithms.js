@@ -82,6 +82,31 @@ class Algorithms {
 
     }
 
+    static randomizedPrim(grid) {
+
+        // Pick a cell, mark it as part of the maze
+        let startCell = grid.getRandom()
+        startCell.selectCell()
+        startCell.visitedCell()
+
+        // Add walls of the cell to the wall list
+
+        // While there are walls in the list...
+
+            // Pick random wall from the list
+
+            // If only one of the cells that the wall divides is visited
+
+                // Make wall a passage
+
+                // Mark unvisited cell as part of the maze
+
+                // Add neighbouring walls of the cell to wall list
+
+            // Remove wall from the list
+
+    }
+
     /**
      * Function to stop algorithm that is currently being executed
      */

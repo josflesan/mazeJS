@@ -155,6 +155,33 @@ class Cell {
     }
 
     /**
+     * Function that returns all the active walls for a particular cell in the maze,
+     * taking into account the lack of double walls
+     * @param {Grid} grid   The grid object modelling the maze
+     */
+    getCellWalls(grid) {
+
+        /* 
+            Every cell is given a top and left wall, so just return their current value.
+            Only bottom row row cells given a bottom wall.
+            Only last column cells given a right wall.
+            This is to avoid double walls.
+            Therefore, if corresponding neighbour has a wall, it also counts as cell's wall.
+        */
+
+        let neighbours = this.getNeighbours(grid)
+
+        let walls = {
+            "top" : this.walls.top,
+            "right" : (neighbours.right.walls["left"] || this.column == this.GRID_SIZE-1)? true:false,
+            "bottom" : (neighbours.bottom.walls["top"] || this.row == this.GRID_SIZE-1)? true:false,
+            "left" : this.walls.left,
+        }
+
+        return walls
+    }
+
+    /**
      * Function that filters the output of getNeighbours() to include
      * only Cell objects that have not been visited yet
      * @param {Grid} grid   Grid object modelling the grid

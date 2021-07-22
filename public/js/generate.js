@@ -50,7 +50,8 @@ import { Algorithms } from './components/algorithms.js'
                     break
 
                 case "02":
-                    console.log("TODO: Next algorithm")
+                    Algorithms.randomizedPrim(grid)
+                    break
 
             }
             
