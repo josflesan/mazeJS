@@ -29,7 +29,7 @@ class Algorithms {
 
             while (!stack.isEmpty() && this.RUN) {
 
-                await Control.sleep(50)
+                await Control.sleep(25)
     
                 // Pop cell from stack and make it current
                 let currentCell = stack.pop();
@@ -95,68 +95,88 @@ class Algorithms {
         // Add walls of the cell to the wall list
         wallList.set(startCell, startCell.getCellWalls(grid))
 
-        // While there are walls in the list...
-        while (!wallList.isEmpty()) {
+        const newIteration = async () => {
 
-            // Pick random wall from the list
-            let randomCell = Math.floor(Math.random() * (wallList.length()-1))
-            let selectedCell = wallList.keys()[randomCell]
-            let randomWall = randomProperty(wallList.get(selectedCell))
-            let wallPosition = Object.keys(randomWall)[0]
+            // While there are walls in the list...
+            while (!wallList.isEmpty()) {
 
-            let nextCell = selectedCell.getNeighbours(grid)[wallPosition]
+                await Control.sleep(10)
 
-            // If only one of the cells that the wall divides is visited
-            if (!nextCell.isVisited()) {
+                // Pick random wall from the list
+                let randomCell = Math.floor(Math.random() * (wallList.length()-1))
+                let selectedCell = wallList.keys()[randomCell]
+                let randomWall = randomProperty(wallList.get(selectedCell))
+                let wallPosition = Object.keys(randomWall)[0]
 
-                    // Make wall a passage (ie. break wall)
-                    selectedCell.deleteWall(wallPosition, selectedCell.getNeighbours(grid))
+                let nextCell = selectedCell.getNeighbours(grid)[wallPosition]
 
-                    // Mark unvisited cell as part of the maze
-                    nextCell.visitedCell()
-                    
-                    update(true)
+                // If only one of the cells that the wall divides is visited
+                if (!nextCell.isVisited()) {
 
-                    // Add neighbouring walls of the cell to wall list
-                    wallList.set(selectedCell, selectedCell.getCellWalls(grid))  // Update previous cell walls
-                    wallList.set(nextCell, nextCell.getCellWalls(grid))
+                        // Make wall a passage (ie. break wall)
+                        selectedCell.deleteWall(wallPosition, selectedCell.getNeighbours(grid))
 
-            }
+                        // Check if algorithm was stopped
+                        if (!this.RUN) {
+                            break
+                        }   
 
-            // Remove wall from the list
-            let neighbourWall = (wall) => {
-                switch(wall) {
-                    case "top":
-                        return "bottom"
+                        nextCell.selectCell()
 
-                    case "right":
-                        return "left"
-                    
-                    case "bottom":
-                        return "top"
+                        update(true)  
 
-                    case "left":
-                        return "right"
+                        // Mark unvisited cell as part of the maze
+                        nextCell.visitedCell()
+
+                        // Add neighbouring walls of the cell to wall list
+                        wallList.set(selectedCell, selectedCell.getCellWalls(grid))  // Update previous cell walls
+                        wallList.set(nextCell, nextCell.getCellWalls(grid))
+
                 }
-            }
 
-            delete wallList.get(selectedCell)[wallPosition]
+                // Remove wall from the list
+                let neighbourWall = (wall) => {
+                    switch(wall) {
+                        case "top":
+                            return "bottom"
 
-            if (wallList.get(nextCell)) {
-                delete wallList.get(nextCell)[neighbourWall(wallPosition)]
-            }
+                        case "right":
+                            return "left"
+                        
+                        case "bottom":
+                            return "top"
 
-            // If cell in map is empty, delete entry
-            wallList.keys().forEach((key) => {
-                if (wallList.get(key) && Object.keys(wallList.get(key)).length == 0) {
-                    wallList.delete(key)
+                        case "left":
+                            return "right"
+                    }
                 }
-            })
 
+                delete wallList.get(selectedCell)[wallPosition]
+
+                if (wallList.get(nextCell)) {
+                    delete wallList.get(nextCell)[neighbourWall(wallPosition)]
+                }
+
+                // If cell in map is empty, delete entry
+                wallList.keys().forEach((key) => {
+                    if (wallList.get(key) && Object.keys(wallList.get(key)).length == 0) {
+                        wallList.delete(key)
+                    }
+                })
+
+            }
+
+            if (wallList.isEmpty() && this.RUN) {
+                this.finished(playbtn)
+            }
+
+            await Control.sleep(1000)
         }
 
-        update(false)
-
+        if (this.RUN) {
+            // Call new iteration and then clear grid once finished
+            newIteration().then(() => update(false))
+        } 
     }
 
     /**
