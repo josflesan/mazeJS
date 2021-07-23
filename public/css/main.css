@@ -14,7 +14,7 @@
   text-align: center;
   text-shadow: 1px 1px 10px rgba(10, 10, 10, 0.7); }
   #mazeJS span {
-    color: #FCE196; }
+    color: #FEBA35; }
 
 #subtitle {
   margin: 0;
@@ -167,7 +167,7 @@ a, a:hover, a:focus, a:active {
     bottom: 22vh; }
 
 #solve {
-  background-color: #FCE196;
+  background-color: #FEBA35;
   transition: all 300ms ease-in-out;
   transition-property: filter box-shadow; }
   #solve:hover {
@@ -234,7 +234,7 @@ a, a:hover, a:focus, a:active {
   #return-button:hover {
     cursor: pointer;
     transform: scale(1.1);
-    filter: drop-shadow(0 0 5px #FCE196); }
+    filter: drop-shadow(0 0 5px #FEBA35); }
 
 .theme-toggle {
   width: 100px;
@@ -395,6 +395,20 @@ header {
 
 #generate-bg {
   background-color: #CCCCC3;
+  display: grid;
+  grid-template-rows: 0.2fr 1fr 0.2fr;
+  place-items: center;
+  align-items: center;
+  margin: 0;
+  height: 100vh; }
+
+canvas {
+  background: #f8f8f8;
+  padding: 5px;
+  display: block; }
+
+#solve-bg {
+  background-color: #FEBA35;
   display: grid;
   grid-template-rows: 0.2fr 1fr 0.2fr;
   place-items: center;
