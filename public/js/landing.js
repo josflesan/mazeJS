@@ -22,7 +22,8 @@ function init() {
     startCell = grid.getRandom()
 
     grid.draw(ctx, false)
-
+    
+    Algorithms.playAlgorithm()
     Algorithms.randomizedDFS(startCell, ctx, grid, update)
 
 }

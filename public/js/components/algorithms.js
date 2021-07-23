@@ -16,8 +16,8 @@ class Algorithms {
      * @param {Function} update                 The update function required to re-draw the state of the maze
      * @param {HTML Div} playbtn                Play Button used to update button state once algorithm finished
      */
-    static randomizedDFS(currentCell, ctx, grid, update, playbtn) {
-
+    static randomizedDFS(currentCell, ctx, grid, update, playbtn=null) {
+        
         // Create stack
         let stack = new Stack()  
         
@@ -27,7 +27,7 @@ class Algorithms {
 
         const newIteration = async () => {
 
-            while (!stack.isEmpty() && this.RUN) {
+            while (!stack.isEmpty()) {
 
                 await Control.sleep(25)
     
@@ -69,7 +69,7 @@ class Algorithms {
             
             } 
 
-            if (stack.isEmpty && this.RUN) {
+            if (stack.isEmpty && this.RUN && playbtn) {
                 this.finished(playbtn)
             }
 
