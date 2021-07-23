@@ -34,6 +34,21 @@ import { Algorithms } from './components/algorithms.js'
         gridSizeChange()  // Change size of grid
         
         grid.draw(ctx, false)
+
+        // Implement toggle functionality
+        let toggle = document.getElementsByClassName("theme-toggle")[0]
+        toggle.classList.add('theme-toggle-inactive')
+
+        toggle.addEventListener("click", e => {
+            if (toggle.classList.contains('theme-toggle-inactive')) {
+                toggle.classList.remove('theme-toggle-inactive')
+                toggle.classList.add('theme-toggle-active')
+            }
+            else if (toggle.classList.contains('theme-toggle-active')) {
+                toggle.classList.remove('theme-toggle-active')
+                toggle.classList.add('theme-toggle-inactive')
+            }
+        })
         
         // Implement play button functionality
         playbtn = document.getElementById("playbtn");

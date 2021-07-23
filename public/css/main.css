@@ -242,17 +242,33 @@ a, a:hover, a:focus, a:active {
   height: 50px;
   margin-right: 30px;
   border-radius: 25px;
-  background-color: blue;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start; }
+  position: relative;
+  display: block; }
   .theme-toggle-button {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    transition: transform 100ms linear;
     margin-left: 2px;
     margin-right: 2px;
     border-radius: 50%;
     height: 45px;
     width: 45px;
-    background-color: green; }
+    background-color: #CCCCC3; }
+    .theme-toggle-button-active {
+      transform: translate(115%, -50%); }
+    .theme-toggle-button-inactive {
+      transform: translate(0, -50%); }
+
+.theme-toggle-active {
+  background-color: #FEBA35; }
+  .theme-toggle-active div {
+    transform: translate(115%, -50%); }
+
+.theme-toggle-inactive {
+  background-color: #7F807A; }
+  .theme-toggle-inactive div {
+    transform: translate(0, -50%); }
 
 header {
   width: 100vw;
