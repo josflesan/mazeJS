@@ -1,6 +1,8 @@
 import { Grid } from './components/grid.js'
 import { Algorithms } from './components/algorithms.js'
 
+import { listenToggle } from './components/toggle.js'
+
 //TODO: FIX STOP BEHAVIOUR
 
 ;(function() {
@@ -39,16 +41,7 @@ import { Algorithms } from './components/algorithms.js'
         let toggle = document.getElementsByClassName("theme-toggle")[0]
         toggle.classList.add('theme-toggle-inactive')
 
-        toggle.addEventListener("click", e => {
-            if (toggle.classList.contains('theme-toggle-inactive')) {
-                toggle.classList.remove('theme-toggle-inactive')
-                toggle.classList.add('theme-toggle-active')
-            }
-            else if (toggle.classList.contains('theme-toggle-active')) {
-                toggle.classList.remove('theme-toggle-active')
-                toggle.classList.add('theme-toggle-inactive')
-            }
-        })
+        toggle.addEventListener("click", listenToggle)
         
         // Implement play button functionality
         playbtn = document.getElementById("playbtn");
