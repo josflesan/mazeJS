@@ -146,7 +146,8 @@ a, a:hover, a:focus, a:active {
     position: absolute;
     left: -5%;
     bottom: 15vh;
-    transform: rotate(-90deg); }
+    transform: rotate(-90deg);
+    margin-bottom: 10px; }
 
 @media (max-width: 900px) {
   .menu-item {
