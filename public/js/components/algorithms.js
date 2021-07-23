@@ -84,7 +84,7 @@ class Algorithms {
 
     }
 
-    static randomizedPrim(grid) {
+    static randomizedPrim(grid, update) {
 
         let wallList = new CustomWeakMap()
 
@@ -99,26 +99,63 @@ class Algorithms {
         while (!wallList.isEmpty()) {
 
             // Pick random wall from the list
-            let randomCell = Math.floor(Math.random() * wallList.length())
+            let randomCell = Math.floor(Math.random() * (wallList.length()-1))
             let selectedCell = wallList.keys()[randomCell]
             let randomWall = randomProperty(wallList.get(selectedCell))
-            console.log(randomWall)
-            break
+            let wallPosition = Object.keys(randomWall)[0]
+
+            let nextCell = selectedCell.getNeighbours(grid)[wallPosition]
 
             // If only one of the cells that the wall divides is visited
+            if (!nextCell.isVisited()) {
 
-                // Make wall a passage
+                    // Make wall a passage (ie. break wall)
+                    selectedCell.deleteWall(wallPosition, selectedCell.getNeighbours(grid))
 
-                // Mark unvisited cell as part of the maze
+                    // Mark unvisited cell as part of the maze
+                    nextCell.visitedCell()
+                    
+                    update(true)
 
-                // Add neighbouring walls of the cell to wall list
+                    // Add neighbouring walls of the cell to wall list
+                    wallList.set(selectedCell, selectedCell.getCellWalls(grid))  // Update previous cell walls
+                    wallList.set(nextCell, nextCell.getCellWalls(grid))
+
+            }
 
             // Remove wall from the list
+            let neighbourWall = (wall) => {
+                switch(wall) {
+                    case "top":
+                        return "bottom"
 
+                    case "right":
+                        return "left"
+                    
+                    case "bottom":
+                        return "top"
 
+                    case "left":
+                        return "right"
+                }
+            }
 
+            delete wallList.get(selectedCell)[wallPosition]
+
+            if (wallList.get(nextCell)) {
+                delete wallList.get(nextCell)[neighbourWall(wallPosition)]
+            }
+
+            // If cell in map is empty, delete entry
+            wallList.keys().forEach((key) => {
+                if (wallList.get(key) && Object.keys(wallList.get(key)).length == 0) {
+                    wallList.delete(key)
+                }
+            })
 
         }
+
+        update(false)
 
     }
 

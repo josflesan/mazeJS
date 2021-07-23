@@ -172,11 +172,17 @@ class Cell {
         let neighbours = this.getNeighbours(grid)
 
         let walls = {
-            "top" : this.walls.top,
-            "right" : (neighbours.right.walls["left"] || this.column == this.GRID_SIZE-1)? true:false,
-            "bottom" : (neighbours.bottom.walls["top"] || this.row == this.GRID_SIZE-1)? true:false,
-            "left" : this.walls.left,
+            "top" : (this.row == 0)? false:this.walls.top,
+            "right" : (this.column == this.GRID_SIZE-1 || !neighbours.right.walls["left"])? false:true,
+            "bottom" : (this.row == this.GRID_SIZE-1 || !neighbours.bottom.walls["top"])? false:true,
+            "left" : (this.column == 0)? false:this.walls.left,
         }
+
+        Object.keys(walls).forEach((key) => {
+            if (!walls[key]) {
+                delete walls[key]
+            }
+        })
 
         return walls
     }

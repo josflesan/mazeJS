@@ -50,7 +50,7 @@ import { Algorithms } from './components/algorithms.js'
                     break
 
                 case "02":
-                    Algorithms.randomizedPrim(grid)
+                    Algorithms.randomizedPrim(grid, update)
                     break
 
             }
