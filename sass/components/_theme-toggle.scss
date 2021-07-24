@@ -3,6 +3,7 @@
     height: 50px;
     margin-right: $small-side-separator;
     border-radius: 25px;
+    box-shadow: 0 0 5px black;
 
     position: relative;
     display: block;
@@ -11,6 +12,8 @@
         position: absolute;
         top: 50%;
         transform: translate(0, -50%);
+
+        box-shadow: 0 0 5px black;
 
         transition: transform 100ms linear;
 
@@ -35,6 +38,7 @@
 .theme-toggle-active {
 
     background-color: $yellow;
+    filter: brightness(1.1);
 
     .theme-toggle-button {
         transform: translate(115%, -50%);
