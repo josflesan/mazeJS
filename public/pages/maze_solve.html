@@ -11,6 +11,8 @@
 </head>
 <body id="solve-bg">
 
+    <div id="screen-filter"></div>
+
     <header class="screen-banner">
         <h3 id="screen-title">
             <a href="/"><span id="return-button"></span></a>
@@ -39,21 +41,38 @@
     </div>
 
     <footer class="screen-footer">
-        <div class="screen-footer-sizebtn">
-            <form class="dropdownForm">
-                <select id="gridSizeList" class="dropdown">
-                    <option>5 x 5</option>
-                    <option>10 x 10</option>
-                    <option>15 x 15</option>
-                    <option>20 x 20</option>
-                    <option>25 x 25</option>
-                    <option>30 x 30</option>
-                </select>
-            </form>
+        <div class="screen-footer-btncontainer">
+            <p class="screen-footer-btncontainer-text">grid_size</p>
+            <div class="screen-footer-sizebtn">
+                <form class="dropdownForm">
+                    <select id="gridSizeList" class="dropdown">
+                        <option>5 x 5</option>
+                        <option>10 x 10</option>
+                        <option>15 x 15</option>
+                        <option>20 x 20</option>
+                        <option>25 x 25</option>
+                        <option>30 x 30</option>
+                    </select>
+                </form>
+            </div>
         </div>
         <div id="playbtn" class="screen-footer-playbtn"></div>
-        <div class="screen-footer-savebtn"><span id="save-icon"></span></div>
+        <div class="screen-footer-btncontainer">
+            <p class="screen-footer-btncontainer-text">save_maze</p>
+            <div id="savebtn" class="screen-footer-savebtn"><span id="save-icon"></span></div>
+        </div>
     </footer>
+
+    <div id="saveModal" class="modal">
+        <div class="modal-header">
+            <h2 class="modal-header-title">save_maze</h2>
+            <span class="close">&times;</span>
+        </div>
+        <div class="modal-content">
+            <input type="text" class="modal-content-input" placeholder="Name">
+            <div class="modal-content-button">save</div>
+        </div>
+    </div>
 
 </body>
 </html>

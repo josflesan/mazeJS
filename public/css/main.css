@@ -232,7 +232,7 @@ a, a:hover, a:focus, a:active {
       margin-left: 30px; }
 
 .modal-content {
-  padding: 20px;
+  padding: 10px;
   border: 1px solid black;
   width: 100%;
   display: grid;
@@ -419,18 +419,32 @@ header {
   justify-content: space-between;
   margin: 0; }
   .screen-footer div {
-    height: 80%; }
+    height: 90%; }
+  .screen-footer-btncontainer {
+    position: relative;
+    width: 25%;
+    margin-bottom: 10px;
+    overflow: visible;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    .screen-footer-btncontainer-text {
+      font-family: "Roboto", sans-serif;
+      font-size: medium;
+      position: absolute;
+      left: 50%;
+      top: -20%;
+      transform: translateX(-50%); }
   .screen-footer-sizebtn {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
-    width: 25%;
+    width: 100%;
     background-image: url("../../public/img/8-Bit Button.png");
     background-size: contain;
+    background-position: center;
     background-repeat: no-repeat;
-    background-position: center left;
-    margin-left: 30px;
-    padding-left: 10px; }
+    padding: 10px; }
   .screen-footer-playbtn {
     width: 10%;
     background-image: url("../../public/img/Play Icon.png");
@@ -444,17 +458,16 @@ header {
       filter: brightness(1.5);
       transform: scale(1.1); }
   .screen-footer-savebtn {
-    width: 25%;
     display: flex;
+    width: 100%;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     background-image: url("../../public/img/8-Bit Button.png");
     background-size: contain;
+    background-position: center;
     background-repeat: no-repeat;
-    background-position: center right;
     transition: all 300ms ease-in-out;
     transition-property: filter transform;
-    margin-right: 30px;
     padding-right: 10px; }
     .screen-footer-savebtn:hover {
       cursor: pointer;
@@ -468,9 +481,11 @@ header {
       background-repeat: no-repeat;
       background-position: center center; }
 
-@media only screen and (max-width: 1600px) {
-  .screen-footer-savebtn {
-    justify-content: center; } }
+@media only screen and (max-width: 1000px) {
+  .screen-footer div {
+    height: 80%; }
+  .screen-footer-btncontainer {
+    margin-bottom: 0; } }
 
 #menu {
   display: grid;

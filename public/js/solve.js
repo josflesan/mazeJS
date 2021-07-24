@@ -2,6 +2,7 @@ import { Grid } from './components/grid.js'
 import { Algorithms } from './components/algorithms.js'
 
 import { initToggle } from './components/toggle.js'
+import { handleSaveBtn } from './components/save.js'
 
 ;(function() {
 
@@ -37,6 +38,9 @@ import { initToggle } from './components/toggle.js'
 
         // Implement toggle functionality
         initToggle()
+
+        // Implement save button functionality
+        handleSaveBtn()
         
         // Implement play button functionality
         playbtn = document.getElementById("playbtn");

@@ -7,18 +7,37 @@
     margin: 0;
 
     div {
-        height: 80%;
+        height: 90%;
+    }
+
+    &-btncontainer {
+        position: relative;
+        width: 25%;
+        margin-bottom: 10px;
+        overflow: visible;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &-text {
+            @include subtle-text(medium);
+            position: absolute;
+            left: 50%;
+            top: -20%;
+            transform: translateX(-50%);
+            
+        }
     }
 
     &-sizebtn {
         display: flex;
-        justify-content: flex-start;
+        justify-content: center;
         align-items: center;
+        width: 100%;
         
-        width: 25%;
-        @include bg-image-position(url('../../public/img/8-Bit\ Button.png'), center left);
-        margin-left: $small-side-separator;
-        padding-left: $small-button-inner-padding;
+        @include bg-image-center(url('../../public/img/8-Bit\ Button.png'));
+        padding: $small-button-inner-padding;
     }
 
     &-playbtn { 
@@ -28,13 +47,13 @@
     }
 
     &-savebtn {
-        width: 25%;
         display: flex;
+        width: 100%;
         align-items: center;
-        justify-content: flex-end;
-        @include bg-image-position(url('../../public/img/8-Bit\ Button.png'), center right);
+        justify-content: center;
+        @include bg-image-center(url('../../public/img/8-Bit\ Button.png'));
         @include button-hover;
-        margin-right: $small-side-separator;
+        //margin-right: $small-side-separator;
         padding-right: $small-button-inner-padding;
 
         #save-icon {
@@ -46,10 +65,14 @@
 
 }
 
-@media only screen and (max-width: 1600px) {
+@media only screen and (max-width: 1000px) {
     .screen-footer {
-        &-savebtn {
-            justify-content: center;
+        div {
+            height: 80%;
+        }
+
+        &-btncontainer {
+            margin-bottom: 0;
         }
     }
 
