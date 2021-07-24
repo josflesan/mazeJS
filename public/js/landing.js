@@ -1,6 +1,7 @@
-import { createRipple } from './animations/ripple.js';
 import { Grid } from './components/grid.js'
 import { Algorithms } from './components/algorithms.js'
+import { createRipple } from './animations/ripple.js';
+import { setAnimate } from './components/toggle.js'
 
 let canvas, ctx, gridSize, grid, cellSize, startCell
 
@@ -24,6 +25,7 @@ function init() {
     grid.draw(ctx, false)
     
     Algorithms.playAlgorithm()
+    setAnimate(true)  // Animate landing background
     Algorithms.randomizedDFS(startCell, ctx, grid, update)
 
 }

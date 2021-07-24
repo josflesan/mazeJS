@@ -38,4 +38,8 @@ function getAnimate() {
     return ANIMATE
 }
 
-export { initToggle, getAnimate };
+function setAnimate(value) {
+    ANIMATE = value
+}
+
+export { initToggle, getAnimate, setAnimate };
