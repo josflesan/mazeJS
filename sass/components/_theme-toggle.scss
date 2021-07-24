@@ -40,6 +40,10 @@
 
         transition: transform 100ms linear;
 
+        &:hover {
+            cursor: pointer;
+        }
+
         &-active {
             transform: translate(115%, -50%);
         }

@@ -124,6 +124,8 @@ a, a:hover, a:focus, a:active {
   padding-right: 30px; }
   .dropdown option {
     text-align: center; }
+  .dropdown:hover {
+    cursor: pointer; }
 
 #gridSizeList {
   width: 100%;
@@ -274,6 +276,8 @@ a, a:hover, a:focus, a:active {
     height: 45px;
     width: 45px;
     background-color: #CCCCC3; }
+    .theme-toggle-button:hover {
+      cursor: pointer; }
     .theme-toggle-button-active {
       transform: translate(115%, -50%); }
     .theme-toggle-button-inactive {
