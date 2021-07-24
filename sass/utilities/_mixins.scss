@@ -3,6 +3,11 @@
     font-size: $size;
 }
 
+@mixin retro-text($size) {
+    font-family: $retro-font;
+    font-size: $size;
+}
+
 @mixin absolute-center {
     position: absolute;
     left: 50%;

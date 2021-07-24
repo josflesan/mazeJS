@@ -11,6 +11,8 @@
 </head>
 <body id="generate-bg">
 
+    <div id="screen-filter"></div>
+
     <header class="screen-banner">
         <h3 id="screen-title">
             <a href="/"><span id="return-button"></span></a>
@@ -52,8 +54,19 @@
             </form>
         </div>
         <div id="playbtn" class="screen-footer-playbtn"></div>
-        <div class="screen-footer-savebtn"><span id="save-icon"></span></div>
+        <div id="savebtn" class="screen-footer-savebtn"><span id="save-icon"></span></div>
     </footer>
+
+    <div id="saveModal" class="modal">
+        <div class="modal-header">
+            <h2 class="modal-header-title">save_maze</h2>
+            <span class="close">&times;</span>
+        </div>
+        <div class="modal-content">
+            <input type="text" class="modal-content-input" placeholder="Name">
+            <div class="modal-content-button">save</div>
+        </div>
+    </div>
 
 </body>
 </html>
