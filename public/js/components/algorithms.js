@@ -95,6 +95,11 @@ class Algorithms {
 
     }
 
+    /**
+     * Randomized Prim's Algorithm iterative implementation using a custom weak map
+     * @param {Grid} grid                       Grid object modelling the grid
+     * @param {Function} update                 The update function required to re-draw the state of the maze
+     */
     static randomizedPrim(grid, update) {
 
         let animate = getAnimate()
