@@ -36,7 +36,7 @@
 
     background-color: $yellow;
 
-    div {
+    .theme-toggle-button {
         transform: translate(115%, -50%);
     }
 }
@@ -45,7 +45,7 @@
 
     background-color: $dark-grey;
 
-    div {
+    .theme-toggle-button {
         transform: translate(0, -50%);
     }
 }

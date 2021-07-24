@@ -40,7 +40,6 @@ import { listenToggle } from './components/toggle.js'
         // Implement toggle functionality
         let toggle = document.getElementsByClassName("theme-toggle")[0]
         toggle.classList.add('theme-toggle-inactive')
-
         toggle.addEventListener("click", listenToggle)
         
         // Implement play button functionality

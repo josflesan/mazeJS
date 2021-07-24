@@ -262,12 +262,12 @@ a, a:hover, a:focus, a:active {
 
 .theme-toggle-active {
   background-color: #FEBA35; }
-  .theme-toggle-active div {
+  .theme-toggle-active .theme-toggle-button {
     transform: translate(115%, -50%); }
 
 .theme-toggle-inactive {
   background-color: #7F807A; }
-  .theme-toggle-inactive div {
+  .theme-toggle-inactive .theme-toggle-button {
     transform: translate(0, -50%); }
 
 header {

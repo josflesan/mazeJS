@@ -1,7 +1,7 @@
 import { Grid } from './components/grid.js'
 import { Algorithms } from './components/algorithms.js'
 
-//TODO: FIX STOP BEHAVIOUR
+import { listenToggle } from './components/toggle.js'
 
 ;(function() {
 
@@ -34,6 +34,11 @@ import { Algorithms } from './components/algorithms.js'
         gridSizeChange()  // Change size of grid
         
         grid.draw(ctx, false)
+
+        // Implement toggle functionality
+        let toggle = document.getElementsByClassName("theme-toggle")[0]
+        toggle.classList.add('theme-toggle-inactive')
+        toggle.addEventListener("click", listenToggle)
         
         // Implement play button functionality
         playbtn = document.getElementById("playbtn");
