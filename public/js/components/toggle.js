@@ -1,9 +1,9 @@
 let activeText = document.createElement('span')
-activeText.innerHTML = "anim."
+activeText.innerHTML = "I"
 activeText.id = "active-toggle-text"
 
 let inactiveText = document.createElement('span')
-inactiveText.innerHTML = "solve"
+inactiveText.innerHTML = "O"
 inactiveText.id = "inactive-toggle-text"
 
 let toggle = document.getElementsByClassName("theme-toggle")[0]

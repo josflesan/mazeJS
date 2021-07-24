@@ -1,12 +1,35 @@
-.theme-toggle { 
+.theme-toggle-container {
     width: 100px;
-    height: 50px;
+    height: 100px;
     margin-right: $small-side-separator;
+    position: relative;
+    display: block;
+}
+
+.theme-toggle { 
+    width: 100%;
+    height: 50%;
     border-radius: 25px;
     box-shadow: 0 0 5px black;
 
     position: relative;
     display: block;
+
+    span {
+        display: inline-block;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    &-description {
+        width: 100%;
+        margin-bottom: 5px;
+        text-align: center;
+
+        font-family: $subtle-font;
+        font-size: medium;
+    }
 
     &-button {
         position: absolute;
@@ -43,6 +66,11 @@
     .theme-toggle-button {
         transform: translate(115%, -50%);
     }
+
+    #active-toggle-text {
+        @include subtle-text(x-large);
+        left: $toggle-button-inner-padding;
+    }
 }
 
 .theme-toggle-inactive {
@@ -51,5 +79,10 @@
 
     .theme-toggle-button {
         transform: translate(0, -50%);
+    }
+
+    #inactive-toggle-text {
+        @include subtle-text(x-large);
+        right: $toggle-button-inner-padding;
     }
 }
