@@ -168,7 +168,7 @@ a, a:hover, a:focus, a:active {
     bottom: 22vh; }
 
 #solve {
-  background-color: #FCE196;
+  background-color: #FEBA35;
   transition: all 300ms ease-in-out;
   transition-property: filter box-shadow; }
   #solve:hover {
@@ -249,7 +249,7 @@ a, a:hover, a:focus, a:active {
     position: absolute;
     top: 50%;
     transform: translate(0, -50%);
-    box-shadow: 0 0 5px black;
+    box-shadow: 0 0 10px black;
     transition: transform 100ms linear;
     margin-left: 2px;
     margin-right: 2px;
@@ -263,7 +263,7 @@ a, a:hover, a:focus, a:active {
       transform: translate(0, -50%); }
 
 .theme-toggle-active {
-  background-color: #FEBA35;
+  background-color: #84F173;
   filter: brightness(1.1); }
   .theme-toggle-active .theme-toggle-button {
     transform: translate(115%, -50%); }
@@ -428,7 +428,7 @@ canvas {
   display: block; }
 
 #solve-bg {
-  background-color: #FCE196;
+  background-color: #FEBA35;
   display: grid;
   grid-template-rows: 0.2fr 1fr 0.2fr;
   place-items: center;
