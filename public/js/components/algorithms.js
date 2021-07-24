@@ -2,11 +2,15 @@ import { Control } from '../helpers/control.js';
 import { CustomWeakMap } from '../data structures/CustomWeakMap.js';
 import { Stack } from './stack.js'
 import { randomProperty } from '../helpers/misc.js'
+import { getAnimate } from '../components/toggle.js'
 
 class Algorithms {
 
-    RUN = false
-    FINISHED = false
+    static RUN = false
+    static FINISHED = false
+
+    static CYCLE_WAIT_TIME = 25  // 25 ms
+    static END_OF_CYCLE_WAIT_TIME = 1000  // 1000ms or 1 second
 
     /**
      * Randomized Depth-First Search (DFS) iterative implementation
@@ -17,29 +21,32 @@ class Algorithms {
      * @param {HTML Div} playbtn                Play Button used to update button state once algorithm finished
      */
     static randomizedDFS(currentCell, ctx, grid, update, playbtn=null) {
-        
+
+        let animate = getAnimate()
+
         // Create stack
         let stack = new Stack()  
-        
+            
         // Mark current cell as visited and push to stack
         currentCell.visitedCell(ctx) 
         stack.push(currentCell);
 
         const newIteration = async () => {
-
             while (!stack.isEmpty()) {
 
-                await Control.sleep(25)
-    
+                if (animate) {
+                    await Control.sleep(Algorithms.CYCLE_WAIT_TIME)
+                }
+
                 // Pop cell from stack and make it current
                 let currentCell = stack.pop();
-    
+
                 // If current cell has any unvisited neighbours
                 if (currentCell.hasUnvisitedNeighbours(grid)) {
-    
+
                     // Push current cell
                     stack.push(currentCell);
-    
+
                     // Choose one of the unvisited neighbours
                     let unvisited = currentCell.getUnvisitedNeighbours(grid)
                     let directions = Object.keys(unvisited)
@@ -47,13 +54,15 @@ class Algorithms {
                     let chosenCell = unvisited[chosenDirection]
                     
                     // Check if algorithm was stopped
-                    if (!this.RUN) {
+                    if (!Algorithms.RUN) {
                         break
                     }                    
 
                     chosenCell.selectCell(ctx)
 
-                    update(true)
+                    if (animate) {
+                        update(true)
+                    }
                     
                     // Remove wall between current and chosen cells
                     currentCell.deleteWall(chosenDirection, currentCell.getNeighbours(grid))
@@ -61,30 +70,34 @@ class Algorithms {
                     // Mark chosen cell as visited and push it to the stack
                     chosenCell.visitedCell(ctx)
                     stack.push(chosenCell)
-    
+
                 } else {
                     currentCell.deadEndCell()
                     update(true)
                 }
             
-            } 
-
-            if (stack.isEmpty && this.RUN && playbtn) {
-                this.finished(playbtn)
+            }
+              
+            if (animate) {
+                await Control.sleep(Algorithms.END_OF_CYCLE_WAIT_TIME)
             }
 
-            await Control.sleep(1000)
-
+            if (stack.isEmpty && Algorithms.RUN && playbtn) {
+                Algorithms.finished(playbtn, update)
+            }
         }
 
-        if (this.RUN) {
-            // Call new iteration and then clear grid once finished
+        if (Algorithms.RUN) {
             newIteration().then(() => update(false))
         }
+
+
 
     }
 
     static randomizedPrim(grid, update) {
+
+        let animate = getAnimate()
 
         let wallList = new CustomWeakMap()
 
@@ -100,7 +113,9 @@ class Algorithms {
             // While there are walls in the list...
             while (!wallList.isEmpty()) {
 
-                await Control.sleep(10)
+                if (animate) {
+                    await Control.sleep(10)
+                }
 
                 // Pick random wall from the list
                 let randomCell = Math.floor(Math.random() * (wallList.length()-1))
@@ -123,7 +138,9 @@ class Algorithms {
 
                         nextCell.selectCell()
 
-                        update(true)  
+                        if (animate) {
+                            update(true)  
+                        }
 
                         // Mark unvisited cell as part of the maze
                         nextCell.visitedCell()
@@ -165,12 +182,14 @@ class Algorithms {
                 })
 
             }
-
-            if (wallList.isEmpty() && this.RUN) {
-                this.finished(playbtn)
+            
+            if (animate) {
+                await Control.sleep(Algorithms.END_OF_CYCLE_WAIT_TIME)
             }
 
-            await Control.sleep(1000)
+            if (wallList.isEmpty() && this.RUN) {
+                this.finished(playbtn, update)
+            }
         }
 
         if (this.RUN) {
@@ -197,9 +216,10 @@ class Algorithms {
      * Function to update play button once algorithm execution is finished
      * @param {HTML Div}    Div element representing the button in the HTML
      */
-    static finished(playbtn) {
+    static finished(playbtn, update) {
         this.FINISHED = true  // Update finished to true
         this.stopAlgorithm()  // Stop the algorithm
+        update(false)
 
         playbtn.style.backgroundImage = "url('../../public/img/Repeat\ Icon.png')"
     }

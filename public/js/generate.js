@@ -51,7 +51,7 @@ import { initToggle } from './components/toggle.js'
             switch (chosenAlgorithm) {
 
                 case "01":
-                    Algorithms.randomizedDFS(startCell, ctx, grid, update, playbtn) 
+                    Algorithms.randomizedDFS(startCell, ctx, grid, update, playbtn)
                     break
 
                 case "02":

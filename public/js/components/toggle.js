@@ -1,3 +1,5 @@
+let ANIMATE = false
+
 let activeText = document.createElement('span')
 activeText.innerHTML = "I"
 activeText.id = "active-toggle-text"
@@ -21,13 +23,19 @@ function listenToggle() {
         toggle.classList.add('theme-toggle-active')
 
         toggle.replaceChild(activeText, inactiveText)
+        ANIMATE = true
     }
     else if (toggle.classList.contains('theme-toggle-active')) {
         toggle.classList.remove('theme-toggle-active')
         toggle.classList.add('theme-toggle-inactive')
 
         toggle.replaceChild(inactiveText, activeText)
+        ANIMATE = false
     }
 }
 
-export { initToggle };
+function getAnimate() {
+    return ANIMATE
+}
+
+export { initToggle, getAnimate };
