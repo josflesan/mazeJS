@@ -219,6 +219,14 @@ class Algorithms {
     }
 
     /**
+     * Getter function to determine whether the algorithm that is currently running has finished
+     * @returns {Boolean}       True if the algorithm has finished, false otherwise
+     */
+    static isFinished() {
+        return this.FINISHED;
+    }
+
+    /**
      * Function to update play button once algorithm execution is finished
      * @param {HTML Div}    Div element representing the button in the HTML
      */

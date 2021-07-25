@@ -1,3 +1,5 @@
+import { Algorithms } from "../components/algorithms.js"
+
 let modal = document.getElementById("saveModal")
 let screenFilter = document.getElementById("screen-filter")
 let btn = document.getElementById("savebtn")
@@ -32,8 +34,12 @@ export function setGrid(grid) {
 export function handleSaveBtn() {
 
     btn.onclick = () => {
-        modal.style.display = "block"
-        screenFilter.style.display = "block"
+
+        // If there is a maze to save...
+        if (Algorithms.isFinished()) {
+            modal.style.display = "block"
+            screenFilter.style.display = "block"
+        }
     }
 
     submitBtn.onclick = () => {

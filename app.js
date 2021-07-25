@@ -5,7 +5,7 @@ const router = express.Router();
 
 const fs = require('fs');
 
-let data = []
+let data = {}
 
 app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({ extended: true }));
@@ -26,18 +26,25 @@ router.post('/save', function(req, res) {
 
     res.setHeader('Content-Type', 'application/json');
 
-    let info = req.body
+    let mazeName = req.body.name
+    let mazeGrid = req.body.grid
 
-    fs.writeFile('./saved_mazes.json', JSON.stringify(req.body), function(err) {
+    let newMaze = {
+        name: mazeName,
+        grid: mazeGrid
+    }
+
+    fs.writeFile('./saved_mazes.json', JSON.stringify(newMaze), function(err) {
         if (err) {
             console.log("An error occured")
             return;
         } 
     })
     
-    data.push(info)
+    data[mazeName] = mazeGrid
+
     console.log(data)
-    res.send(info)
+    res.send(newMaze)
 })
 
 app.use(express.static(path.join(__dirname, '/')), router);
