@@ -34,9 +34,19 @@ router.post('/save', function(req, res) {
         grid: mazeGrid
     }
 
-    fs.writeFile('./saved_mazes.json', JSON.stringify(newMaze), function(err) {
+    fs.readFile('./saved_mazes.json', function(err, data) {
+        let json = JSON.parse(data)
+        json.push(newMaze)
+
+        fs.writeFile('./saved_mazes.json', JSON.stringify(json), function(err) {
+            if (err) {
+                console.log("An error occured trying to write to the resource")
+                return;
+            }
+        })
+
         if (err) {
-            console.log("An error occured")
+            console.log("An error occured trying to read the resource")
             return;
         } 
     })
