@@ -31,16 +31,27 @@ export function setGrid(grid) {
     finalGrid = grid.grid
 }
 
+export function revealSaveBtn() {
+    btn.classList.add("screen-footer-savebtn-active")
+    btn.classList.remove("screen-footer-savebtn-inactive")
+}
+
+export function hideSaveBtn() {
+    btn.classList.remove("screen-footer-savebtn-active")
+    btn.classList.add("screen-footer-savebtn-inactive")
+}
+
 export function handleSaveBtn() {
 
-    btn.onclick = () => {
+    btn.addEventListener("click", () => {
 
         // If there is a maze to save...
         if (Algorithms.isFinished()) {
             modal.style.display = "block"
             screenFilter.style.display = "block"
         }
-    }
+
+    })
 
     submitBtn.onclick = () => {
         saveMaze()

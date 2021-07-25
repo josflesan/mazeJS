@@ -52,9 +52,18 @@
         align-items: center;
         justify-content: center;
         @include bg-image-center(url('../../public/img/8-Bit\ Button.png'));
-        @include button-hover;
-        //margin-right: $small-side-separator;
         padding-right: $small-button-inner-padding;
+
+        transition: filter 250ms linear;
+
+        &-inactive {
+            filter: opacity(0.5);
+        }
+
+        &-active {
+            filter: opacity(1);
+            @include button-hover;
+        }
 
         #save-icon {
             height: 50%;

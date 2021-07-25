@@ -466,13 +466,18 @@ header {
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    transition: all 300ms ease-in-out;
-    transition-property: filter transform;
-    padding-right: 10px; }
-    .screen-footer-savebtn:hover {
-      cursor: pointer;
-      filter: brightness(1.5);
-      transform: scale(1.1); }
+    padding-right: 10px;
+    transition: filter 250ms linear; }
+    .screen-footer-savebtn-inactive {
+      filter: opacity(0.5); }
+    .screen-footer-savebtn-active {
+      filter: opacity(1);
+      transition: all 300ms ease-in-out;
+      transition-property: filter transform; }
+      .screen-footer-savebtn-active:hover {
+        cursor: pointer;
+        filter: brightness(1.5);
+        transform: scale(1.1); }
     .screen-footer-savebtn #save-icon {
       height: 50%;
       width: 50%;

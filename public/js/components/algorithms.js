@@ -3,7 +3,7 @@ import { CustomWeakMap } from '../data structures/CustomWeakMap.js';
 import { Stack } from './stack.js'
 import { randomProperty } from '../helpers/misc.js'
 import { getAnimate } from '../components/toggle.js'
-import { setGrid } from '../components/save-btn.js'
+import { setGrid, hideSaveBtn, revealSaveBtn } from '../components/save-btn.js'
 
 class Algorithms {
 
@@ -209,6 +209,7 @@ class Algorithms {
      */
     static stopAlgorithm() {
         this.RUN = false
+        hideSaveBtn()
     }
 
     /**
@@ -216,6 +217,7 @@ class Algorithms {
      */
     static playAlgorithm() {
         this.RUN = true
+        hideSaveBtn()
     }
 
     /**
@@ -235,6 +237,7 @@ class Algorithms {
         this.stopAlgorithm()  // Stop the algorithm
         setGrid(grid)
         update(false)
+        revealSaveBtn()
 
         playbtn.style.backgroundImage = "url('../../public/img/Repeat\ Icon.png')"
     }
