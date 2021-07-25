@@ -2,7 +2,7 @@ import { Grid } from './components/grid.js'
 import { Algorithms } from './components/algorithms.js'
 
 import { initToggle } from './components/toggle.js'
-import { handleSaveBtn } from './components/save.js'
+import { handleSaveBtn } from './components/save-btn.js'
 
 ;(function() {
 

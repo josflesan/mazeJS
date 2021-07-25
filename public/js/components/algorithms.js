@@ -3,6 +3,7 @@ import { CustomWeakMap } from '../data structures/CustomWeakMap.js';
 import { Stack } from './stack.js'
 import { randomProperty } from '../helpers/misc.js'
 import { getAnimate } from '../components/toggle.js'
+import { setGrid } from '../components/save-btn.js'
 
 class Algorithms {
 
@@ -83,7 +84,7 @@ class Algorithms {
             }
 
             if (stack.isEmpty && Algorithms.RUN && playbtn) {
-                Algorithms.finished(playbtn, update)
+                Algorithms.finished(playbtn, update, grid)
             }
         }
 
@@ -193,7 +194,7 @@ class Algorithms {
             }
 
             if (wallList.isEmpty() && this.RUN) {
-                this.finished(playbtn, update)
+                this.finished(playbtn, update, grid)
             }
         }
 
@@ -221,9 +222,10 @@ class Algorithms {
      * Function to update play button once algorithm execution is finished
      * @param {HTML Div}    Div element representing the button in the HTML
      */
-    static finished(playbtn, update) {
+    static finished(playbtn, update, grid) {
         this.FINISHED = true  // Update finished to true
         this.stopAlgorithm()  // Stop the algorithm
+        setGrid(grid)
         update(false)
 
         playbtn.style.backgroundImage = "url('../../public/img/Repeat\ Icon.png')"
