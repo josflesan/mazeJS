@@ -2,12 +2,16 @@ import { Grid } from './components/grid.js'
 import { Algorithms } from './components/algorithms.js'
 
 import { initToggle } from './components/toggle.js'
-import { handleSaveBtn } from './components/save-btn.js'
+import { handleLoadBtn } from './components/load-btn.js'
+
+let canvas, ctx, cellSize, gridSize, grid, container, playbtn
+let buttonState = "PAUSED"
+
+export function setGrid(maze) {
+    grid = maze
+}
 
 ;(function() {
-
-    let canvas, ctx, cellSize, gridSize, grid, container, playbtn
-    let buttonState = "PAUSED"
 
     /**
      * Function for intial setup of config variables
@@ -33,14 +37,12 @@ import { handleSaveBtn } from './components/save-btn.js'
         // ************************************************
 
         gridSizeChange()  // Change size of grid
-        
-        grid.draw(ctx, false)
 
         // Implement toggle functionality
         initToggle()
 
         // Implement save button functionality
-        handleSaveBtn()
+        handleLoadBtn(ctx, canvas, update)
         
         // Implement play button functionality
         playbtn = document.getElementById("playbtn");

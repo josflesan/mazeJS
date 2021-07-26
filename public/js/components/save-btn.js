@@ -17,9 +17,9 @@ function onLoad() {
     let response = this.responseText
     let parsedResponse = JSON.parse(response)
 
-    let names = parsedResponse.names
-    names.forEach((name) => {
-        savedMazeNames.push(name)
+    let mazes = parsedResponse.mazes
+    mazes.forEach((maze) => {
+        savedMazeNames.push(maze.name)
     })
 }
 

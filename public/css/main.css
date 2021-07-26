@@ -135,6 +135,19 @@ a, a:hover, a:focus, a:active {
 #algorithmList {
   background-size: 5%; }
 
+.load-option {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  transition: box-shadow 100ms linear;
+  background-color: #CCCCC3;
+  font-family: "Roboto", sans-serif;
+  font-size: medium; }
+  .load-option:hover {
+    cursor: pointer;
+    box-shadow: 0 0 10px black; }
+
 .menu-item {
   height: 100vh;
   width: auto;
@@ -215,8 +228,8 @@ a, a:hover, a:focus, a:active {
   top: 50%;
   transform: translate(-50%, -50%);
   width: 50%;
-  height: auto;
-  overflow: auto;
+  height: clamp(auto, 50%);
+  overflow: hidden;
   background-color: #FFFFF4;
   border-radius: 5px; }
   .modal-header {
@@ -433,7 +446,7 @@ header {
       font-size: medium;
       position: absolute;
       left: 50%;
-      top: -20%;
+      top: -15%;
       transform: translateX(-50%); }
   .screen-footer-sizebtn {
     display: flex;

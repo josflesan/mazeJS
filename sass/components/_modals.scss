@@ -15,8 +15,9 @@
     top: 50%;
     transform: translate(-50%, -50%);
     width: 50%;
-    height: auto;
-    overflow: auto;
+    height: clamp(auto, 50%);
+    overflow: hidden;
+
     background-color: $white;
 
     border-radius: 5px;

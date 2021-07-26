@@ -5,9 +5,9 @@ const router = express.Router();
 
 const fs = require('fs');
 
-async function getAllSavedMazeNames() {
+async function getAllSavedMazes() {
 
-    let names = []
+    let mazes = []
 
     const data = await fs.promises.readFile('./saved_mazes.json', function(err, data) {
         if (err) {
@@ -19,10 +19,10 @@ async function getAllSavedMazeNames() {
     let json = JSON.parse(data.toString("utf-8"))
 
     json.forEach((obj) => {
-        names.push(obj.name)
+        mazes.push(obj)
     })
 
-    return names
+    return mazes
 }
 
 let data = {}
@@ -44,9 +44,9 @@ router.get('/solve', function(req, res) {
 
 router.get('/data', function(req, res) {
     (async () => {
-        let names = await getAllSavedMazeNames()
+        let mazes = await getAllSavedMazes()
         let dataToSend = {
-            "names": names
+            "mazes": mazes
         }
         let JSONdata = JSON.stringify(dataToSend)
         res.send(JSONdata)
@@ -54,8 +54,6 @@ router.get('/data', function(req, res) {
 })
 
 router.post('/save', function(req, res) {
-
-    //getAllSavedMazeNames().then(console.log)
 
     res.setHeader('Content-Type', 'application/json');
 
