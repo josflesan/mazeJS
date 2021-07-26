@@ -9,12 +9,17 @@ let screenFilter = document.getElementById("screen-filter")
 let btn = document.getElementById("loadbtn")
 let span = document.getElementsByClassName("close")[0]
 
-let finalGrid, drawingCanvas, drawingContext, updateFunction = null;
+let drawingCanvas, updateFunction = null;
 let savedMazes = [];
 
 let req = new XMLHttpRequest();
 let url = "/data"
 
+/**
+ * Function that is executed once the http async GET request call is fulfilled.
+ * Parses the JSON returned by the request and uses it to populate an array
+ * of saved mazes
+ */
 function onLoad() {
     let response = this.responseText
     let parsedResponse = JSON.parse(response)
@@ -27,10 +32,17 @@ function onLoad() {
     loadOptions()
 }
 
+/**
+ * Function that is run if the GET request to the server fails
+ */
 function onError() {
     console.log('error receiving async AJAX call')
 }
 
+/**
+ * Function that creates a div HTML element for each existing maze in the server
+ * and appends it to the modal list
+ */
 function loadOptions() {
     savedMazes.forEach((maze) => {
         let newOption = document.createElement('div')
@@ -46,6 +58,13 @@ function loadOptions() {
     })
 }
 
+/**
+ * Function that loads the maze by first updating it from the generic object
+ * returned by the parsing of the JSON server response and then setting it as the 
+ * grid in the solve.js file using the setGrid function exported from it
+ * 
+ * @param {JSON Object} maze        The maze object as returned by the parsing of the JSON get request response
+ */
 function loadMaze(maze) {
     setGrid(maze.grid)
 
@@ -76,27 +95,17 @@ function loadMaze(maze) {
     span.click()  // Close modal
 }
 
-export function getMaze() {
-    return finalGrid
-}
 
-export function revealSaveBtn() {
-    if (btn) {
-        btn.classList.add("screen-footer-savebtn-active")
-        btn.classList.remove("screen-footer-savebtn-inactive")
-    }
-}
+/**
+ * Load Button Event Listener.
+ * Function performs the GET request to the server to retrieve JSON data and adds
+ * click listeners to each of the buttons divs to the load button and its modal
+ * 
+ * @param {HTML5 Canvas} canvas                 The HTML5 canvas needed to update the maze with the loaded one
+ * @param {Function} update                     The update function needed to correctly display the loaded maze 
+ */
+export function handleLoadBtn(canvas, update) {
 
-export function hideSaveBtn() {
-    if (btn) {
-        btn.classList.remove("screen-footer-savebtn-active")
-        btn.classList.add("screen-footer-savebtn-inactive")
-    }
-}
-
-export function handleLoadBtn(ctx, canvas, update) {
-
-    drawingContext = ctx
     drawingCanvas = canvas
     updateFunction = update
 

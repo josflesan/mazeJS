@@ -42,7 +42,7 @@ export function setGrid(maze) {
         initToggle()
 
         // Implement save button functionality
-        handleLoadBtn(ctx, canvas, update)
+        handleLoadBtn(canvas, update)
         
         // Implement play button functionality
         playbtn = document.getElementById("playbtn");
