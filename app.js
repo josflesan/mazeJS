@@ -5,26 +5,24 @@ const router = express.Router();
 
 const fs = require('fs');
 
-function getAllSavedMazeNames() {
+async function getAllSavedMazeNames() {
 
-    let savedNames = []
+    let names = []
 
-    fs.readFileSync('./saved_mazes.json', function(err, data) {
+    const data = await fs.promises.readFile('./saved_mazes.json', function(err, data) {
         if (err) {
-            console.log("An error occured trying to read the resource")
-            return; 
+            console.log("An error occurred trying to read the resource")
+            return
         }
-
-        let json = JSON.parse(data)
-
-        json.forEach((obj) => {
-            savedNames.push(obj.name)
-        })
-
-        console.log(savedNames)
     })
 
+    let json = JSON.parse(data.toString("utf-8"))
 
+    json.forEach((obj) => {
+        names.push(obj.name)
+    })
+
+    return names
 }
 
 let data = {}
@@ -44,7 +42,20 @@ router.get('/solve', function(req, res) {
     res.sendFile(path.join(__dirname, "/public/pages/maze_solve.html"));
 });
 
+router.get('/data', function(req, res) {
+    (async () => {
+        let names = await getAllSavedMazeNames()
+        let dataToSend = {
+            "names": names
+        }
+        let JSONdata = JSON.stringify(dataToSend)
+        res.send(JSONdata)
+    })()
+})
+
 router.post('/save', function(req, res) {
+
+    //getAllSavedMazeNames().then(console.log)
 
     res.setHeader('Content-Type', 'application/json');
 
@@ -74,8 +85,6 @@ router.post('/save', function(req, res) {
     })
     
     data[mazeName] = mazeGrid
-
-    getAllSavedMazeNames()
     res.send(newMaze)
 })
 

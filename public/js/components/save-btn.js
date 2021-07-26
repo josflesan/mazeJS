@@ -10,6 +10,23 @@ let span = document.getElementsByClassName("close")[0]
 let finalGrid = null;
 let savedMazeNames = [];
 
+let req = new XMLHttpRequest();
+let url = "/data"
+
+function onLoad() {
+    let response = this.responseText
+    let parsedResponse = JSON.parse(response)
+
+    let names = parsedResponse.names
+    names.forEach((name) => {
+        savedMazeNames.push(name)
+    })
+}
+
+function onError() {
+    console.log('error receiving async AJAX call')
+}
+
 function saveMaze() {
 
     let data = {
@@ -54,6 +71,13 @@ export function handleSaveBtn() {
 
         // If there is a maze to save...
         if (Algorithms.isFinished() && btn.classList.contains('screen-footer-savebtn-active')) {
+
+            req.open('GET', url, true)
+            req.addEventListener('load', onLoad)
+            req.addEventListener('error', onError)
+        
+            req.send()
+
             modal.style.display = "block"
             screenFilter.style.display = "block"
         }
@@ -63,7 +87,7 @@ export function handleSaveBtn() {
     submitBtn.onclick = () => {
 
         if (savedMazeNames.includes(textBox.value)) {
-            alert("Please choose a new name for your maze...")
+            alert(`The maze \"${textBox.value}\" already exists, please give this maze a new name`)
         } else {
             saveMaze()
         }
