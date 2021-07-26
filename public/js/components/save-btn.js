@@ -32,13 +32,17 @@ export function setGrid(grid) {
 }
 
 export function revealSaveBtn() {
-    btn.classList.add("screen-footer-savebtn-active")
-    btn.classList.remove("screen-footer-savebtn-inactive")
+    if (btn) {
+        btn.classList.add("screen-footer-savebtn-active")
+        btn.classList.remove("screen-footer-savebtn-inactive")
+    }
 }
 
 export function hideSaveBtn() {
-    btn.classList.remove("screen-footer-savebtn-active")
-    btn.classList.add("screen-footer-savebtn-inactive")
+    if (btn) {
+        btn.classList.remove("screen-footer-savebtn-active")
+        btn.classList.add("screen-footer-savebtn-inactive")
+    }
 }
 
 export function handleSaveBtn() {
