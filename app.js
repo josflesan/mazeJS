@@ -5,6 +5,28 @@ const router = express.Router();
 
 const fs = require('fs');
 
+function getAllSavedMazeNames() {
+
+    let savedNames = []
+
+    fs.readFileSync('./saved_mazes.json', function(err, data) {
+        if (err) {
+            console.log("An error occured trying to read the resource")
+            return; 
+        }
+
+        let json = JSON.parse(data)
+
+        json.forEach((obj) => {
+            savedNames.push(obj.name)
+        })
+
+        console.log(savedNames)
+    })
+
+
+}
+
 let data = {}
 
 app.use(express.json({limit: '50mb'}));
@@ -53,7 +75,7 @@ router.post('/save', function(req, res) {
     
     data[mazeName] = mazeGrid
 
-    console.log(data)
+    getAllSavedMazeNames()
     res.send(newMaze)
 })
 

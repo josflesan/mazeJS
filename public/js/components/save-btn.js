@@ -8,6 +8,7 @@ let textBox = document.getElementById("modal-content-text")
 let span = document.getElementsByClassName("close")[0]
 
 let finalGrid = null;
+let savedMazeNames = [];
 
 function saveMaze() {
 
@@ -15,6 +16,8 @@ function saveMaze() {
         name: textBox.value,
         grid: finalGrid
     }
+
+    savedMazeNames.push(textBox.value)
 
     fetch('/save', {
         method: 'POST', // or 'PUT'
@@ -47,18 +50,24 @@ export function hideSaveBtn() {
 
 export function handleSaveBtn() {
 
-    btn.addEventListener("click", () => {
+    btn.onclick = () => {
 
         // If there is a maze to save...
-        if (Algorithms.isFinished()) {
+        if (Algorithms.isFinished() && btn.classList.contains('screen-footer-savebtn-active')) {
             modal.style.display = "block"
             screenFilter.style.display = "block"
         }
 
-    })
+    }
 
     submitBtn.onclick = () => {
-        saveMaze()
+
+        if (savedMazeNames.includes(textBox.value)) {
+            alert("Please choose a new name for your maze...")
+        } else {
+            saveMaze()
+        }
+
         screenFilter.style.display = "none"
         modal.style.display = "none"
         textBox.value = ""  // Reset text box
