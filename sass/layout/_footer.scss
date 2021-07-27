@@ -40,6 +40,23 @@
         padding: $small-button-inner-padding;
     }
 
+    &-randomize {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+
+        @include bg-image-center(url('../../public/img/8-Bit\ Button.png'));
+        @include button-hover;
+        padding: $small-button-inner-padding;
+        
+        &-icon {
+            width: 100%;
+            @include bg-image-center(url('../../public/img/Die\ Icon.png'));
+        }
+
+    }
+
     &-playbtn { 
         width: 10%;
         @include bg-image-center(url('../../public/img/Play\ Icon.png'));

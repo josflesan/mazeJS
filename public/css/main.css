@@ -458,6 +458,28 @@ header {
     background-position: center;
     background-repeat: no-repeat;
     padding: 10px; }
+  .screen-footer-randomize {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-image: url("../../public/img/8-Bit Button.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: all 300ms ease-in-out;
+    transition-property: filter transform;
+    padding: 10px; }
+    .screen-footer-randomize:hover {
+      cursor: pointer;
+      filter: brightness(1.5);
+      transform: scale(1.1); }
+    .screen-footer-randomize-icon {
+      width: 100%;
+      background-image: url("../../public/img/Die Icon.png");
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat; }
   .screen-footer-playbtn {
     width: 10%;
     background-image: url("../../public/img/Play Icon.png");

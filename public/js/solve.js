@@ -36,7 +36,8 @@ export function setGrid(maze) {
         
         // ************************************************
 
-        gridSizeChange()  // Change size of grid
+        // Add randomize grid button
+        randomizeGrid()
 
         // Implement toggle functionality
         initToggle()
@@ -84,23 +85,15 @@ export function setGrid(maze) {
     }
 
     /**
-     * Function that handles the change in grid size as selected
-     * by the drop-down menu
+     * Function that generates a random grid using the algorithms
+     * present in the generate screen
      */
-    function gridSizeChange() {
-        let sizeList = document.getElementById("gridSizeList")
+    function randomizeGrid() {
+        let randBtn = document.getElementById("randomize-btn")
         
-        sizeList.onchange = function() {
-            let tagContent = sizeList.options[sizeList.selectedIndex].innerHTML
-            let size = parseInt(tagContent.substring(0, 2).trim())  // Remove spaces for single digit numbers
-            gridSize = size
-            cellSize = canvas.height / size
-
-            grid = new Grid(gridSize, cellSize, canvas.height, canvas.width)
-            ctx.clearRect(0, 0, canvas.width, canvas.height)
-            
-            openMaze()
-        }
+        randBtn.addEventListener("click", () => {
+            console.log("random grid button")
+        })
     }
 
     /**
