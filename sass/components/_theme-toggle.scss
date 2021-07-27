@@ -31,6 +31,15 @@
         font-size: medium;
     }
 
+    &-hidden {
+        filter: brightness(0.5);
+        .theme-toggle-button {
+            &:hover {
+                cursor: auto;
+            }
+        }
+    }
+
     &-button {
         position: absolute;
         top: 50%;

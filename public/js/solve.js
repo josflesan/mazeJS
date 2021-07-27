@@ -9,6 +9,11 @@ let buttonState = "PAUSED"
 
 export function setGrid(maze) {
     grid = maze
+    initToggle("solve")
+}
+
+export function getGrid() {
+    return grid
 }
 
 ;(function() {
@@ -27,20 +32,11 @@ export function setGrid(maze) {
         ctx.canvas.height = container.height;
         ctx.canvas.width = canvas.height;
 
-        // ************ DEFAULT MAZE SETTINGS ************
-
-        // gridSize = 5  // 30x30 grid
-        // cellSize = canvas.height/gridSize
-        // grid = new Grid(gridSize, cellSize, canvas.height, canvas.width)
-        // let startCell = openMaze()  // Remove start and end walls of maze to open it
-        
-        // ************************************************
-
-        // Add randomize grid button
+        // Add randomize grid button functionality
         randomizeGrid()
 
         // Implement toggle functionality
-        initToggle()
+        initToggle("solve")
 
         // Implement save button functionality
         handleLoadBtn(canvas, update)
@@ -173,6 +169,8 @@ export function setGrid(maze) {
             case "PLAY":
                 buttonState = "PAUSED"
                 playbtn.style.backgroundImage = "url('../../public/img/Play\ Icon.png')"
+                grid.clear(ctx)
+                setGrid(null)
                 Algorithms.stopAlgorithm()
                 break
 

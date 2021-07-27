@@ -37,7 +37,7 @@ import { handleSaveBtn } from './components/save-btn.js'
         grid.draw(ctx, false)
 
         // Implement toggle functionality
-        initToggle()
+        initToggle("generate")
 
         // Implement save button functionality
         handleSaveBtn()

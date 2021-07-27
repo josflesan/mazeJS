@@ -1,3 +1,5 @@
+import { getGrid } from "../solve.js"
+
 let ANIMATE = false
 
 let activeText = document.createElement('span')
@@ -10,10 +12,19 @@ inactiveText.id = "inactive-toggle-text"
 
 let toggle = document.getElementsByClassName("theme-toggle")[0]
 
-function initToggle() {
+function initToggle(screen) {
+
     toggle.classList.add('theme-toggle-inactive')
     toggle.appendChild(inactiveText)  // Add inactive text by default
-    toggle.addEventListener("click", listenToggle)
+
+    if (screen == "solve" && getGrid() || screen == "generate") {
+        if (screen == "solve") {
+            toggle.classList.remove('theme-toggle-hidden')
+        }
+        toggle.addEventListener("click", listenToggle)
+    } else {
+        toggle.classList.add('theme-toggle-hidden')
+    }
 }
 
 function listenToggle() {
