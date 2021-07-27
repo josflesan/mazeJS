@@ -29,10 +29,10 @@ export function setGrid(maze) {
 
         // ************ DEFAULT MAZE SETTINGS ************
 
-        gridSize = 5  // 30x30 grid
-        cellSize = canvas.height/gridSize
-        grid = new Grid(gridSize, cellSize, canvas.height, canvas.width)
-        let startCell = openMaze()  // Remove start and end walls of maze to open it
+        // gridSize = 5  // 30x30 grid
+        // cellSize = canvas.height/gridSize
+        // grid = new Grid(gridSize, cellSize, canvas.height, canvas.width)
+        // let startCell = openMaze()  // Remove start and end walls of maze to open it
         
         // ************************************************
 
@@ -49,25 +49,32 @@ export function setGrid(maze) {
         playbtn = document.getElementById("playbtn");
 
         playbtn.addEventListener("click", e => {
-            // Choose appropriate algorithm and play animation
-            changeButton()
-            let chosenAlgorithm = getSelectedAlgorithm()
 
-            switch (chosenAlgorithm) {
+            // If there is a grid loaded
+            if (grid) {
+                // Choose appropriate algorithm and play animation
+                changeButton()
+                let chosenAlgorithm = getSelectedAlgorithm()
 
-                case "01":
-                    console.log("Placeholder 1")
-                    break
+                switch (chosenAlgorithm) {
 
-                case "02":
-                    console.log("Placeholder 2")
-                    break
+                    case "01":
+                        console.log("Placeholder 1")
+                        break
 
+                    case "02":
+                        console.log("Placeholder 2")
+                        break
+
+                }
+                
+                if (buttonState == "PAUSED") {
+                    grid.clear(ctx)  // If stopped, clear grid
+                    openMaze()
+                }
             }
-            
-            if (buttonState == "PAUSED") {
-                grid.clear(ctx)  // If stopped, clear grid
-                openMaze()
+            else {
+                alert("No grid loaded!")
             }
 
         })
@@ -90,9 +97,21 @@ export function setGrid(maze) {
      */
     function randomizeGrid() {
         let randBtn = document.getElementById("randomize-btn")
+        let possibleGridSizes = [5, 10, 15, 20, 25, 30]
         
         randBtn.addEventListener("click", () => {
-            console.log("random grid button")
+            
+            let randGridSize = possibleGridSizes[Math.floor(Math.random() * possibleGridSizes.length)]
+            let randCellSize = canvas.height / randGridSize
+
+            let maze = new Grid(randGridSize, randCellSize, canvas.height, canvas.width)
+            setGrid(maze)
+
+            update(false)
+            Algorithms.playAlgorithm()
+            Algorithms.randomizedPrim(grid, update, true)
+            Algorithms.restart()
+            buttonState = "PAUSED"
         })
     }
 

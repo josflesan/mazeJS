@@ -57,7 +57,7 @@ import { handleSaveBtn } from './components/save-btn.js'
                     break
 
                 case "02":
-                    Algorithms.randomizedPrim(grid, update)
+                    Algorithms.randomizedPrim(grid, update, false)
                     break
 
             }

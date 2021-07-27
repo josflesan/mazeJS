@@ -100,8 +100,9 @@ class Algorithms {
      * Randomized Prim's Algorithm iterative implementation using a custom weak map
      * @param {Grid} grid                       Grid object modelling the grid
      * @param {Function} update                 The update function required to re-draw the state of the maze
+     * @param {Boolean} restart                 If true, the algorithm is running in the solve screen so it won't be set to finish
      */
-    static randomizedPrim(grid, update) {
+    static randomizedPrim(grid, update, restart) {
 
         let animate = getAnimate()
 
@@ -193,8 +194,10 @@ class Algorithms {
                 await Control.sleep(Algorithms.END_OF_CYCLE_WAIT_TIME)
             }
 
-            if (wallList.isEmpty() && this.RUN) {
+            if (wallList.isEmpty() && this.RUN && !restart) {
                 this.finished(playbtn, update, grid)
+            } else {
+                this.restart(playbtn)
             }
         }
 
@@ -240,6 +243,15 @@ class Algorithms {
         revealSaveBtn()
 
         playbtn.style.backgroundImage = "url('../../public/img/Repeat\ Icon.png')"
+    }
+
+    /**
+     * Function to restart all algorithm variables, used in solve screen
+     */
+    static restart(playbtn) {
+        this.RUN = false
+        this.FINISHED = false
+        playbtn.style.backgroundImage = "url('../../public/img/Play\ Icon.png')"
     }
 
 }
