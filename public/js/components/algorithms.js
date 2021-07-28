@@ -1,6 +1,6 @@
 import { Control } from '../helpers/control.js';
 import { CustomWeakMap } from '../data structures/CustomWeakMap.js';
-import { Stack } from './stack.js'
+import { Stack } from '../data structures/stack.js'
 import { randomProperty } from '../helpers/misc.js'
 import { getAnimate } from '../components/toggle.js'
 import { setGrid, hideSaveBtn, revealSaveBtn } from '../components/save-btn.js'
