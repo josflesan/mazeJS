@@ -13,6 +13,8 @@ class Algorithms {
     static CYCLE_WAIT_TIME = 25  // 25 ms
     static END_OF_CYCLE_WAIT_TIME = 1000  // 1000ms or 1 second
 
+    // ------------------------ GENERATION ALGORITHM ------------------------
+
     /**
      * Randomized Depth-First Search (DFS) iterative implementation
      * @param {Cell} currentCell                Current cell object being considered by algorithm 
@@ -84,7 +86,7 @@ class Algorithms {
             }
 
             if (stack.isEmpty && Algorithms.RUN && playbtn) {
-                Algorithms.finished(playbtn, update, grid)
+                Algorithms.finishedGenerate(playbtn, update, grid)
             }
         }
 
@@ -195,7 +197,7 @@ class Algorithms {
             }
 
             if (wallList.isEmpty() && this.RUN && !restart) {
-                this.finished(playbtn, update, grid)
+                this.finishedGenerate(playbtn, update, grid)
             } else {
                 this.restart(playbtn)
             }
@@ -206,6 +208,91 @@ class Algorithms {
             newIteration().then(() => update(false))
         } 
     }
+
+    // --------------------------------------------------------------------
+
+    // ------------------------ SOLVING ALGORITHMS ------------------------
+
+    static depthFirstSearch(grid, update, playbtn) {
+
+        let animate = getAnimate()
+
+        let startCell = grid.getCell(0, 0)
+        let endCell = grid.getCell(grid.getLength()["x"]-1, grid.getLength()["y"]-1)
+        let stack = new Stack()
+
+        grid.resetGrid()
+
+        // Push start node into the stack
+        stack.push(startCell)
+
+        // While there is a node to be handled in the stack...
+        const newIteration = async () => {
+            while (!stack.isEmpty()) {
+
+                if (animate) {
+                    await Control.sleep(Algorithms.CYCLE_WAIT_TIME)
+                }
+                
+                // Pop the node on the top of the stack and retrieve unvisited neighbours
+                let currentCell = stack.pop()
+                currentCell.selectCell()
+
+                if (animate) {
+                    update(true)
+                }
+
+                // If the current node is the end node, terminate the program
+                if (currentCell == endCell) {
+                    break
+                }
+
+                if (!Algorithms.RUN) {
+                    break
+                }  
+
+                // Take unvisited neighbours in order (N, E, S, W)
+                // Mark current node's parent, mark it as visited and add to stack
+                let neighbours = currentCell.getUnvisitedNeighbours(grid, false)
+                Object.keys(neighbours).forEach((direction) => {
+                    neighbours[direction].visitedCell()
+                    neighbours[direction].parent = currentCell
+                    stack.push(neighbours[direction])
+                })
+            }
+
+            // Walk back from the end using the parent attribute and display this path
+            let lastPathCell = endCell
+            while (lastPathCell != startCell) {
+                lastPathCell.solvedPathCell()
+                lastPathCell = lastPathCell.parent
+                if (animate) {
+                    await Control.sleep(Algorithms.CYCLE_WAIT_TIME)
+                    update(true)
+                }
+            }
+            startCell.solvedPathCell()
+            update(true)
+
+            if (animate) {
+                await Control.sleep(Algorithms.END_OF_CYCLE_WAIT_TIME)
+            }
+
+            if (stack.isEmpty() && this.RUN) {
+                this.finishedSolve(playbtn, update)
+            }
+        }
+
+        if (Algorithms.RUN) {
+            newIteration().then(() => update(true))
+        }
+
+        update(true)
+    }
+
+    // --------------------------------------------------------------------
+
+    // ------------------------ CONTROL FUNCTIONS -------------------------
 
     /**
      * Function to stop algorithm that is currently being executed
@@ -232,15 +319,32 @@ class Algorithms {
     }
 
     /**
-     * Function to update play button once algorithm execution is finished
-     * @param {HTML Div}    Div element representing the button in the HTML
+     * Function to update play button once algorithm execution is finished.
+     * Used for generate screen.
+     * @param {HTML Div}    playbtn         Element representing the button in the HTML
+     * @param {Function}    update          Function used to update the grid
+     * @param {Grid}        grid            Grid object modelling the maze
      */
-    static finished(playbtn, update, grid) {
+    static finishedGenerate(playbtn, update, grid) {
         this.FINISHED = true  // Update finished to true
         this.stopAlgorithm()  // Stop the algorithm
         setGrid(grid)
         update(false)
         revealSaveBtn()
+
+        playbtn.style.backgroundImage = "url('../../public/img/Repeat\ Icon.png')"
+    }
+
+    /**
+     * Function to update play button once algorithm execution is finished.
+     * Used for solve screen.
+     * @param {HTML Div}    playbtn         Element representing the button in the HTML
+     * @param {Function}    update          Update function used to update the maze
+     */
+    static finishedSolve(playbtn, update) {
+        this.FINISHED = true  // Update finished to true
+        this.stopAlgorithm()  // Stop the algorithm
+        update(true)
 
         playbtn.style.backgroundImage = "url('../../public/img/Repeat\ Icon.png')"
     }
@@ -253,6 +357,8 @@ class Algorithms {
         this.FINISHED = false
         playbtn.style.backgroundImage = "url('../../public/img/Play\ Icon.png')"
     }
+
+    // ----------------------------------------------------------------------
 
 }
 

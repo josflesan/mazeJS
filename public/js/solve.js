@@ -55,7 +55,7 @@ export function getGrid() {
                 switch (chosenAlgorithm) {
 
                     case "01":
-                        console.log("Placeholder 1")
+                        Algorithms.depthFirstSearch(grid, update, playbtn)
                         break
 
                     case "02":
@@ -106,7 +106,7 @@ export function getGrid() {
             update(false)
             Algorithms.playAlgorithm()
             Algorithms.randomizedPrim(grid, update, true)
-            Algorithms.restart()
+            Algorithms.restart(playbtn)
             buttonState = "PAUSED"
         })
     }
@@ -169,8 +169,6 @@ export function getGrid() {
             case "PLAY":
                 buttonState = "PAUSED"
                 playbtn.style.backgroundImage = "url('../../public/img/Play\ Icon.png')"
-                grid.clear(ctx)
-                setGrid(null)
                 Algorithms.stopAlgorithm()
                 break
 
@@ -178,7 +176,7 @@ export function getGrid() {
                 buttonState = "PAUSED"
                 playbtn.style.backgroundImage = "url('../../public/img/Play\ Icon.png')"
                 Algorithms.stopAlgorithm()
-                openMaze()
+                setGrid(null)
                 break
         }
     }

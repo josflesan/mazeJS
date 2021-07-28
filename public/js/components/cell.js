@@ -3,6 +3,7 @@ class Cell {
     VISITED_COLOUR = '#CCCCC3'
     SELECTED_COLOUR = '#FCE196'
     NO_NEIGHBOUR_COLOUR = '#7E8054'
+    PATH_COLOUR = '#86fe6e'
 
     GRID_SIZE = null
 
@@ -26,6 +27,9 @@ class Cell {
         this.visited = false;
         this.selected = false;
         this.deadEnd = false;
+        this.pathCell = false;
+
+        this.parent = null;
 
         this.GRID_SIZE = gridSize
 
@@ -193,12 +197,24 @@ class Cell {
      * @param {Grid} grid   Grid object modelling the grid
      * @returns {Object}    Filtered object containing the list of unvisited neighbours
      */
-    getUnvisitedNeighbours(grid) {
+    getUnvisitedNeighbours(grid, bypassWalls=true) {
         let dict = this.getNeighbours(grid);
-        let filtered = Object.keys(dict).reduce(function (filtered, key) {
-            if (!dict[key].isVisited()) filtered[key] = dict[key];
-            return filtered;
-        }, {});
+        let currentCellWalls = Object.keys(this.getCellWalls(grid))
+        let filtered;
+
+        if (!bypassWalls) {
+            filtered = Object.keys(dict).reduce(function (filtered, key) {
+                if (!dict[key].isVisited() && !currentCellWalls.includes(key)) filtered[key] = dict[key];
+                return filtered;
+            }, {})
+
+        }
+        else {
+            filtered = Object.keys(dict).reduce(function (filtered, key) {
+                if (!dict[key].isVisited()) filtered[key] = dict[key];
+                return filtered;
+            }, {});
+        }
     
         return filtered;
     }
@@ -247,6 +263,16 @@ class Cell {
     }
 
     /**
+     * Function that marks a Cell in the grid as part of the path by flagging its
+     * pathCell attribute when the cell is marked as part of the path by the algorithm
+     */
+    solvedPathCell() {
+        this.pathCell = true;
+        this.visited = false;
+        this.selected = false;
+    }
+
+    /**
      * Function that marks a Cell in the grid as a dead end by flagging its
      * deadEnd attribute when the cell no longer has any unvisited neighbours
      */
@@ -269,6 +295,9 @@ class Cell {
         } else if (this.deadEnd) {
             ctx.fillStyle = this.NO_NEIGHBOUR_COLOUR
             ctx.fillRect(this.x, this.y, this.size, this.size)
+        } else if (this.pathCell) {
+            ctx.fillStyle = this.PATH_COLOUR
+            ctx.fillRect(this.x, this.y, this.size, this.size)
         }
         
     }
@@ -288,6 +317,16 @@ class Cell {
             "bottom": this.row == this.GRID_SIZE-1? true:false,
             "left": true
         }
+    }
+
+    /**
+     * Function to reset all the cell's flags to false while keeping its walls
+     */
+    resetCellFlags() {
+        this.visited = false;
+        this.selected = false;
+        this.deadEnd = false;
+        this.pathCell = false;
     }
 
 }
