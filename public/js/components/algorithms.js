@@ -265,20 +265,24 @@ class Algorithms {
             }
 
             // Walk back from the end using the parent attribute and display this path
-            let lastPathCell = endCell
-            while (lastPathCell != startCell) {
-                lastPathCell.solvedPathCell()
-                lastPathCell = lastPathCell.parent
-                if (animate) {
-                    await Control.sleep(Algorithms.CYCLE_WAIT_TIME)
-                    update(true)
-                }
-            }
-            startCell.solvedPathCell()
-            update(true)
+            if (Algorithms.RUN) {
 
-            if (animate) {
-                await Control.sleep(Algorithms.END_OF_CYCLE_WAIT_TIME)
+                let lastPathCell = endCell
+                while (lastPathCell != startCell) {
+                    lastPathCell.solvedPathCell()
+                    lastPathCell = lastPathCell.parent
+                    if (animate) {
+                        await Control.sleep(Algorithms.CYCLE_WAIT_TIME)
+                        update(true)
+                    }
+                }
+                startCell.solvedPathCell()
+                update(true)
+
+                if (animate) {
+                    await Control.sleep(Algorithms.END_OF_CYCLE_WAIT_TIME)
+                }
+
             }
 
             if (endOfAlgorithm && this.RUN) {

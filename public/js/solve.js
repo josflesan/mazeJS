@@ -50,24 +50,28 @@ export function getGrid() {
             if (grid) {
                 // Choose appropriate algorithm and play animation
                 changeButton()
-                let chosenAlgorithm = getSelectedAlgorithm()
+                if (buttonState != "PAUSED") {
 
-                switch (chosenAlgorithm) {
+                    let chosenAlgorithm = getSelectedAlgorithm()
 
-                    case "01":
-                        Algorithms.depthFirstSearch(grid, update, playbtn, buttonState)
-                        buttonState = "FINISHED"
-                        break
-
-                    case "02":
-                        console.log("Placeholder 2")
-                        break
-
+                    switch (chosenAlgorithm) {
+    
+                        case "01":
+                            Algorithms.depthFirstSearch(grid, update, playbtn, buttonState)
+                            buttonState = "FINISHED"
+                            break
+    
+                        case "02":
+                            console.log("Placeholder 2")
+                            break
+    
+                    }
+                    
+                    if (buttonState == "FINISHED") {
+                        //setGrid(null)
+                    }
                 }
-                
-                if (buttonState == "FINISHED") {
-                    //setGrid(null)
-                }
+
             }
             else {
                 alert("No grid loaded!")
@@ -85,6 +89,24 @@ export function getGrid() {
         // Clear grid before re-drawing
         ctx.clearRect(0, 0, grid.totalWidth, grid.totalHeight)
         grid.draw(ctx, color)
+    }
+
+    /**
+     * Function that removes the starting cell's left wall and the ending
+     * cell's right wall in the maze so that the maze is solvable from left
+     * to right.
+     * @returns {Cell} The starting cell object passed as a parameter to the DFS algorithm  
+     */
+    function openMaze() {
+        // Declare starting cell, remove wall 
+        let startCell = grid.getRandom()
+        grid.getCell(0, 0).deleteWall("left", grid.getCell(0, 0).getNeighbours(grid))  // Delete wall from start cell
+        // Declare ending cell, remove wall
+        let endCell = grid.getCell(gridSize-1, gridSize-1)
+        endCell.deleteWall("right", endCell.getNeighbours(grid))
+        grid.draw(ctx, false)
+
+        return startCell
     }
 
     /**

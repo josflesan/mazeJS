@@ -27,6 +27,7 @@ function initToggle(screen) {
         toggle.classList.add('theme-toggle-hidden')
         if (toggle.querySelector('#active-toggle-text')) {
             toggle.removeChild(activeText)
+            ANIMATE = false
         }
         toggle.removeEventListener("click", listenToggle)
     }
