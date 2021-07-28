@@ -213,13 +213,15 @@ class Algorithms {
 
     // ------------------------ SOLVING ALGORITHMS ------------------------
 
-    static depthFirstSearch(grid, update, playbtn) {
+    static depthFirstSearch(grid, update, playbtn, buttonState) {
 
         let animate = getAnimate()
 
         let startCell = grid.getCell(0, 0)
         let endCell = grid.getCell(grid.getLength()["x"]-1, grid.getLength()["y"]-1)
         let stack = new Stack()
+
+        let endOfAlgorithm = false
 
         grid.resetGrid()
 
@@ -237,6 +239,10 @@ class Algorithms {
                 // Pop the node on the top of the stack and retrieve unvisited neighbours
                 let currentCell = stack.pop()
                 currentCell.selectCell()
+                
+                if (!Algorithms.RUN) {
+                    break
+                } 
 
                 if (animate) {
                     update(true)
@@ -244,12 +250,9 @@ class Algorithms {
 
                 // If the current node is the end node, terminate the program
                 if (currentCell == endCell) {
+                    endOfAlgorithm = true
                     break
-                }
-
-                if (!Algorithms.RUN) {
-                    break
-                }  
+                } 
 
                 // Take unvisited neighbours in order (N, E, S, W)
                 // Mark current node's parent, mark it as visited and add to stack
@@ -278,16 +281,14 @@ class Algorithms {
                 await Control.sleep(Algorithms.END_OF_CYCLE_WAIT_TIME)
             }
 
-            if (stack.isEmpty() && this.RUN) {
-                this.finishedSolve(playbtn, update)
+            if (endOfAlgorithm && this.RUN) {
+                this.finishedSolve(update, playbtn, buttonState)
             }
         }
 
         if (Algorithms.RUN) {
-            newIteration().then(() => update(true))
+            newIteration()
         }
-
-        update(true)
     }
 
     // --------------------------------------------------------------------
@@ -341,10 +342,10 @@ class Algorithms {
      * @param {HTML Div}    playbtn         Element representing the button in the HTML
      * @param {Function}    update          Update function used to update the maze
      */
-    static finishedSolve(playbtn, update) {
+    static finishedSolve(update, playbtn, buttonState) {
         this.FINISHED = true  // Update finished to true
         this.stopAlgorithm()  // Stop the algorithm
-        update(true)
+        revealSaveBtn()
 
         playbtn.style.backgroundImage = "url('../../public/img/Repeat\ Icon.png')"
     }

@@ -118,7 +118,7 @@ export function handleLoadBtn(canvas, update) {
     btn.onclick = () => {
 
         // If there is a maze to save...
-        if (!Algorithms.isFinished() && btn.classList.contains('screen-footer-savebtn-active')) {
+        if (btn.classList.contains('screen-footer-savebtn-active')) {
             modal.style.display = "block"
             screenFilter.style.display = "block"
         }

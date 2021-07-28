@@ -55,7 +55,8 @@ export function getGrid() {
                 switch (chosenAlgorithm) {
 
                     case "01":
-                        Algorithms.depthFirstSearch(grid, update, playbtn)
+                        Algorithms.depthFirstSearch(grid, update, playbtn, buttonState)
+                        buttonState = "FINISHED"
                         break
 
                     case "02":
@@ -64,9 +65,8 @@ export function getGrid() {
 
                 }
                 
-                if (buttonState == "PAUSED") {
-                    grid.clear(ctx)  // If stopped, clear grid
-                    openMaze()
+                if (buttonState == "FINISHED") {
+                    //setGrid(null)
                 }
             }
             else {
@@ -134,24 +134,6 @@ export function getGrid() {
     }
 
     /**
-     * Function that removes the starting cell's left wall and the ending
-     * cell's right wall in the maze so that the maze is solvable from left
-     * to right.
-     * @returns {Cell} The starting cell object passed as a parameter to the DFS algorithm  
-     */
-    function openMaze() {
-        // Declare starting cell, remove wall 
-        let startCell = grid.getRandom()
-        grid.getCell(0, 0).deleteWall("left", grid.getCell(0, 0).getNeighbours(grid))  // Delete wall from start cell
-        // Declare ending cell, remove wall
-        let endCell = grid.getCell(gridSize-1, gridSize-1)
-        endCell.deleteWall("right", endCell.getNeighbours(grid))
-        grid.draw(ctx, false)
-
-        return startCell
-    }
-
-    /**
      * Function that handles the logic behind the play and stop buttons
      * in terms of switching sprites and handling the running behaviour of the
      * selected algorithm
@@ -173,9 +155,11 @@ export function getGrid() {
                 break
 
             case "FINISHED":
+                console.log("TEST")
                 buttonState = "PAUSED"
                 playbtn.style.backgroundImage = "url('../../public/img/Play\ Icon.png')"
                 Algorithms.stopAlgorithm()
+                ctx.clearRect(0, 0, grid.totalWidth, grid.totalHeight)  // If stopped, clear grid
                 setGrid(null)
                 break
         }
