@@ -152,10 +152,10 @@ export function getGrid() {
                 buttonState = "PAUSED"
                 playbtn.style.backgroundImage = "url('../../public/img/Play\ Icon.png')"
                 Algorithms.stopAlgorithm()
+                setGrid(null)
                 break
 
             case "FINISHED":
-                console.log("TEST")
                 buttonState = "PAUSED"
                 playbtn.style.backgroundImage = "url('../../public/img/Play\ Icon.png')"
                 Algorithms.stopAlgorithm()

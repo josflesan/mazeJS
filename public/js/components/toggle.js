@@ -23,7 +23,12 @@ function initToggle(screen) {
         }
         toggle.addEventListener("click", listenToggle)
     } else {
+        toggle.classList.remove('theme-toggle-active')
         toggle.classList.add('theme-toggle-hidden')
+        if (toggle.querySelector('#active-toggle-text')) {
+            toggle.removeChild(activeText)
+        }
+        toggle.removeEventListener("click", listenToggle)
     }
 }
 
