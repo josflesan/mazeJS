@@ -57,18 +57,15 @@ export function getGrid() {
                     switch (chosenAlgorithm) {
     
                         case "01":
-                            Algorithms.depthFirstSearch(grid, update, playbtn, buttonState)
+                            Algorithms.depthFirstSearch(grid, update, playbtn)
                             buttonState = "FINISHED"
                             break
     
                         case "02":
-                            console.log("Placeholder 2")
+                            Algorithms.breadthFirstSearch(grid, update, playbtn)
+                            buttonState = "FINISHED"
                             break
     
-                    }
-                    
-                    if (buttonState == "FINISHED") {
-                        //setGrid(null)
                     }
                 }
 

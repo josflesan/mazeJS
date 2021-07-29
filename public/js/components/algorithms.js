@@ -1,6 +1,7 @@
-import { Control } from '../helpers/control.js';
-import { CustomWeakMap } from '../data structures/CustomWeakMap.js';
+import { Control } from '../helpers/control.js'
+import { CustomWeakMap } from '../data structures/CustomWeakMap.js'
 import { Stack } from '../data structures/stack.js'
+import { Queue } from '../data structures/queue.js'
 import { randomProperty } from '../helpers/misc.js'
 import { getAnimate } from '../components/toggle.js'
 import { setGrid, hideSaveBtn, revealSaveBtn } from '../components/save-btn.js'
@@ -213,7 +214,7 @@ class Algorithms {
 
     // ------------------------ SOLVING ALGORITHMS ------------------------
 
-    static depthFirstSearch(grid, update, playbtn, buttonState) {
+    static depthFirstSearch(grid, update, playbtn) {
 
         let animate = getAnimate()
 
@@ -286,13 +287,101 @@ class Algorithms {
             }
 
             if (endOfAlgorithm && this.RUN) {
-                this.finishedSolve(update, playbtn, buttonState)
+                this.finishedSolve(playbtn)
             }
         }
 
         if (Algorithms.RUN) {
             newIteration()
         }
+    }
+
+    static breadthFirstSearch(grid, update, playbtn) {
+
+        let animate = getAnimate()
+
+        let startCell = grid.getCell(0, 0)
+        let endCell = grid.getCell(grid.getLength()["x"]-1, grid.getLength()["y"]-1)
+        let queue = new Queue()
+        let endOfAlgorithm = false
+        let currentCell
+
+        grid.resetGrid()  // Reset the state of the grid's cells
+
+        // Add start node in the queue and mark it as visited
+        queue.enqueue(startCell)
+        startCell.visitedCell()
+
+        // While there is a node in the queue...
+        const newIteration = async () => {
+            while (!queue.isEmpty()) {
+
+                if (animate) {
+                    await Control.sleep(Algorithms.CYCLE_WAIT_TIME)
+                }
+
+                // Take the node at the front of the queue
+                currentCell = queue.dequeue()
+                currentCell.selectCell()
+
+                if (!Algorithms.RUN) {
+                    break
+                } 
+
+                if (animate) {
+                    update(true)
+                }
+
+                if (currentCell == endCell) {
+                    endOfAlgorithm = true
+                    break
+                }
+
+                // Add all available neighbours to the queue
+                // Not parents
+                // Mark the neighbours as visited
+                let neighbours = currentCell.getUnvisitedNeighbours(grid, false)
+                Object.keys(neighbours).forEach((direction) => {
+                    neighbours[direction].visitedCell()
+                    neighbours[direction].parent = currentCell
+                    queue.enqueue(neighbours[direction])
+                })
+
+            }
+
+            // Backtrack from goal to start using parent link to get shortest path
+            if (Algorithms.RUN) {
+
+                let lastPathCell = endCell
+                while (lastPathCell != startCell) {
+                    lastPathCell.solvedPathCell()
+                    lastPathCell = lastPathCell.parent
+                    if (animate) {
+                        await Control.sleep(Algorithms.CYCLE_WAIT_TIME)
+                        update(true)
+                    }
+                }
+                startCell.solvedPathCell()
+                update(true)
+
+                if (animate) {
+                    await Control.sleep(Algorithms.END_OF_CYCLE_WAIT_TIME)
+                }
+
+            }
+
+            if (endOfAlgorithm && this.RUN) {
+                this.finishedSolve(playbtn)
+            }
+        }
+
+        if (Algorithms.RUN) {
+            newIteration()
+        }
+
+
+
+
     }
 
     // --------------------------------------------------------------------
@@ -346,7 +435,7 @@ class Algorithms {
      * @param {HTML Div}    playbtn         Element representing the button in the HTML
      * @param {Function}    update          Update function used to update the maze
      */
-    static finishedSolve(update, playbtn, buttonState) {
+    static finishedSolve(playbtn) {
         this.FINISHED = true  // Update finished to true
         this.stopAlgorithm()  // Stop the algorithm
         revealSaveBtn()
