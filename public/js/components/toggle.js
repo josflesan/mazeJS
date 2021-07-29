@@ -31,14 +31,14 @@ function initToggle(screen) {
                     PERFECT_MAZE = false
                 }
             }
-            toggles[i].removeEventListener("click", listenToggle.bind(toggles[i]), false)
+            toggle.removeEventListener("click", listenToggle)
         }
 
     }
 
 }
 
-function listenToggle(element, index) {
+function listenToggle(element) {
 
     let toggle = element.path[1]
 

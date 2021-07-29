@@ -1,7 +1,7 @@
 import { Algorithms } from "./algorithms.js"
 import { Grid } from "./grid.js"
 import { Cell } from "./cell.js"
-import { setGrid } from "../solve.js"
+import { getGrid, setGrid } from "../solve.js"
 
 let modal = document.getElementById("loadModal")
 let modalContent = document.getElementsByClassName("modal-content")[0]
