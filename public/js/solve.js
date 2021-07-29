@@ -125,6 +125,7 @@ export function getGrid() {
             update(false)
             Algorithms.playAlgorithm()
             Algorithms.randomizedPrim(grid, update, true)
+            Algorithms.createLoops(grid, update)  // Make grid imperfect
             Algorithms.restart(playbtn)
             buttonState = "PAUSED"
         })

@@ -129,6 +129,17 @@ class Cell {
     }
 
     /**
+     * Function that randomly deletes one of the cell's walls
+     * @param {Grid} grid           The Grid object modelling the maze
+     * @param {Object} neighbours   The Dictionary of the current cell's neighbours
+     */
+    deleteRandomWall(grid) {
+        let possibleWalls = this.getCellWalls(grid)
+        let randomWall = Object.keys(possibleWalls)[Math.floor(Math.random() * Object.keys(possibleWalls).length)]
+        this.deleteWall(randomWall, this.getNeighbours(grid))
+    }
+
+    /**
      *  Function that returns the different neighbouring cells of a particular
      *  Cell object.
      * @param {Grid} grid   Grid object modelling the grid

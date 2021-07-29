@@ -210,6 +210,29 @@ class Algorithms {
         } 
     }
 
+    /**
+     * Function that creates loops in a perfect maze so as to make it imperfect.
+     * By doing this, the maze will have multiple solutions
+     * @param {Grid} grid                       Grid object modelling the maze 
+     */
+    static createLoops(grid, update) {
+
+        // If we randomly delete walls in the y = -x line, we will
+        // artificially create loops in the maze, making it imperfect
+
+        let numberWalls = Math.floor(Math.random() * grid.getLength()["x"])
+        
+        for (let i = 0; i < numberWalls; i++) {
+            let selectedIndex = Math.floor(Math.random() * grid.getLength()["x"])
+            let selectedCell = grid.getCell(selectedIndex, selectedIndex)
+
+            selectedCell.deleteRandomWall(grid)
+        }
+
+        update(false)
+
+    }
+
     // --------------------------------------------------------------------
 
     // ------------------------ SOLVING ALGORITHMS ------------------------
