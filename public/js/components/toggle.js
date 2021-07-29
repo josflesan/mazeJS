@@ -1,53 +1,70 @@
 import { getGrid } from "../solve.js"
 
 let ANIMATE = false
+let PERFECT_MAZE = false
 
-let activeText = document.createElement('span')
-activeText.innerHTML = "I"
-activeText.id = "active-toggle-text"
-
-let inactiveText = document.createElement('span')
-inactiveText.innerHTML = "O"
-inactiveText.id = "inactive-toggle-text"
-
-let toggle = document.getElementsByClassName("theme-toggle")[0]
+let toggles = document.getElementsByClassName("theme-toggle")
 
 function initToggle(screen) {
 
-    toggle.classList.add('theme-toggle-inactive')
-    toggle.appendChild(inactiveText)  // Add inactive text by default
+    for (let i = 0; i < toggles.length; i++) {
 
-    if (screen == "solve" && getGrid() || screen == "generate") {
-        if (screen == "solve") {
-            toggle.classList.remove('theme-toggle-hidden')
+        let toggle = toggles[i]
+
+        toggle.classList.add('theme-toggle-inactive')
+        toggle.childNodes[3].innerHTML = "O"  // Add inactive text by default
+    
+        if (screen == "solve" && getGrid() || screen == "generate") {
+            if (screen == "solve") {
+                toggle.classList.remove('theme-toggle-hidden')
+            }
+            toggles[i].addEventListener("click", listenToggle.bind(toggles[i]), false)
+        } else {
+            toggle.classList.remove('theme-toggle-active')
+            toggle.classList.add('theme-toggle-hidden')
+            if (toggle.querySelector('#active-toggle-text')) {
+                toggle.childNodes[3].innerHTML = "O"
+    
+                if (toggle.id == "animateToggle") {
+                    ANIMATE = false
+                } else if (toggle.id == "perfectMazeToggle") {
+                    PERFECT_MAZE = false
+                }
+            }
+            toggles[i].removeEventListener("click", listenToggle.bind(toggles[i]), false)
         }
-        toggle.addEventListener("click", listenToggle)
-    } else {
-        toggle.classList.remove('theme-toggle-active')
-        toggle.classList.add('theme-toggle-hidden')
-        if (toggle.querySelector('#active-toggle-text')) {
-            toggle.removeChild(activeText)
-            ANIMATE = false
-        }
-        toggle.removeEventListener("click", listenToggle)
+
     }
+
 }
 
-function listenToggle() {
+function listenToggle(element, index) {
+
+    let toggle = element.path[1]
 
     if (toggle.classList.contains('theme-toggle-inactive')) {
         toggle.classList.remove('theme-toggle-inactive')
         toggle.classList.add('theme-toggle-active')
 
-        toggle.replaceChild(activeText, inactiveText)
-        ANIMATE = true
+        toggle.childNodes[3].innerHTML = "I"
+
+        if (toggle.id == "animateToggle") {
+            ANIMATE = true
+        } else if (toggle.id == "perfectMazeToggle") {
+            PERFECT_MAZE = true
+        }
     }
     else if (toggle.classList.contains('theme-toggle-active')) {
         toggle.classList.remove('theme-toggle-active')
         toggle.classList.add('theme-toggle-inactive')
 
-        toggle.replaceChild(inactiveText, activeText)
-        ANIMATE = false
+        toggle.childNodes[3].innerHTML = "O"
+
+        if (toggle.id == "animateToggle") {
+            ANIMATE = false
+        } else if (toggle.id == "perfectMazeToggle") {
+            PERFECT_MAZE = false
+        }
     }
 }
 
@@ -55,8 +72,12 @@ function getAnimate() {
     return ANIMATE
 }
 
+function getPerfectMaze() {
+    return PERFECT_MAZE
+}
+
 function setAnimate(value) {
     ANIMATE = value
 }
 
-export { initToggle, getAnimate, setAnimate };
+export { initToggle, getAnimate, setAnimate, getPerfectMaze };

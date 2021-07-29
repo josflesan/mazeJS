@@ -3,7 +3,7 @@ import { CustomWeakMap } from '../data structures/CustomWeakMap.js'
 import { Stack } from '../data structures/stack.js'
 import { Queue } from '../data structures/queue.js'
 import { randomProperty } from '../helpers/misc.js'
-import { getAnimate } from '../components/toggle.js'
+import { getAnimate, getPerfectMaze } from '../components/toggle.js'
 import { setGrid, hideSaveBtn, revealSaveBtn } from '../components/save-btn.js'
 
 class Algorithms {
@@ -92,10 +92,14 @@ class Algorithms {
         }
 
         if (Algorithms.RUN) {
-            newIteration().then(() => update(false))
+            newIteration().then(() => {
+                if (!getPerfectMaze()) {
+                    this.createLoops(grid, update)
+                } else {
+                    update(false)
+                }
+            })
         }
-
-
 
     }
 
@@ -206,7 +210,13 @@ class Algorithms {
 
         if (this.RUN) {
             // Call new iteration and then clear grid once finished
-            newIteration().then(() => update(false))
+            newIteration().then(() => {
+                if (!getPerfectMaze()) {
+                    this.createLoops(grid, update)
+                } else {
+                    update(false)
+                }
+            })
         } 
     }
 

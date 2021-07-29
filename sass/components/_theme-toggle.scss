@@ -15,8 +15,8 @@
     position: relative;
     display: block;
 
-    span {
-        display: inline-block;
+    #toggle-text {
+        display: none;
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
@@ -54,10 +54,12 @@
         }
 
         &-active {
+
             transform: translate(115%, -50%);
         }
 
         &-inactive {
+
             transform: translate(0, -50%);
         }
 
@@ -80,7 +82,8 @@
         transform: translate(115%, -50%);
     }
 
-    #active-toggle-text {
+    #toggle-text {
+        display: inline-block;
         @include subtle-text(x-large);
         left: $toggle-button-inner-padding;
     }
@@ -94,7 +97,8 @@
         transform: translate(0, -50%);
     }
 
-    #inactive-toggle-text {
+    #toggle-text {
+        display: inline-block;
         @include subtle-text(x-large);
         right: $toggle-button-inner-padding;
     }

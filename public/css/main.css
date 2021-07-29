@@ -339,8 +339,8 @@ a, a:hover, a:focus, a:active {
   box-shadow: 0 0 5px black;
   position: relative;
   display: block; }
-  .theme-toggle span {
-    display: inline-block;
+  .theme-toggle #toggle-text {
+    display: none;
     position: absolute;
     top: 50%;
     transform: translateY(-50%); }
@@ -378,7 +378,8 @@ a, a:hover, a:focus, a:active {
   filter: brightness(1.1); }
   .theme-toggle-active .theme-toggle-button {
     transform: translate(115%, -50%); }
-  .theme-toggle-active #active-toggle-text {
+  .theme-toggle-active #toggle-text {
+    display: inline-block;
     font-family: "Roboto", sans-serif;
     font-size: x-large;
     left: 20px; }
@@ -387,7 +388,8 @@ a, a:hover, a:focus, a:active {
   background-color: #7F807A; }
   .theme-toggle-inactive .theme-toggle-button {
     transform: translate(0, -50%); }
-  .theme-toggle-inactive #inactive-toggle-text {
+  .theme-toggle-inactive #toggle-text {
+    display: inline-block;
     font-family: "Roboto", sans-serif;
     font-size: x-large;
     right: 20px; }
