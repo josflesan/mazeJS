@@ -93,7 +93,7 @@ class Algorithms {
 
         if (Algorithms.RUN) {
             newIteration().then(() => {
-                if (!getPerfectMaze()) {
+                if (!getPerfectMaze() && Algorithms.RUN) {
                     this.createLoops(grid, update)
                 } else {
                     update(false)
@@ -208,10 +208,10 @@ class Algorithms {
             }
         }
 
-        if (this.RUN) {
+        if (Algorithms.RUN) {
             // Call new iteration and then clear grid once finished
             newIteration().then(() => {
-                if (!getPerfectMaze()) {
+                if (!getPerfectMaze() && Algorithms.RUN) {
                     this.createLoops(grid, update)
                 } else {
                     update(false)
