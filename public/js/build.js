@@ -2,11 +2,11 @@ import { Grid } from './components/grid.js'
 import { Algorithms } from './components/algorithms.js'
 
 import { initToggle } from './components/toggle.js'
-import { handleSaveBtn } from './components/save-btn.js'
 
 ;(function() {
 
     let canvas, ctx, cellSize, gridSize, grid, container, playbtn
+    let hover, click
     let buttonState = "PAUSED"
 
     /**
@@ -47,6 +47,18 @@ import { handleSaveBtn } from './components/save-btn.js'
         playbtn.addEventListener("click", e => {
             // Choose appropriate algorithm and play animation
             changeButton()
+            let chosenAlgorithm = getSelectedAlgorithm()
+
+            switch(chosenAlgorithm) {
+
+                case "DFS":
+                    Algorithms.depthFirstSearch(grid, update, playbtn)
+                    break
+
+                case "BFS":
+                    Algorithms.breadthFirstSearch(grid, update, playbtn)
+
+            }
             
             if (buttonState == "PAUSED") {
                 grid.clear(ctx)  // If stopped, clear grid
@@ -67,9 +79,13 @@ import { handleSaveBtn } from './components/save-btn.js'
         grid.draw(ctx, color)
     }
 
+    /**
+     * Function that listens to mouse movements to detect when it is hovering over one of the cells
+     * in order to fill them in the hover colour.
+     * @param {CanvasRenderingContext2D} ctx        The HTML5 canvas rendering context 
+     * @param {HTMLCanvasElement} canvas            The HTML5 canvas element
+     */
     function listenMouseHover(ctx, canvas) {
-
-        let hover
 
         canvas.onmousemove = async function(e) {
 
@@ -91,6 +107,11 @@ import { handleSaveBtn } from './components/save-btn.js'
                         y >= cell.y && y <= cell.y + cell.size) {
                             hover = true
                             cell.hoverCell()
+
+                            if (click) {
+                                cell.clickCell()
+                            }
+
                             cell.colorCell(ctx)
                             break;
                     }
@@ -103,9 +124,13 @@ import { handleSaveBtn } from './components/save-btn.js'
 
     }
 
+    /**
+     * Function that listens to mouse clicks to detect when it is clicking on one of the cells
+     * in order to fill them in the click colour and turn them into a wall.
+     * @param {CanvasRenderingContext2D} ctx        The HTML5 canvas rendering context 
+     * @param {HTMLCanvasElement} canvas            The HTML5 canvas element
+     */
     function listenMouseClick(ctx, canvas) {
-
-        let click
 
         canvas.onmousedown = async function(e) {
 
@@ -125,15 +150,40 @@ import { handleSaveBtn } from './components/save-btn.js'
                             cell.clickCell()
                             cell.colorCell(ctx)
                             click = true
-                            //break;
+                            break
                     }
                     
                 }
-                //if (click)  break
+                if (click) break
             }
 
         }
 
+        canvas.onmouseup = function() {
+            click = false
+        }
+
+    }
+
+    /**
+     * Function that runs the appropriate algoritm based on which one is selected
+     * in the dropdown menu
+     */
+    function getSelectedAlgorithm() {
+        let algorithmList = document.getElementById("algorithmList");
+        let chosenAlgorithm = algorithmList.options[0];  // Chosen algorithm is first algorithm by default
+
+        algorithmList.onchange = function() {
+            let tagContent = algorithmList.options[algorithmList.selectedIndex].innerHTML.trim()
+
+            let chosenAlgorithm = option
+            return chosenAlgorithm
+        }
+
+        chosenAlgorithm = algorithmList.onchange()
+
+        return chosenAlgorithm
+    
     }
 
     /**
@@ -168,6 +218,7 @@ import { handleSaveBtn } from './components/save-btn.js'
             cellSize = canvas.height / size
 
             grid = new Grid(gridSize, cellSize, canvas.height, canvas.width)
+            grid.clearAllWalls()
             ctx.clearRect(0, 0, canvas.width, canvas.height)
         }
     }
