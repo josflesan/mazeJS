@@ -17,8 +17,8 @@ import { handleSaveBtn } from './components/save-btn.js'
         container = document.querySelector('#canvas-container')
         ctx = canvas.getContext('2d')
 
-        container.width = window.width
-        container.height = innerHeight * 0.6
+        container.width = window.width * 0.9 * 0.5
+        container.height = innerHeight * 0.7 * 0.6
 
         ctx.canvas.height = container.height;
         ctx.canvas.width = canvas.height;
@@ -28,9 +28,11 @@ import { handleSaveBtn } from './components/save-btn.js'
         gridSize = 30  // 30x30 grid
         cellSize = canvas.height/gridSize
         grid = new Grid(gridSize, cellSize, canvas.height, canvas.width)
-        //let startCell = openMaze()  // Remove start and end walls of maze to open it
+        let startCell = openMaze()  // Remove start and end walls of maze to open it
         
         // ************************************************
+
+        gridSizeChange()
         
         grid.draw(ctx, false)
 
@@ -61,6 +63,44 @@ import { handleSaveBtn } from './components/save-btn.js'
         // Clear grid before re-drawing
         ctx.clearRect(0, 0, grid.totalWidth, grid.totalHeight)
         grid.draw(ctx, color)
+    }
+
+    /**
+     * Function that removes the starting cell's left wall and the ending
+     * cell's right wall in the maze so that the maze is solvable from left
+     * to right.
+     * @returns {Cell} The starting cell object passed as a parameter to the DFS algorithm  
+     */
+    function openMaze() {
+        // Declare starting cell, remove wall 
+        let startCell = grid.getRandom()
+        grid.getCell(0, 0).deleteWall("left", grid.getCell(0, 0).getNeighbours(grid))  // Delete wall from start cell
+        // Declare ending cell, remove wall
+        let endCell = grid.getCell(gridSize-1, gridSize-1)
+        endCell.deleteWall("right", endCell.getNeighbours(grid))
+        grid.draw(ctx, false)
+
+        return startCell
+    }
+
+    /**
+     * Function that handles the change in grid size as selected
+     * by the drop-down menu
+     */
+    function gridSizeChange() {
+        let sizeList = document.getElementById("gridSizeList")
+        
+        sizeList.onchange = function() {
+            let tagContent = sizeList.options[sizeList.selectedIndex].innerHTML
+            let size = parseInt(tagContent.substring(0, 2).trim())  // Remove spaces for single digit numbers
+            gridSize = size
+            cellSize = canvas.height / size
+
+            grid = new Grid(gridSize, cellSize, canvas.height, canvas.width)
+            ctx.clearRect(0, 0, canvas.width, canvas.height)
+            
+            openMaze()
+        }
     }
 
     /**

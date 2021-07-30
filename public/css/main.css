@@ -557,7 +557,7 @@ header {
 #build-bg {
   background-color: #7E8054;
   display: grid;
-  grid-template-rows: 0.2fr 1fr 0.2fr;
+  grid-template-rows: 0.2fr 1fr 0.1fr;
   place-items: center;
   align-items: center;
   margin: 0;
