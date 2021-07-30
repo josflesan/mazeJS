@@ -15,8 +15,7 @@ export function setGrid(maze) {
     } else {
         grid = maze
     }
-
-    
+ 
 }
 
 export function getGrid() {
@@ -37,7 +36,7 @@ export function getGrid() {
         container.height = innerHeight * 0.7 * 0.6
 
         ctx.canvas.height = container.height;
-        ctx.canvas.width = canvas.height;
+        ctx.canvas.width = container.height;
 
         // Add randomize grid button functionality
         randomizeGrid()
@@ -131,7 +130,7 @@ export function getGrid() {
 
             update(false)
             Algorithms.playAlgorithm()
-            Algorithms.randomizedPrim(grid, update, true)
+            Algorithms.randomizedPrim(grid, update, true, true)
             Algorithms.createLoops(grid, update)  // Make grid imperfect
             Algorithms.restart(playbtn)
             buttonState = "PAUSED"
