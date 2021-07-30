@@ -11,6 +11,8 @@ function initToggle(screen) {
 
         let toggle = toggles[i]
 
+        if (toggle.classList.contains('theme-toggle-active')) toggle.classList.remove('theme-toggle-active')
+
         toggle.classList.add('theme-toggle-inactive')
         toggle.childNodes[3].innerHTML = "O"  // Add inactive text by default
         updateToggle(toggle, screen)
@@ -23,11 +25,9 @@ function updateToggle(toggle, screen="") {
 
     if (!getGrid() && screen == "solve") {
         toggle.classList.add('theme-toggle-hidden')
-
         toggle.removeEventListener("click", listenToggle)
     } else if (getGrid() || screen != "solve") {
         if (screen == "solve")  toggle.classList.remove('theme-toggle-hidden')
-
         toggle.addEventListener("click", listenToggle.bind(toggle), false)
     }
 

@@ -109,9 +109,12 @@ class Algorithms {
      * @param {Function} update                 The update function required to re-draw the state of the maze
      * @param {Boolean} restart                 If true, the algorithm is running in the solve screen so it won't be set to finish
      */
-    static randomizedPrim(grid, update, restart) {
+    static randomizedPrim(grid, update, restart, ignoreAnimate=false) {
 
-        let animate = getAnimate()
+        let animate
+
+        if (!ignoreAnimate) animate = getAnimate()
+        else animate = false
 
         let wallList = new CustomWeakMap()
 
@@ -217,6 +220,7 @@ class Algorithms {
                     update(false)
                 }
             })
+
         } 
     }
 
@@ -233,7 +237,7 @@ class Algorithms {
         let numberWalls = Math.floor(Math.random() * grid.getLength()["x"])
         
         for (let i = 0; i < numberWalls; i++) {
-            let selectedIndex = Math.floor(Math.random() * grid.getLength()["x"])
+            let selectedIndex = Math.floor(Math.random() * (grid.getLength()["x"]-1))
             let selectedCell = grid.getCell(selectedIndex, selectedIndex)
 
             selectedCell.deleteRandomWall(grid)

@@ -188,8 +188,8 @@ class Cell {
 
         let walls = {
             "top" : (this.row == 0)? false:this.walls.top,
-            "right" : (this.column == this.GRID_SIZE-1 || !neighbours.right.walls["left"])? false:true,
-            "bottom" : (this.row == this.GRID_SIZE-1 || !neighbours.bottom.walls["top"])? false:true,
+            "right" : (this.column == this.GRID_SIZE-1 || (neighbours.right && !neighbours.right.walls["left"]))? false:true,
+            "bottom" : (this.row == this.GRID_SIZE-1 || (neighbours.bottom && !neighbours.bottom.walls["top"]))? false:true,
             "left" : (this.column == 0)? false:this.walls.left,
         }
 
