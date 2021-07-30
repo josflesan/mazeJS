@@ -61,8 +61,8 @@ import { initToggle } from './components/toggle.js'
             }
             
             if (buttonState == "PAUSED") {
-                grid.clear(ctx)  // If stopped, clear grid
-                //openMaze()
+                grid.clearAllWalls()
+                update(false)
             }
 
         })
@@ -174,7 +174,7 @@ import { initToggle } from './components/toggle.js'
         let chosenAlgorithm = algorithmList.options[0];  // Chosen algorithm is first algorithm by default
 
         algorithmList.onchange = function() {
-            let tagContent = algorithmList.options[algorithmList.selectedIndex].innerHTML.trim()
+            let option = algorithmList.options[algorithmList.selectedIndex].innerHTML.trim()
 
             let chosenAlgorithm = option
             return chosenAlgorithm
@@ -248,7 +248,6 @@ import { initToggle } from './components/toggle.js'
                 buttonState = "PAUSED"
                 playbtn.style.backgroundImage = "url('../../public/img/Play\ Icon.png')"
                 Algorithms.stopAlgorithm()
-                openMaze()
                 break
         }
     }

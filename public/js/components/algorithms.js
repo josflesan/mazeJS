@@ -476,7 +476,6 @@ class Algorithms {
     static finishedSolve(playbtn) {
         this.FINISHED = true  // Update finished to true
         this.stopAlgorithm()  // Stop the algorithm
-        revealSaveBtn()
 
         playbtn.style.backgroundImage = "url('../../public/img/Repeat\ Icon.png')"
     }
