@@ -25,7 +25,7 @@ import { handleSaveBtn } from './components/save-btn.js'
 
         // ************ DEFAULT MAZE SETTINGS ************
 
-        gridSize = 30  // 30x30 grid
+        gridSize = 5  // 5x5 grid
         cellSize = canvas.height/gridSize
         grid = new Grid(gridSize, cellSize, canvas.height, canvas.width)
         let startCell = openMaze()  // Remove start and end walls of maze to open it

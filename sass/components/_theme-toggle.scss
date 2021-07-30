@@ -1,3 +1,11 @@
+.toggle-group {
+    display: flex;
+    width: 400px;
+    height: 100px;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .theme-toggle-container {
     width: 100px;
     height: 100px;
