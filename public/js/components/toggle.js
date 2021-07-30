@@ -13,27 +13,22 @@ function initToggle(screen) {
 
         toggle.classList.add('theme-toggle-inactive')
         toggle.childNodes[3].innerHTML = "O"  // Add inactive text by default
-    
-        if (screen == "solve" && getGrid() || screen == "generate" || screen == "build") {
-            if (screen == "solve") {
-                toggle.classList.remove('theme-toggle-hidden')
-            }
-            toggles[i].addEventListener("click", listenToggle.bind(toggles[i]), false)
-        } else {
-            toggle.classList.remove('theme-toggle-active')
-            toggle.classList.add('theme-toggle-hidden')
-            if (toggle.querySelector('#active-toggle-text')) {
-                toggle.childNodes[3].innerHTML = "O"
-    
-                if (toggle.id == "animateToggle") {
-                    ANIMATE = false
-                } else if (toggle.id == "perfectMazeToggle") {
-                    PERFECT_MAZE = false
-                }
-            }
-            toggle.removeEventListener("click", listenToggle)
-        }
+        updateToggle(toggle, screen)
 
+    }
+
+}
+
+function updateToggle(toggle, screen="") {
+
+    if (!getGrid() && screen == "solve") {
+        toggle.classList.add('theme-toggle-hidden')
+
+        toggle.removeEventListener("click", listenToggle)
+    } else if (getGrid() || screen != "solve") {
+        if (screen == "solve")  toggle.classList.remove('theme-toggle-hidden')
+
+        toggle.addEventListener("click", listenToggle.bind(toggle), false)
     }
 
 }
