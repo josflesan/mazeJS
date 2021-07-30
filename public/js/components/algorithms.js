@@ -239,8 +239,10 @@ class Algorithms {
         for (let i = 0; i < numberWalls; i++) {
             let selectedIndex = Math.floor(Math.random() * (grid.getLength()["x"]-1))
             let selectedCell = grid.getCell(selectedIndex, selectedIndex)
+            let additionalCell = grid.getRandom()
 
             selectedCell.deleteRandomWall(grid)
+            additionalCell.deleteRandomWall(grid)
         }
 
         update(false)
