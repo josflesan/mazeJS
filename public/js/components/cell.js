@@ -218,15 +218,33 @@ class Cell {
         return walls
     }
 
+    getCellWallsEmpty() {
+
+        let walls = this.walls
+
+        Object.keys(walls).forEach((key) => {
+            if (!walls[key]) {
+                delete walls[key]
+            }
+        })
+
+        return walls
+    }
+
     /**
      * Function that filters the output of getNeighbours() to include
      * only Cell objects that have not been visited yet
      * @param {Grid} grid   Grid object modelling the grid
      * @returns {Object}    Filtered object containing the list of unvisited neighbours
      */
-    getUnvisitedNeighbours(grid, bypassWalls=true) {
+    getUnvisitedNeighbours(grid, bypassWalls=true, gridEmpty=false) {
         let dict = this.getNeighbours(grid);
-        let currentCellWalls = Object.keys(this.getCellWalls(grid))
+        let currentCellWalls
+        if (gridEmpty) {
+            currentCellWalls = Object.keys(this.getCellWallsEmpty())
+        } else {
+            currentCellWalls = Object.keys(this.getCellWalls(grid))
+        }
         let filtered;
 
         if (!bypassWalls) {
@@ -378,11 +396,11 @@ class Cell {
     /**
      * Function to reset all the cell's flags to false while keeping its walls
      */
-    resetCellFlags() {
+    resetCellFlags(keepPath=false) {
         this.visited = false;
         this.selected = false;
         this.deadEnd = false;
-        this.pathCell = false;
+        if (!keepPath) this.pathCell = false;
         this.hoveredCell = false;
     }
 

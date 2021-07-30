@@ -253,7 +253,7 @@ class Algorithms {
 
     // ------------------------ SOLVING ALGORITHMS ------------------------
 
-    static depthFirstSearch(grid, update, playbtn) {
+    static depthFirstSearch(grid, update, playbtn, emptyGrid=false) {
 
         let animate = getAnimate()
 
@@ -296,7 +296,7 @@ class Algorithms {
 
                 // Take unvisited neighbours in order (N, E, S, W)
                 // Mark current node's parent, mark it as visited and add to stack
-                let neighbours = currentCell.getUnvisitedNeighbours(grid, false)
+                let neighbours = currentCell.getUnvisitedNeighbours(grid, false, emptyGrid)
                 Object.keys(neighbours).forEach((direction) => {
                     neighbours[direction].visitedCell()
                     neighbours[direction].parent = currentCell
@@ -331,11 +331,14 @@ class Algorithms {
         }
 
         if (Algorithms.RUN) {
-            newIteration()
+            newIteration().then(() => {
+                grid.resetGrid(true)
+                update(true)
+            })
         }
     }
 
-    static breadthFirstSearch(grid, update, playbtn) {
+    static breadthFirstSearch(grid, update, playbtn, emptyGrid=false) {
 
         let animate = getAnimate()
 
@@ -379,7 +382,7 @@ class Algorithms {
                 // Add all available neighbours to the queue
                 // Not parents
                 // Mark the neighbours as visited
-                let neighbours = currentCell.getUnvisitedNeighbours(grid, false)
+                let neighbours = currentCell.getUnvisitedNeighbours(grid, false, emptyGrid)
                 Object.keys(neighbours).forEach((direction) => {
                     neighbours[direction].visitedCell()
                     neighbours[direction].parent = currentCell
@@ -415,7 +418,10 @@ class Algorithms {
         }
 
         if (Algorithms.RUN) {
-            newIteration()
+            newIteration().then(() => {
+                grid.resetGrid(true)
+                update(true)
+            })
         }
 
 

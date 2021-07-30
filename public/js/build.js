@@ -52,11 +52,11 @@ import { initToggle } from './components/toggle.js'
             switch(chosenAlgorithm) {
 
                 case "DFS":
-                    Algorithms.depthFirstSearch(grid, update, playbtn)
+                    Algorithms.depthFirstSearch(grid, update, playbtn, true)
                     break
 
                 case "BFS":
-                    Algorithms.breadthFirstSearch(grid, update, playbtn)
+                    Algorithms.breadthFirstSearch(grid, update, playbtn, true)
 
             }
             

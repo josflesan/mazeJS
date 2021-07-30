@@ -118,11 +118,11 @@ class Grid {
     /**
      * Function to reset all the cells in the grid
      */
-    resetGrid() {
+    resetGrid(keepPath=false) {
         for (var y = 0; y < this.getLength()["y"]; y++) {
             for (var x = 0; x < this.getLength()["x"]; x++) {
                 let cell = this.getCell(y, x)
-                cell.resetCellFlags()
+                cell.resetCellFlags(keepPath)
             }
         }
     }
