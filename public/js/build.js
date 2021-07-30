@@ -18,7 +18,7 @@ import { handleSaveBtn } from './components/save-btn.js'
         ctx = canvas.getContext('2d')
 
         container.width = window.width * 0.9 * 0.5
-        container.height = innerHeight * 0.7 * 0.6
+        container.height = innerHeight * 0.7 * 0.65
 
         ctx.canvas.height = container.height;
         ctx.canvas.width = canvas.height;

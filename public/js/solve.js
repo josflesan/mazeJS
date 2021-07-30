@@ -33,7 +33,7 @@ export function getGrid() {
         ctx = canvas.getContext('2d')
 
         container.width = innerWidth * 0.9 * 0.5
-        container.height = innerHeight * 0.7 * 0.6
+        container.height = innerHeight * 0.7 * 0.65
 
         ctx.canvas.height = container.height;
         ctx.canvas.width = container.height;
