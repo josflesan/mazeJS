@@ -458,7 +458,6 @@ class Algorithms {
      */
     static finishedGenerate(playbtn, update, grid) {
         this.FINISHED = true  // Update finished to true
-        this.stopAlgorithm()  // Stop the algorithm
         setGrid(grid)
         update(false)
         revealSaveBtn()
