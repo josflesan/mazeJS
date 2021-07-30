@@ -193,7 +193,7 @@ a, a:hover, a:focus, a:active {
     filter: brightness(100%); }
 
 #build {
-  background-color: #FFFFF4;
+  background-color: #7E8054;
   transition: all 300ms ease-in-out;
   transition-property: filter box-shadow; }
   #build:hover {
@@ -203,7 +203,7 @@ a, a:hover, a:focus, a:active {
     filter: brightness(100%); }
 
 #about {
-  background-color: #7E8054;
+  background-color: #FFFFF4;
   transition: all 300ms ease-in-out;
   transition-property: filter box-shadow; }
   #about:hover {
@@ -553,6 +553,20 @@ header {
     #menu div {
       width: 100vw;
       height: 50vh; } }
+
+#build-bg {
+  background-color: #7E8054;
+  display: grid;
+  grid-template-rows: 0.2fr 1fr 0.2fr;
+  place-items: center;
+  align-items: center;
+  margin: 0;
+  height: 100vh; }
+
+canvas {
+  background: #f8f8f8;
+  padding: 5px;
+  display: block; }
 
 #landing-bg {
   background-color: #FFFFF4; }

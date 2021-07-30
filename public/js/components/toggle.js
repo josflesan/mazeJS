@@ -14,7 +14,7 @@ function initToggle(screen) {
         toggle.classList.add('theme-toggle-inactive')
         toggle.childNodes[3].innerHTML = "O"  // Add inactive text by default
     
-        if (screen == "solve" && getGrid() || screen == "generate") {
+        if (screen == "solve" && getGrid() || screen == "generate" || screen == "build") {
             if (screen == "solve") {
                 toggle.classList.remove('theme-toggle-hidden')
             }

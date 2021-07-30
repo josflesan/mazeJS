@@ -179,6 +179,7 @@ export function getGrid() {
                 buttonState = "PAUSED"
                 playbtn.style.backgroundImage = "url('../../public/img/Play\ Icon.png')"
                 Algorithms.stopAlgorithm()
+                ctx.clearRect(0, 0, grid.totalWidth, grid.totalHeight)  // If stopped, clear grid
                 setGrid(null)
                 break
 
@@ -187,7 +188,7 @@ export function getGrid() {
                 playbtn.style.backgroundImage = "url('../../public/img/Play\ Icon.png')"
                 Algorithms.stopAlgorithm()
                 ctx.clearRect(0, 0, grid.totalWidth, grid.totalHeight)  // If stopped, clear grid
-                //setGrid(null)
+                setGrid(null)
                 break
         }
     }

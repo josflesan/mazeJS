@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MazeJS</title>
+
+    <link rel="stylesheet" href="public/css/main.css">
+    <script type="module" src="public/js/build.js"></script>
+</head>
+<body id="build-bg">
+
+    <div id="screen-filter"></div>
+
+    <header class="screen-banner">
+        <h3 id="screen-title">
+            <a href="/"><span id="return-button"></span></a>
+            03/BUILD
+        </h3>
+        <div class="theme-toggle-container">
+            <p class="theme-toggle-description">animate</p>
+            <div id="animateToggle" class="theme-toggle">
+                <div class="theme-toggle-button"></div>
+                <span id="toggle-text"></span>
+            </div>
+        </div>
+    </header>
+
+    <div class="monitor">
+        <div id="canvas-container" class="monitor-canvas-container">
+            <canvas id="monitor-canvas"></canvas>
+        </div>
+        <div class="monitor-base">
+            <form class="dropdownForm">
+                <select id="algorithmList" class="dropdown">
+                    <option>01 Randomized DFS</option>
+                    <option>02 Randomized Prim's</option>
+                </select>
+            </form>
+        </div>
+    </div>
+
+    <footer class="screen-footer">
+        <div id="playbtn" class="screen-footer-playbtn"></div>
+    </footer>
+
+</body>
+</html>
