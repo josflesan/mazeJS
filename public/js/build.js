@@ -26,7 +26,6 @@ import { initToggle } from './components/toggle.js'
         cellSize = canvas.height/gridSize
         grid = new Grid(gridSize, cellSize, canvas.height, canvas.width)
         grid.clearAllWalls()
-        //let startCell = openMaze()  // Remove start and end walls of maze to open it
 
         // ************************************************
 
@@ -89,37 +88,40 @@ import { initToggle } from './components/toggle.js'
 
         canvas.onmousemove = async function(e) {
 
-            let r = canvas.getBoundingClientRect()
-            let x = e.clientX - r.left
-            let y = e.clientY - r.top
+            if (!Algorithms.FINISHED && !Algorithms.RUN) {
 
-            hover = false
-            grid.resetGrid()
+                let r = canvas.getBoundingClientRect()
+                let x = e.clientX - r.left
+                let y = e.clientY - r.top
 
-            update(true)
+                hover = false
+                grid.resetGrid()
 
-            for (let row = 0; row < grid.getLength()["y"]; row++) {
-                for (let col = 0; col < grid.getLength()["x"]; col++) {
+                update(true)
 
-                    let cell = grid.getCell(row, col)
+                for (let row = 0; row < grid.getLength()["y"]; row++) {
+                    for (let col = 0; col < grid.getLength()["x"]; col++) {
 
-                    if (x >= cell.x && x <= cell.x + cell.size &&
-                        y >= cell.y && y <= cell.y + cell.size) {
-                            hover = true
-                            cell.hoverCell()
+                        let cell = grid.getCell(row, col)
 
-                            if (click) {
-                                cell.clickCell()
-                            }
+                        if (x >= cell.x && x <= cell.x + cell.size &&
+                            y >= cell.y && y <= cell.y + cell.size) {
+                                hover = true
+                                cell.hoverCell()
 
-                            cell.colorCell(ctx)
-                            break;
+                                if (click) {
+                                    cell.clickCell()
+                                }
+
+                                cell.colorCell(ctx)
+                                break;
+                        }
+                        
                     }
-                    
+                    if (hover)  break
                 }
-                if (hover)  break
-            }
 
+            }
         }
 
     }
@@ -187,24 +189,6 @@ import { initToggle } from './components/toggle.js'
     }
 
     /**
-     * Function that removes the starting cell's left wall and the ending
-     * cell's right wall in the maze so that the maze is solvable from left
-     * to right.
-     * @returns {Cell} The starting cell object passed as a parameter to the DFS algorithm  
-     */
-    function openMaze() {
-        // Declare starting cell, remove wall 
-        let startCell = grid.getRandom()
-        grid.getCell(0, 0).deleteWall("left", grid.getCell(0, 0).getNeighbours(grid))  // Delete wall from start cell
-        // Declare ending cell, remove wall
-        let endCell = grid.getCell(gridSize-1, gridSize-1)
-        endCell.deleteWall("right", endCell.getNeighbours(grid))
-        grid.draw(ctx, false)
-
-        return startCell
-    }
-
-    /**
      * Function that handles the change in grid size as selected
      * by the drop-down menu
      */
@@ -242,12 +226,7 @@ import { initToggle } from './components/toggle.js'
                 buttonState = "PAUSED"
                 playbtn.style.backgroundImage = "url('../../public/img/Play\ Icon.png')"
                 Algorithms.stopAlgorithm()
-                break
-
-            case "FINISHED":
-                buttonState = "PAUSED"
-                playbtn.style.backgroundImage = "url('../../public/img/Play\ Icon.png')"
-                Algorithms.stopAlgorithm()
+                Algorithms.FINISHED = false
                 break
         }
     }
