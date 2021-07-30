@@ -5,6 +5,7 @@ class Cell {
     NO_NEIGHBOUR_COLOUR = '#7E8054'
     PATH_COLOUR = '#86fe6e'
     HOVERED_COLOUR = '#aea4a4'
+    WALL_CELL_COLOUR = '#000000'
 
     GRID_SIZE = null
 
@@ -30,6 +31,7 @@ class Cell {
         this.deadEnd = false;
         this.pathCell = false;
         this.hoveredCell = false;
+        this.wallCell = false;
 
         this.parent = null;
 
@@ -139,6 +141,18 @@ class Cell {
         let possibleWalls = this.getCellWalls(grid)
         let randomWall = Object.keys(possibleWalls)[Math.floor(Math.random() * Object.keys(possibleWalls).length)]
         this.deleteWall(randomWall, this.getNeighbours(grid))
+    }
+
+    /**
+     * Function that deletes all the cell's walls
+     */
+    deleteAllCellWalls() {
+        this.walls = {
+            "top": false,
+            "right": false,
+            "bottom": false,
+            "left": false
+        }
     }
 
     /**
@@ -267,6 +281,22 @@ class Cell {
     }
 
     /**
+     * Function that turns the cell in the grid into a wall if clicked on by setting flag
+     */
+    clickCell() {
+
+        this.walls = {
+            "top": true,
+            "right": true,
+            "bottom": true,
+            "left": true
+        }
+
+        this.cellWall = true
+        this.hoveredCell = false
+    }
+
+    /**
      * Function that colours the cell in if the mouse is hovered over it
      */
     hoverCell() {
@@ -320,6 +350,9 @@ class Cell {
             ctx.fillRect(this.x, this.y, this.size, this.size)
         } else if (this.hoveredCell) {
             ctx.fillStyle = this.HOVERED_COLOUR
+            ctx.fillRect(this.x, this.y, this.size, this.size)
+        } else if (this.cellWall) {
+            ctx.fillStyle = this.WALL_CELL_COLOUR
             ctx.fillRect(this.x, this.y, this.size, this.size)
         }
         

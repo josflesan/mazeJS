@@ -31,13 +31,6 @@ class Grid {
 
     }
 
-    listenMouseHover(canvas, ctx) {
-
-
-
-
-    }
-
     /**
      * Function that selects and returns a specified cell in the grid
      * @param {int} row     The row the cell is in
@@ -103,6 +96,22 @@ class Grid {
                 cell.displayCellWalls(ctx, this.grid)
             }
         }
+
+    }
+
+    /**
+     * Function that clears all the cell walls in the grid
+     * @param {CanvasRenderingContext2D} ctx    Context of HTML5 Canvas
+     */
+    clearAllWalls() {
+
+        for (var y = 0; y < this.getLength()["y"]; y++) {
+            for (var x = 0; x < this.getLength()["x"]; x++) {
+                let cell = this.getCell(y, x)
+                cell.deleteAllCellWalls()
+            }
+        }
+
 
     }
 

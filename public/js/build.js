@@ -25,6 +25,7 @@ import { handleSaveBtn } from './components/save-btn.js'
         gridSize = 5  // 5x5 grid
         cellSize = canvas.height/gridSize
         grid = new Grid(gridSize, cellSize, canvas.height, canvas.width)
+        grid.clearAllWalls()
         //let startCell = openMaze()  // Remove start and end walls of maze to open it
 
         // ************************************************
@@ -35,7 +36,10 @@ import { handleSaveBtn } from './components/save-btn.js'
         initToggle("build")
 
         // Listen to mouse hover
-        listenMouseHover(ctx, canvas, update)
+        listenMouseHover(ctx, canvas)
+
+        // Listen to mouse click
+        listenMouseClick(ctx, canvas)
         
         // Implement play button functionality
         playbtn = document.getElementById("playbtn");
@@ -76,7 +80,7 @@ import { handleSaveBtn } from './components/save-btn.js'
             hover = false
             grid.resetGrid()
 
-            ctx.clearRect(0, 0, canvas.width, canvas.height)
+            update(true)
 
             for (let row = 0; row < grid.getLength()["y"]; row++) {
                 for (let col = 0; col < grid.getLength()["x"]; col++) {
@@ -93,6 +97,39 @@ import { handleSaveBtn } from './components/save-btn.js'
                     
                 }
                 if (hover)  break
+            }
+
+        }
+
+    }
+
+    function listenMouseClick(ctx, canvas) {
+
+        let click
+
+        canvas.onmousedown = async function(e) {
+
+            let r = canvas.getBoundingClientRect()
+            let x = e.clientX - r.left
+            let y = e.clientY - r.top
+
+            click = false
+
+            for (let row = 0; row < grid.getLength()["y"]; row++) {
+                for (let col = 0; col < grid.getLength()["x"]; col++) {
+
+                    let cell = grid.getCell(row, col)
+
+                    if (x >= cell.x && x <= cell.x + cell.size &&
+                        y >= cell.y && y <= cell.y + cell.size) {
+                            cell.clickCell()
+                            cell.colorCell(ctx)
+                            click = true
+                            //break;
+                    }
+                    
+                }
+                //if (click)  break
             }
 
         }
