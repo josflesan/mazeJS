@@ -1,15 +1,24 @@
-.fullscreen-canvas-container {
+.fullscreen-canvas-container-large {
+    position: absolute;
+    display: grid;
+    place-items: center;
     width: 100vw;
     height: 100vh;
+}
+
+.fullscreen-canvas-container {
     position: absolute;
+    display: grid;
+    place-items: center;
+    background-color: white;
+    border: 5px solid black;
+    height: 80vh;
+    width: 80vh;
 }
 
 .fullscreen-canvas {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 80%;
-    height: 80%;
-    border: 5px solid black;
+    width: 90%;
+    height: 90%;
+    z-index: 2;
+    border: 3px solid grey;
 }

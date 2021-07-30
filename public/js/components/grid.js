@@ -31,6 +31,13 @@ class Grid {
 
     }
 
+    listenMouseHover(canvas, ctx) {
+
+
+
+
+    }
+
     /**
      * Function that selects and returns a specified cell in the grid
      * @param {int} row     The row the cell is in
@@ -46,8 +53,8 @@ class Grid {
      * @returns {Cell}  Random cell object in grid
      */
     getRandom() {
-        return this.getCell(Math.floor(Math.random() * (this.gridSize-1)), 
-                        Math.floor(Math.random() * (this.gridSize-1)))
+        return this.getCell(Math.floor(Math.random() * (this.getLength()["y"]-1)), 
+                        Math.floor(Math.random() * (this.getLength()["x"]-1)))
     }
 
     /**

@@ -19,19 +19,23 @@ import { handleSaveBtn } from './components/save-btn.js'
 
         // ************ DEFAULT MAZE SETTINGS ************
 
+        canvas.width = window.innerHeight * 0.8 * 0.9
+        canvas.height = window.innerHeight * 0.8 * 0.9
+
         gridSize = 5  // 5x5 grid
-        // cellSize = canvas.height/gridSize
-        // grid = new Grid(gridSize, cellSize, canvas.height, canvas.width)
-        // let startCell = openMaze()  // Remove start and end walls of maze to open it
-        
+        cellSize = canvas.height/gridSize
+        grid = new Grid(gridSize, cellSize, canvas.height, canvas.width)
+        //let startCell = openMaze()  // Remove start and end walls of maze to open it
+
         // ************************************************
 
         gridSizeChange()
-        
-        grid.draw(ctx, false)
 
         // Implement toggle functionality
         initToggle("build")
+
+        // Listen to mouse hover
+        listenMouseHover(ctx, canvas, update)
         
         // Implement play button functionality
         playbtn = document.getElementById("playbtn");
@@ -57,6 +61,42 @@ import { handleSaveBtn } from './components/save-btn.js'
         // Clear grid before re-drawing
         ctx.clearRect(0, 0, grid.totalWidth, grid.totalHeight)
         grid.draw(ctx, color)
+    }
+
+    function listenMouseHover(ctx, canvas) {
+
+        let hover
+
+        canvas.onmousemove = async function(e) {
+
+            let r = canvas.getBoundingClientRect()
+            let x = e.clientX - r.left
+            let y = e.clientY - r.top
+
+            hover = false
+            grid.resetGrid()
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+            for (let row = 0; row < grid.getLength()["y"]; row++) {
+                for (let col = 0; col < grid.getLength()["x"]; col++) {
+
+                    let cell = grid.getCell(row, col)
+
+                    if (x >= cell.x && x <= cell.x + cell.size &&
+                        y >= cell.y && y <= cell.y + cell.size) {
+                            hover = true
+                            cell.hoverCell()
+                            cell.colorCell(ctx)
+                            break;
+                    }
+                    
+                }
+                if (hover)  break
+            }
+
+        }
+
     }
 
     /**
@@ -92,27 +132,7 @@ import { handleSaveBtn } from './components/save-btn.js'
 
             grid = new Grid(gridSize, cellSize, canvas.height, canvas.width)
             ctx.clearRect(0, 0, canvas.width, canvas.height)
-            
-            openMaze()
         }
-    }
-
-    /**
-     * Function that removes the starting cell's left wall and the ending
-     * cell's right wall in the maze so that the maze is solvable from left
-     * to right.
-     * @returns {Cell} The starting cell object passed as a parameter to the DFS algorithm  
-     */
-    function openMaze() {
-        // Declare starting cell, remove wall 
-        let startCell = grid.getRandom()
-        grid.getCell(0, 0).deleteWall("left", grid.getCell(0, 0).getNeighbours(grid))  // Delete wall from start cell
-        // Declare ending cell, remove wall
-        let endCell = grid.getCell(gridSize-1, gridSize-1)
-        endCell.deleteWall("right", endCell.getNeighbours(grid))
-        grid.draw(ctx, false)
-
-        return startCell
     }
 
     /**

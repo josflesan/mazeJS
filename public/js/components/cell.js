@@ -4,6 +4,7 @@ class Cell {
     SELECTED_COLOUR = '#FCE196'
     NO_NEIGHBOUR_COLOUR = '#7E8054'
     PATH_COLOUR = '#86fe6e'
+    HOVERED_COLOUR = '#aea4a4'
 
     GRID_SIZE = null
 
@@ -28,6 +29,7 @@ class Cell {
         this.selected = false;
         this.deadEnd = false;
         this.pathCell = false;
+        this.hoveredCell = false;
 
         this.parent = null;
 
@@ -265,6 +267,13 @@ class Cell {
     }
 
     /**
+     * Function that colours the cell in if the mouse is hovered over it
+     */
+    hoverCell() {
+        this.hoveredCell = true
+    }
+
+    /**
      * Function that marks a Cell in the grid as visited by flagging its
      * visited attribute when the cell is marked as visited by the algorithm
      */
@@ -309,6 +318,9 @@ class Cell {
         } else if (this.pathCell) {
             ctx.fillStyle = this.PATH_COLOUR
             ctx.fillRect(this.x, this.y, this.size, this.size)
+        } else if (this.hoveredCell) {
+            ctx.fillStyle = this.HOVERED_COLOUR
+            ctx.fillRect(this.x, this.y, this.size, this.size)
         }
         
     }
@@ -338,6 +350,7 @@ class Cell {
         this.selected = false;
         this.deadEnd = false;
         this.pathCell = false;
+        this.hoveredCell = false;
     }
 
 }
