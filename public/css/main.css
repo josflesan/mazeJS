@@ -135,6 +135,20 @@ a, a:hover, a:focus, a:active {
 #algorithmList {
   background-size: 5%; }
 
+.fullscreen-canvas-container {
+  width: 100vw;
+  height: 100vh;
+  position: absolute; }
+
+.fullscreen-canvas {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  border: 5px solid black; }
+
 .load-option {
   display: block;
   width: 100%;
@@ -435,7 +449,8 @@ header {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  width: 100vw; }
+  width: 100vw;
+  margin-bottom: 10px; }
 
 .screen-footer {
   height: 15vh;
@@ -495,6 +510,7 @@ header {
       background-repeat: no-repeat; }
   .screen-footer-playbtn {
     width: 10%;
+    z-index: 2;
     background-image: url("../../public/img/Play Icon.png");
     background-size: contain;
     background-position: center;
@@ -569,6 +585,9 @@ header {
   align-items: center;
   margin: 0;
   height: 100vh; }
+
+#spacer {
+  display: block; }
 
 canvas {
   background: #f8f8f8;

@@ -14,21 +14,15 @@ import { handleSaveBtn } from './components/save-btn.js'
      */
     function init() {
         canvas = document.getElementById('monitor-canvas')
-        container = document.querySelector('#canvas-container')
+        container = document.querySelector('.fullscreen-canvas-container')
         ctx = canvas.getContext('2d')
-
-        container.width = window.width * 0.9 * 0.5
-        container.height = innerHeight * 0.7 * 0.65
-
-        ctx.canvas.height = container.height;
-        ctx.canvas.width = canvas.height;
 
         // ************ DEFAULT MAZE SETTINGS ************
 
         gridSize = 5  // 5x5 grid
-        cellSize = canvas.height/gridSize
-        grid = new Grid(gridSize, cellSize, canvas.height, canvas.width)
-        let startCell = openMaze()  // Remove start and end walls of maze to open it
+        // cellSize = canvas.height/gridSize
+        // grid = new Grid(gridSize, cellSize, canvas.height, canvas.width)
+        // let startCell = openMaze()  // Remove start and end walls of maze to open it
         
         // ************************************************
 

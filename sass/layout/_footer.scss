@@ -59,6 +59,7 @@
 
     &-playbtn { 
         width: 10%;
+        z-index: 2;
         @include bg-image-center(url('../../public/img/Play\ Icon.png'));
         @include button-hover;
     }
