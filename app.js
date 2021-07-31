@@ -46,6 +46,10 @@ router.get('/build', function(req, res) {
     res.sendFile(path.join(__dirname, "/public/pages/maze_build.html"))
 });
 
+router.get('/about', function(req, res) {
+    res.sendFile(path.join(__dirname, "/public/pages/about.html"))
+});
+
 router.get('/data', function(req, res) {
     (async () => {
         let mazes = await getAllSavedMazes()

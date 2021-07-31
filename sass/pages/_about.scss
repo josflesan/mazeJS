@@ -1,0 +1,9 @@
+#about-bg {
+    background-color: $green;
+    display: grid;
+    grid-template-rows: 0.2fr 1fr 0.2fr;
+    place-items: center;
+    align-items: center;
+    margin: 0;
+    height: 100vh;
+}

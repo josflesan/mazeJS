@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MazeJS</title>
+
+    <link rel="stylesheet" href="public/css/main.css">
+    <script type="module" src="public/js/about.js"></script>
+</head>
+<body id="about-bg">
+
+    <div id="screen-filter"></div>
+
+    <header class="screen-banner">
+        <h3 id="screen-title">
+            <a href="/"><span id="return-button"></span></a>
+            04/ABOUT
+        </h3>
+
+        <div class="theme-toggle-container">
+            <p class="theme-toggle-description">animate</p>
+            <div id="animateToggle" class="theme-toggle">
+                <div class="theme-toggle-button"></div>
+                <span id="toggle-text"></span>
+            </div>
+        </div>
+
+    </header>
+
+    <div class="fullscreen-canvas-container-large">
+        <div class="fullscreen-canvas-container">
+            
+        </div>
+    </div>
+
+    <div id="spacer"></div>
+
+    <footer class="screen-footer">
+        <div class="screen-footer-btncontainer">
+            <p class="screen-footer-btncontainer-text">grid_size</p>
+            <div class="screen-footer-sizebtn">
+                <form class="dropdownForm">
+                    <select id="gridSizeList" class="dropdown">
+                        <option>5 x 5</option>
+                        <option>10 x 10</option>
+                        <option>15 x 15</option>
+                        <option>20 x 20</option>
+                        <option>25 x 25</option>
+                    </select>
+                </form>
+            </div>
+        </div>
+        <div id="playbtn" class="screen-footer-playbtn"></div>
+        <div class="screen-footer-btncontainer">
+            <p class="screen-footer-btncontainer-text">search_algorithm</p>
+            <div class="screen-footer-sizebtn">
+                <form class="dropdownForm">
+                    <select id="algorithmBtnList" class="dropdown">
+                        <option>DFS</option>
+                        <option>BFS</option>
+                    </select>
+                </form>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
