@@ -132,6 +132,11 @@ a, a:hover, a:focus, a:active {
   background-size: 10%;
   word-spacing: -20px; }
 
+#algorithmBtnList {
+  width: 100%;
+  background-size: 15%;
+  word-spacing: -20px; }
+
 #algorithmList {
   background-size: 5%; }
 

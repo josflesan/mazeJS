@@ -172,7 +172,7 @@ import { initToggle } from './components/toggle.js'
      * in the dropdown menu
      */
     function getSelectedAlgorithm() {
-        let algorithmList = document.getElementById("algorithmList");
+        let algorithmList = document.getElementById("algorithmBtnList");
         let chosenAlgorithm = algorithmList.options[0];  // Chosen algorithm is first algorithm by default
 
         algorithmList.onchange = function() {
@@ -202,7 +202,6 @@ import { initToggle } from './components/toggle.js'
             cellSize = canvas.height / size
 
             grid = new Grid(gridSize, cellSize, canvas.height, canvas.width)
-            console.log(grid)
             grid.clearAllWalls()
             ctx.clearRect(0, 0, canvas.width, canvas.height)
         }
