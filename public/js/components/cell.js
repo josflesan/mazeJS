@@ -321,6 +321,8 @@ class Cell {
         this.wallCell = true
 
         this.hoveredCell = false
+        this.startCell = false
+        this.endCell = false
     }
 
     /**

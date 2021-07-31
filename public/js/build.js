@@ -66,6 +66,8 @@ import { initToggle } from './components/toggle.js'
             if (buttonState == "PAUSED") {
                 grid.clearAllWalls()
                 update(false)
+                startCell = grid.getCell(0, 0)
+                endCell = grid.getCell(grid.getLength()["x"]-1, grid.getLength()["y"]-1)
             }
 
         })
@@ -208,7 +210,7 @@ import { initToggle } from './components/toggle.js'
         window.addEventListener('keydown', (e) => {
 
             if (e.key == "s") {
-                if (!startCellActive && !endCellActive) {
+                if (!startCellActive) {
                     startCellIndicator.style.backgroundColor = '#FEBA35'
                     startCellActive = true
                 }
@@ -216,10 +218,13 @@ import { initToggle } from './components/toggle.js'
                     startCellIndicator.style.backgroundColor = 'transparent'
                     startCellActive = false
                 }
+
+                endCellIndicator.style.backgroundColor = 'transparent'
+                endCellActive = false
             }
 
             if (e.key == "e") {
-                if (!endCellActive && !startCellActive) {
+                if (!endCellActive) {
                     endCellIndicator.style.backgroundColor = '#FEBA35'
                     endCellActive = true
                 }
@@ -227,6 +232,9 @@ import { initToggle } from './components/toggle.js'
                     endCellIndicator.style.backgroundColor = 'transparent'
                     endCellActive = false
                 }
+
+                startCellIndicator.style.backgroundColor = 'transparent'
+                startCellActive = false
             }
 
         }, false)
