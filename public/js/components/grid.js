@@ -20,16 +20,15 @@ class Grid {
         this.totalWidth = canvasW
 
         // Before displaying the grid, we have to populate the grid 2D array with Cell objects
-        for (var y = 0; y < canvasH; y+=cellSize) {
+        for (var y = 0; y.toFixed(2) < canvasH; y+=cellSize) {
             let cellRow = []
-            for (var x = 0; x < canvasW; x+=cellSize) {
+            for (var x = 0; x.toFixed(2) < canvasW; x+=cellSize) {
                 let cell = new Cell(x, y, cellRow.length, this.grid.length, this.cellSize, this.gridSize)
                 cellRow.push(cell)  // Add cell to row
             }
             this.grid.push(cellRow)  // Add row to grid
         }
-
-    }
+    }   
 
     /**
      * Function that selects and returns a specified cell in the grid

@@ -202,6 +202,7 @@ import { initToggle } from './components/toggle.js'
             cellSize = canvas.height / size
 
             grid = new Grid(gridSize, cellSize, canvas.height, canvas.width)
+            console.log(grid)
             grid.clearAllWalls()
             ctx.clearRect(0, 0, canvas.width, canvas.height)
         }

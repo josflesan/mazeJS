@@ -92,7 +92,7 @@ import { handleSaveBtn } from './components/save-btn.js'
             let tagContent = sizeList.options[sizeList.selectedIndex].innerHTML
             let size = parseInt(tagContent.substring(0, 2).trim())  // Remove spaces for single digit numbers
             gridSize = size
-            cellSize = canvas.height / size
+            cellSize = canvas.height/gridSize
 
             grid = new Grid(gridSize, cellSize, canvas.height, canvas.width)
             ctx.clearRect(0, 0, canvas.width, canvas.height)

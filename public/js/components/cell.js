@@ -156,8 +156,8 @@ class Cell {
     }
 
     /**
-     *  Function that returns the different neighbouring cells of a particular
-     *  Cell object.
+     * Function that returns the different neighbouring cells of a particular
+     * Cell object.
      * @param {Grid} grid   Grid object modelling the grid
      * @returns {Object}    Object containing the different neighbours of the cell
      */
@@ -218,6 +218,12 @@ class Cell {
         return walls
     }
 
+
+    /**
+     * Function that returns the walls of the cell taking into account the maze is empty
+     * to start off with (as in the build screen)
+     * @returns {Object}        The hashmap containing the information on which cell walls are active 
+     */
     getCellWallsEmpty() {
 
         let walls = this.walls
