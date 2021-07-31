@@ -17,3 +17,9 @@ canvas {
     padding: 5px;
     display: block;
 }
+
+@media only screen and (max-width: 1200px) {
+    .screen-footer-btncontainer-text {
+        display: none;
+    }
+}
