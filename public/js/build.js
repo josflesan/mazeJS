@@ -6,7 +6,7 @@ import { initToggle } from './components/toggle.js'
 ;(function() {
 
     let canvas, ctx, cellSize, gridSize, grid, container, playbtn
-    let hover, click
+    let hover, click, rightClick
     let buttonState = "PAUSED"
 
     /**
@@ -111,6 +111,8 @@ import { initToggle } from './components/toggle.js'
 
                                 if (click) {
                                     cell.clickCell()
+                                } else if (rightClick) {
+                                    cell.rightClickCell()
                                 }
 
                                 cell.colorCell(ctx)
@@ -141,6 +143,7 @@ import { initToggle } from './components/toggle.js'
             let y = e.clientY - r.top
 
             click = false
+            rightClick = false
 
             for (let row = 0; row < grid.getLength()["y"]; row++) {
                 for (let col = 0; col < grid.getLength()["x"]; col++) {
@@ -149,14 +152,25 @@ import { initToggle } from './components/toggle.js'
 
                     if (x >= cell.x && x <= cell.x + cell.size &&
                         y >= cell.y && y <= cell.y + cell.size) {
-                            cell.clickCell()
-                            cell.colorCell(ctx)
-                            click = true
-                            break
+
+                            // If LMB, add wall
+                            if (e.button == 0) {
+                                cell.clickCell()
+                                click = true
+                                cell.colorCell(ctx)
+                                break
+                            } 
+                            // If RMB, delete wall
+                            else if (e.button == 2) {
+                                cell.rightClickCell()
+                                rightClick = true
+                                cell.colorCell(ctx)
+                                break
+                            }
                     }
                     
                 }
-                if (click) break
+                if (click || rightClick) break
             }
 
         }

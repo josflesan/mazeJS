@@ -321,6 +321,21 @@ class Cell {
     }
 
     /**
+     * Function that turns a wall to a cell in the grid
+     */
+    rightClickCell() {
+        this.walls = {
+            "top": false,
+            "right": false,
+            "bottom": false,
+            "left": false
+        }
+
+        this.cellWall = false
+        this.hoveredCell = false
+    }
+
+    /**
      * Function that colours the cell in if the mouse is hovered over it
      */
     hoverCell() {
