@@ -207,8 +207,7 @@ a, a:hover, a:focus, a:active {
   width: auto;
   overflow: hidden;
   position: relative;
-  box-shadow: 0 0 0 0 black;
-  filter: brightness(70%); }
+  box-shadow: 0 0 0 0 black; }
   .menu-item-title {
     display: block;
     z-index: 4;
@@ -225,46 +224,70 @@ a, a:hover, a:focus, a:active {
 
 #generate {
   background-color: #CCCCC3;
-  transition: all 300ms ease-in-out;
+  background-image: url("../../public/img/generate icon.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.7;
+  background-size: 250px;
+  transition: all 150ms ease-in-out;
   transition-property: filter box-shadow; }
   #generate:hover {
     cursor: pointer;
     z-index: 2;
     box-shadow: 0 0 50px 10px black;
-    filter: brightness(100%); }
+    opacity: 1; }
   #generate p {
     left: -17%;
     bottom: 22vh; }
 
 #solve {
   background-color: #FEBA35;
-  transition: all 300ms ease-in-out;
+  background-image: url("../../public/img/solve icon.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.7;
+  background-size: 250px;
+  transition: all 150ms ease-in-out;
   transition-property: filter box-shadow; }
   #solve:hover {
     cursor: pointer;
     z-index: 2;
     box-shadow: 0 0 50px 10px black;
-    filter: brightness(100%); }
+    opacity: 1; }
 
 #build {
   background-color: #7E8054;
-  transition: all 300ms ease-in-out;
+  background-image: url("../../public/img/build icon.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.7;
+  background-size: 250px;
+  transition: all 150ms ease-in-out;
   transition-property: filter box-shadow; }
   #build:hover {
     cursor: pointer;
     z-index: 2;
     box-shadow: 0 0 50px 10px black;
-    filter: brightness(100%); }
+    opacity: 1; }
 
 #about {
-  background-color: #84F173;
-  transition: all 300ms ease-in-out;
+  background-color: #477ffe;
+  background-image: url("../../public/img/about icon.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.7;
+  background-size: 250px;
+  transition: all 150ms ease-in-out;
   transition-property: filter box-shadow; }
   #about:hover {
     cursor: pointer;
     z-index: 2;
     box-shadow: 0 0 50px 10px black;
-    filter: brightness(100%); }
+    opacity: 1; }
 
 #screen-filter {
   display: none;
@@ -624,13 +647,22 @@ header {
       height: 50vh; } }
 
 #about-bg {
-  background-color: #84F173;
+  background-color: #477ffe;
   display: grid;
   grid-template-rows: 0.2fr 1fr 0.2fr;
   place-items: center;
   align-items: center;
   margin: 0;
   height: 100vh; }
+
+.profile-photo {
+  display: block;
+  position: absolute;
+  height: 20vh;
+  width: 20vh;
+  border-radius: 100%;
+  top: -10%;
+  background-color: blue; }
 
 #build-bg {
   background-color: #7E8054;

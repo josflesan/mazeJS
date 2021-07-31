@@ -5,7 +5,7 @@
     position: relative;
 
     box-shadow: 0 0 0 0 black;
-    filter: brightness(70%);
+    //filter: brightness(70%);
 
     &-title {
         display: block;
@@ -28,7 +28,9 @@
 
 #generate {
     background-color: $light-grey;
-    // @include bg-image(url('../../public/img/generate\ column\ background.jpg'));
+    @include bg-image-center(url('../../public/img/generate\ icon.png'));
+    opacity: 0.7;
+    background-size: 250px;
     @include menu-item-hover;
 
     p {
@@ -39,18 +41,24 @@
 
 #solve {
     background-color: $yellow;
-    // @include bg-image(url('../../public/img/solve\ column\ background.jpg'));
+    @include bg-image-center(url('../../public/img/solve\ icon.png'));
+    opacity: 0.7;
+    background-size: 250px;
     @include menu-item-hover;
 }
 
 #build {
     background-color: $brown;
-    // @include bg-image(url('../../public/img/build\ column\ background.jpg'));
+    @include bg-image-center(url('../../public/img/build\ icon.png'));
+    opacity: 0.7;
+    background-size: 250px;
     @include menu-item-hover;
 }
 
 #about {
-    background-color: $green;
-    // @include bg-image(url('../../public/img/about\ column\ background.jpg'));
+    background-color: $blue;
+    @include bg-image-center(url('../../public/img/about\ icon.png'));
+    opacity: 0.7;
+    background-size: 250px;
     @include menu-item-hover;
 }

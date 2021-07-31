@@ -1,9 +1,19 @@
 #about-bg {
-    background-color: $green;
+    background-color: $blue;
     display: grid;
     grid-template-rows: 0.2fr 1fr 0.2fr;
     place-items: center;
     align-items: center;
     margin: 0;
     height: 100vh;
+}
+
+.profile-photo {
+    display: block;
+    position: absolute;
+    height: 20vh;
+    width: 20vh;
+    border-radius: 100%;
+    top: -10%;
+    background-color: blue;
 }

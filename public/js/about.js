@@ -12,7 +12,7 @@ import { initToggle } from './components/toggle.js'
         initToggle("build")
         
         // Implement play button functionality
-        playbtn = document.getElementById("playbtn");
+        let playbtn = document.getElementById("playbtn");
 
     }
 

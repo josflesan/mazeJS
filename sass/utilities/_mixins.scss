@@ -28,11 +28,11 @@
 
 @mixin bg-image($image) {
     background-image: $image;
-    opacity: 0.5;
+    opacity: 0.7;
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: scroll;
-    background-position: $position;
+    background-position: center center;
 }
 
 @mixin bg-image-position($image, $position) {
@@ -50,14 +50,14 @@
 }
 
 @mixin menu-item-hover {
-    transition: all 300ms ease-in-out;
+    transition: all 150ms ease-in-out;
     transition-property: filter box-shadow;
 
     &:hover {
         cursor: pointer;
         z-index: 2;
         box-shadow: 0 0 50px 10px black;
-        filter: brightness(100%);
+        opacity: 1;
     }
 }
 
