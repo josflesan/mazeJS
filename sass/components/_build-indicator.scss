@@ -1,0 +1,34 @@
+.build-indicator {
+    height: 80%;
+    width: 300px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    &-group {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &-text {
+        text-align: right;
+        margin-right: 10px;
+        font-weight: bold;
+        @include subtle-text(large)
+    }
+
+    &-light {
+        height: 30px;
+        width: 30px;
+        display: inline-block;
+        border-radius: 100%;
+        border: 2px solid black;
+        //background-color: $yellow;
+        box-shadow: 0 0 0 5px $brown inset;
+        box-sizing: border-box;
+    }
+
+}

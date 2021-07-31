@@ -47,5 +47,14 @@ header {
     width: 100vw;
 
     margin-bottom: 10px;
+
+    &-group {
+        display: flex;
+        width: 500px;
+        height: 100px;
+        align-items: center;
+        justify-content: space-between;
+    }
+
 }
 

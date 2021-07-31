@@ -99,6 +99,33 @@ a, a:hover, a:focus, a:active {
       border-bottom-width: 4px;
       border-right-width: 4px; }
 
+.build-indicator {
+  height: 80%;
+  width: 300px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between; }
+  .build-indicator-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between; }
+  .build-indicator-text {
+    text-align: right;
+    margin-right: 10px;
+    font-weight: bold;
+    font-family: "Roboto", sans-serif;
+    font-size: large; }
+  .build-indicator-light {
+    height: 30px;
+    width: 30px;
+    display: inline-block;
+    border-radius: 100%;
+    border: 2px solid black;
+    box-shadow: 0 0 0 5px #7E8054 inset;
+    box-sizing: border-box; }
+
 .dropdownForm {
   height: 100%;
   display: flex;
@@ -464,6 +491,12 @@ header {
   align-items: center;
   width: 100vw;
   margin-bottom: 10px; }
+  .screen-banner-group {
+    display: flex;
+    width: 500px;
+    height: 100px;
+    align-items: center;
+    justify-content: space-between; }
 
 .screen-footer {
   height: 15vh;
