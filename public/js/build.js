@@ -6,7 +6,7 @@ import { initToggle } from './components/toggle.js'
 ;(function() {
 
     let canvas, ctx, cellSize, gridSize, grid, container, playbtn
-    let hover, click, rightClick
+    let hover, click, rightClick, startCellActive, endCellActive
     let buttonState = "PAUSED"
 
     /**
@@ -29,7 +29,11 @@ import { initToggle } from './components/toggle.js'
 
         // ************************************************
 
+        // Implement grid size button functionality
         gridSizeChange()
+
+        // Listen to key strokes
+        listenKeyboard(canvas)
 
         // Implement toggle functionality
         initToggle("build")
@@ -179,6 +183,42 @@ import { initToggle } from './components/toggle.js'
             click = false
         }
 
+    }
+
+    /**
+     * Function that listens to key strokes and updates the light indicators accordingly
+     * @param {HTMLCanvasElement} canvas            The HTML5 canvas element
+     */
+    function listenKeyboard(canvas) {
+
+        let startCellIndicator = document.getElementById('startCellLight')
+        let endCellIndicator = document.getElementById('endCellLight')
+
+        window.addEventListener('keydown', (e) => {
+
+            if (e.key == "s") {
+                if (!startCellActive && !endCellActive) {
+                    startCellIndicator.style.backgroundColor = '#FEBA35'
+                    startCellActive = true
+                }
+                else {
+                    startCellIndicator.style.backgroundColor = 'transparent'
+                    startCellActive = false
+                }
+            }
+
+            if (e.key == "e") {
+                if (!endCellActive && !startCellActive) {
+                    endCellIndicator.style.backgroundColor = '#FEBA35'
+                    endCellActive = true
+                }
+                else {
+                    endCellIndicator.style.backgroundColor = 'transparent'
+                    endCellActive = false
+                }
+            }
+
+        }, false)
     }
 
     /**
