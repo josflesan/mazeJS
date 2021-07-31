@@ -105,7 +105,7 @@ export function getGrid() {
         let startCell = grid.getRandom()
         grid.getCell(0, 0).deleteWall("left", grid.getCell(0, 0).getNeighbours(grid))  // Delete wall from start cell
         // Declare ending cell, remove wall
-        let endCell = grid.getCell(gridSize-1, gridSize-1)
+        let endCell = grid.getCell(grid.getLength()["y"]-1, grid.getLength()["x"]-1)
         endCell.deleteWall("right", endCell.getNeighbours(grid))
         grid.draw(ctx, false)
 
@@ -127,6 +127,7 @@ export function getGrid() {
 
             let maze = new Grid(randGridSize, randCellSize, canvas.height, canvas.width)
             setGrid(maze)
+            openMaze()
 
             update(false)
             Algorithms.playAlgorithm()
