@@ -253,12 +253,20 @@ class Algorithms {
 
     // ------------------------ SOLVING ALGORITHMS ------------------------
 
-    static depthFirstSearch(grid, update, playbtn, emptyGrid=false) {
+    static depthFirstSearch(grid, update, playbtn, emptyGrid=false, startingCell=null, endingCell=null) {
 
         let animate = getAnimate()
+        let startCell = startingCell
+        let endCell = endingCell
 
-        let startCell = grid.getCell(0, 0)
-        let endCell = grid.getCell(grid.getLength()["x"]-1, grid.getLength()["y"]-1)
+        if (!startingCell) {
+            startCell = grid.getCell(0, 0)
+        }
+
+        if (!endingCell) {
+            endCell = grid.getCell(grid.getLength()["x"]-1, grid.getLength()["y"]-1)
+        }
+    
         let stack = new Stack()
 
         let endOfAlgorithm = false
@@ -338,12 +346,21 @@ class Algorithms {
         }
     }
 
-    static breadthFirstSearch(grid, update, playbtn, emptyGrid=false) {
+    static breadthFirstSearch(grid, update, playbtn, emptyGrid=false, startingCell=null, endingCell=null) {
 
         let animate = getAnimate()
 
-        let startCell = grid.getCell(0, 0)
-        let endCell = grid.getCell(grid.getLength()["x"]-1, grid.getLength()["y"]-1)
+        let startCell = startingCell
+        let endCell = endingCell
+
+        if (!startingCell) {
+            startCell = grid.getCell(0, 0)
+        }
+
+        if (!endingCell) {
+            endCell = grid.getCell(grid.getLength()["x"]-1, grid.getLength()["y"]-1)
+        }
+
         let queue = new Queue()
         let endOfAlgorithm = false
         let currentCell

@@ -6,7 +6,7 @@ import { initToggle } from './components/toggle.js'
 ;(function() {
 
     let canvas, ctx, cellSize, gridSize, grid, container, playbtn
-    let hover, click, rightClick, startCellActive, endCellActive
+    let hover, click, rightClick, startCellActive, endCellActive, startCell, endCell
     let buttonState = "PAUSED"
 
     /**
@@ -55,11 +55,11 @@ import { initToggle } from './components/toggle.js'
             switch(chosenAlgorithm) {
 
                 case "DFS":
-                    Algorithms.depthFirstSearch(grid, update, playbtn, true)
+                    Algorithms.depthFirstSearch(grid, update, playbtn, true, startCell, endCell)
                     break
 
                 case "BFS":
-                    Algorithms.breadthFirstSearch(grid, update, playbtn, true)
+                    Algorithms.breadthFirstSearch(grid, update, playbtn, true, startCell, endCell)
 
             }
             
@@ -159,7 +159,17 @@ import { initToggle } from './components/toggle.js'
 
                             // If LMB, add wall
                             if (e.button == 0) {
-                                cell.clickCell()
+
+                                if (startCellActive) {
+                                    grid.changeStartCell(cell)
+                                    startCell = cell
+                                } else if (endCellActive) {
+                                    grid.changeEndCell(cell)
+                                    endCell = cell
+                                } else {
+                                    cell.clickCell()
+                                }
+
                                 click = true
                                 cell.colorCell(ctx)
                                 break
@@ -181,6 +191,7 @@ import { initToggle } from './components/toggle.js'
 
         canvas.onmouseup = function() {
             click = false
+            rightClick = false
         }
 
     }

@@ -6,6 +6,8 @@ class Cell {
     PATH_COLOUR = '#86fe6e'
     HOVERED_COLOUR = '#aea4a4'
     WALL_CELL_COLOUR = '#000000'
+    START_CELL_COLOUR = '#fea947'
+    END_CELL_COLOUR = '#477ffe'
 
     GRID_SIZE = null
 
@@ -32,6 +34,8 @@ class Cell {
         this.pathCell = false;
         this.hoveredCell = false;
         this.wallCell = false;
+        this.startCell = false;
+        this.endCell = false;
 
         this.parent = null;
 
@@ -218,7 +222,6 @@ class Cell {
         return walls
     }
 
-
     /**
      * Function that returns the walls of the cell taking into account the maze is empty
      * to start off with (as in the build screen)
@@ -315,8 +318,8 @@ class Cell {
             "bottom": true,
             "left": true
         }
+        this.wallCell = true
 
-        this.cellWall = true
         this.hoveredCell = false
     }
 
@@ -331,7 +334,7 @@ class Cell {
             "left": false
         }
 
-        this.cellWall = false
+        this.wallCell = false
         this.hoveredCell = false
     }
 
@@ -390,8 +393,14 @@ class Cell {
         } else if (this.hoveredCell) {
             ctx.fillStyle = this.HOVERED_COLOUR
             ctx.fillRect(this.x, this.y, this.size, this.size)
-        } else if (this.cellWall) {
+        } else if (this.wallCell) {
             ctx.fillStyle = this.WALL_CELL_COLOUR
+            ctx.fillRect(this.x, this.y, this.size, this.size)
+        } else if (this.startCell) {
+            ctx.fillStyle = this.START_CELL_COLOUR
+            ctx.fillRect(this.x, this.y, this.size, this.size)
+        } else if (this.endCell) {
+            ctx.fillStyle = this.END_CELL_COLOUR
             ctx.fillRect(this.x, this.y, this.size, this.size)
         }
         

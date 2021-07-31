@@ -62,6 +62,38 @@ class Grid {
         }
     }
 
+    changeStartCell(cell) {
+
+        for (var y = 0; y < this.getLength()["y"]; y++) {
+            for (var x = 0; x < this.getLength()["x"]; x++) {
+
+                // If there is already a start cell in the grid, remove it
+                if (this.getCell(y, x).startCell) {
+                    this.getCell(y, x).startCell = false
+                }
+
+            }
+        }
+
+        cell.startCell = true
+    }
+
+    changeEndCell(cell) {
+
+        for (var y = 0; y < this.getLength()["y"]; y++) {
+            for (var x = 0; x < this.getLength()["x"]; x++) {
+
+                // If there is already a end cell in the grid, remove it
+                if (this.getCell(y, x).endCell) {
+                    this.getCell(y, x).endCell = false
+                }
+
+            }
+        }
+
+        cell.endCell = true
+    }
+
     /**
      * Function that draws the grid on the canvas
      * @param {CanvasRenderingContext2D} ctx    Context of HTML5 Canvas 
@@ -107,7 +139,9 @@ class Grid {
         for (var y = 0; y < this.getLength()["y"]; y++) {
             for (var x = 0; x < this.getLength()["x"]; x++) {
                 let cell = this.getCell(y, x)
-                cell.cellWall = false
+                cell.wallCell = false
+                cell.startCell = false
+                cell.endCell = false
                 cell.deleteAllCellWalls()
             }
         }
