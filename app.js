@@ -4,6 +4,7 @@ const path = require('path');
 const router = express.Router();
 
 const fs = require('fs');
+const port = process.env.PORT || 3000;
 
 async function getAllSavedMazes() {
 
@@ -96,6 +97,6 @@ router.post('/save', function(req, res) {
 
 app.use(express.static(path.join(__dirname, '/')), router);
 
-app.listen(process.env.port || 3000);
+app.listen(port || 3000);
 
 console.log('Running at Port 3000');
