@@ -31,20 +31,20 @@
 
 ## Features
 
-# Generate Screen
+### Generate Screen
 - Generate Mazes (5x5, 10x10, 15x15, 20x20, 25x25, 30x30)
 - Various algorithms: Randomized DFS, Randomized Prim's Algorithm
 - Visualize Maze Generation Algorithm using Animate Toggle
 - Generate perfect (single solution) or imperfect (multiple solutions) mazes using Perfect Toggle
 - Save Generated Mazes to the server
 
-# Solve Screen
+### Solve Screen
 - Solve Mazes (5x5, 10x10, 15x15, 20x20, 25x25, 30x30)
 - Various algorithms: BFS, DFS
 - Visualize Maze Solving Algorithm using Animate Toggle
 - Load saved mazes from the server and solve them
 
-# Build Screen
+### Build Screen
 - Build custom mazes (5x5, 10x10, 15x15, 20x20, 25x25, 30x30)
 - Various algorithms: DFS, BFS
 - Add custom starting and ending cell positions
