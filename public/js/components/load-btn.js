@@ -66,8 +66,6 @@ function loadOptions() {
  * @param {JSON Object} maze        The maze object as returned by the parsing of the JSON get request response
  */
 function loadMaze(maze) {
-    setGrid(maze.grid)
-
     let gridSize = maze.grid[0][0].GRID_SIZE
     let cellSize = maze.grid[0][0].size
 

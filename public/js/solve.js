@@ -1,20 +1,21 @@
 import { Grid } from './components/grid.js'
 import { Algorithms } from './components/algorithms.js'
 
-import { initToggle } from './components/toggle.js'
+import { initToggle, updateToggle } from './components/toggle.js'
 import { handleLoadBtn } from './components/load-btn.js'
 
-let canvas, ctx, cellSize, gridSize, grid, container, playbtn
+let canvas, ctx, cellSize, gridSize, grid, container, playbtn, animateToggle
 let buttonState = "PAUSED"
 
 export function setGrid(maze) {
 
-    if (!grid) {
-        grid = maze
-        initToggle("solve")
-    } else {
-        grid = maze
-    }
+    // if (!grid) {
+    //     grid = maze
+    // } else {
+    //     grid = maze
+    // }
+    grid = maze
+    updateToggle(animateToggle, "solve")
  
 }
 
@@ -39,6 +40,7 @@ export function getGrid() {
         randomizeGrid()
 
         // Implement toggle functionality
+        animateToggle = document.getElementById('animateToggle')
         initToggle("solve")
 
         // Implement save button functionality

@@ -434,6 +434,7 @@ a, a:hover, a:focus, a:active {
   height: 50%;
   border-radius: 25px;
   box-shadow: 0 0 5px black;
+  pointer-events: all;
   position: relative;
   display: block; }
   .theme-toggle #toggle-text {
@@ -448,7 +449,8 @@ a, a:hover, a:focus, a:active {
     font-family: "Roboto", sans-serif;
     font-size: medium; }
   .theme-toggle-hidden {
-    filter: brightness(0.5); }
+    filter: brightness(0.5);
+    pointer-events: none; }
     .theme-toggle-hidden .theme-toggle-button:hover {
       cursor: auto; }
   .theme-toggle-button {
