@@ -2,6 +2,8 @@
 > An Interactive Visual Maze Algorithm Tool
 > Live demo <!--[_here_](https://www.example.com).-->
 
+![Logo](https://github.com/josflesan/mazeJS/blob/main/public/img/Screenshots/mazeJS.png)
+
 ## Table of Contents
 * [General Info](#general-information)
 * [Technologies Used](#technologies-used)
@@ -13,17 +15,13 @@
 * [Room for Improvement](#room-for-improvement)
 * [Acknowledgements](#acknowledgements)
 * [Contact](#contact)
-<!-- * [License](#license) -->
 
 
 ## General Information
 - mazeJS provides a playground to explore and visualize different maze generation and maze solving algorithms.
-- The tool includes visualization screens to explore each algorithm's functionality as well as a playground
-- in which you can build and solve your own mazes
+- The tool includes visualization screens to explore each algorithm's functionality as well as a playground in which you can build and solve your own mazes
 
-- This was a personal project aimed towards improving my knowledge of maze generation and maze solving algorithms as well
-- as my javascript skills. Throughout the course of its development, I have learned about a range of different data structures,
-- algorithm efficiency and promises.
+- This was a personal project aimed towards improving my knowledge of maze generation and maze solving algorithms as well as my javascript skills. Throughout the course of its development, I have learned about a range of different data structures, algorithm efficiency and promises.
 
 
 ## Technologies Used
@@ -32,6 +30,7 @@
 ## Features
 
 ### Generate Screen
+![Generate Screen](https://github.com/josflesan/mazeJS/blob/main/public/img/Screenshots/Generate%20Screen.png)
 - Generate Mazes (5x5, 10x10, 15x15, 20x20, 25x25, 30x30)
 - Various algorithms: Randomized DFS, Randomized Prim's Algorithm
 - Visualize Maze Generation Algorithm using Animate Toggle
@@ -39,12 +38,14 @@
 - Save Generated Mazes to the server
 
 ### Solve Screen
+![Solve Screen](https://github.com/josflesan/mazeJS/blob/main/public/img/Screenshots/Solve%20Screen.png)
 - Solve Mazes (5x5, 10x10, 15x15, 20x20, 25x25, 30x30)
 - Various algorithms: BFS, DFS
 - Visualize Maze Solving Algorithm using Animate Toggle
 - Load saved mazes from the server and solve them
 
 ### Build Screen
+![Build Screen](https://github.com/josflesan/mazeJS/blob/main/public/img/Screenshots/Build%20Screen.png)
 - Build custom mazes (5x5, 10x10, 15x15, 20x20, 25x25, 30x30)
 - Various algorithms: DFS, BFS
 - Add custom starting and ending cell positions
@@ -52,7 +53,8 @@
 
 
 ## Screenshots
-<!--![Example screenshot](./img/screenshot.png)-->
+![Landing Page](https://github.com/josflesan/mazeJS/blob/main/public/img/Screenshots/Landing%20Page.png)
+![Screenshot 2](https://github.com/josflesan/mazeJS/blob/main/public/img/Screenshots/Generate%20Screen%202.png)
 
 
 ## Setup
@@ -66,8 +68,6 @@ In order to run the program, just start a local nodeJS server
 `node app.js`
 
 The server will start in port 3000, so heading over to `localhost:3000` to view the website! :)
-
-<!-- Insert Screenshot -->
 
 
 ## Project Status
