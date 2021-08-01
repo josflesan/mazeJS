@@ -29,14 +29,11 @@ export function getGrid() {
      */
     function init() {
         canvas = document.getElementById('monitor-canvas')
-        container = document.querySelector('#canvas-container')
+        container = document.querySelector('.fullscreen-canvas-container')
         ctx = canvas.getContext('2d')
 
-        container.width = innerWidth * 0.9 * 0.5
-        container.height = innerHeight * 0.7 * 0.65
-
-        ctx.canvas.height = container.height;
-        ctx.canvas.width = container.height;
+        canvas.width = window.innerHeight * 0.8 * 0.9
+        canvas.height = window.innerHeight * 0.8 * 0.9
 
         // Add randomize grid button functionality
         randomizeGrid()
