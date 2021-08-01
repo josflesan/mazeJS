@@ -316,15 +316,27 @@ class Algorithms {
             if (Algorithms.RUN) {
 
                 let lastPathCell = endCell
-                while (lastPathCell != startCell) {
-                    lastPathCell.solvedPathCell()
-                    lastPathCell = lastPathCell.parent
-                    if (animate) {
-                        await Control.sleep(Algorithms.CYCLE_WAIT_TIME)
-                        update(true)
-                    }
+
+                // If end cell does not have a parent, there is no solution
+                if (!lastPathCell.parent) {
+                    alert("No Solution Found!")
+                    this.finishedSolve(playbtn)
                 }
-                startCell.solvedPathCell()
+
+                else {
+
+                    while (lastPathCell != startCell) {
+                        lastPathCell.solvedPathCell()
+                        lastPathCell = lastPathCell.parent
+                        if (animate) {
+                            await Control.sleep(Algorithms.CYCLE_WAIT_TIME)
+                            update(true)
+                        }
+                    }
+                    startCell.solvedPathCell()
+
+                }
+
                 update(true)
 
                 if (animate) {
@@ -412,15 +424,25 @@ class Algorithms {
             if (Algorithms.RUN) {
 
                 let lastPathCell = endCell
-                while (lastPathCell != startCell) {
-                    lastPathCell.solvedPathCell()
-                    lastPathCell = lastPathCell.parent
-                    if (animate) {
-                        await Control.sleep(Algorithms.CYCLE_WAIT_TIME)
-                        update(true)
-                    }
+
+                // If end cell does not have parent, there is no solution
+                if (!lastPathCell.parent) {
+                    alert("No Solution Found!")
+                    this.finishedSolve(playbtn)
                 }
-                startCell.solvedPathCell()
+
+                else {
+                    while (lastPathCell != startCell) {
+                        lastPathCell.solvedPathCell()
+                        lastPathCell = lastPathCell.parent
+                        if (animate) {
+                            await Control.sleep(Algorithms.CYCLE_WAIT_TIME)
+                            update(true)
+                        }
+                    }
+                    startCell.solvedPathCell()
+                }
+
                 update(true)
 
                 if (animate) {

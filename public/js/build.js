@@ -3,7 +3,8 @@ import { Algorithms } from './components/algorithms.js'
 
 import { initToggle } from './components/toggle.js'
 
-;(function() {
+;import { Cell } from './components/cell.js';
+(function() {
 
     let canvas, ctx, cellSize, gridSize, grid, container, playbtn
     let hover, click, rightClick, startCellActive, endCellActive, startCell, endCell
@@ -26,6 +27,7 @@ import { initToggle } from './components/toggle.js'
         cellSize = canvas.height/gridSize
         grid = new Grid(gridSize, cellSize, canvas.height, canvas.width)
         grid.clearAllWalls()
+        defaultStartAndEnd(startCell, grid, endCell)
 
         // ************************************************
 
@@ -66,8 +68,7 @@ import { initToggle } from './components/toggle.js'
             if (buttonState == "PAUSED") {
                 grid.clearAllWalls()
                 update(false)
-                startCell = grid.getCell(0, 0)
-                endCell = grid.getCell(grid.getLength()["x"]-1, grid.getLength()["y"]-1)
+                defaultStartAndEnd(startCell, grid, endCell);
             }
 
         })
@@ -277,6 +278,8 @@ import { initToggle } from './components/toggle.js'
             grid = new Grid(gridSize, cellSize, canvas.height, canvas.width)
             grid.clearAllWalls()
             ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+            defaultStartAndEnd(startCell, grid, endCell)
         }
     }
 
@@ -304,7 +307,23 @@ import { initToggle } from './components/toggle.js'
         }
     }
 
+    /**
+     * Function that resets the starting and ending cell of the maze to the top left and
+     * bottom right corner respectively and then returns them
+     * @param {Cell} startCell          The start cell of the maze
+     * @param {Grid} grid               The Grid object modelling the maze
+     * @param {Cell} endCell            The ending cell of the maze
+     * @returns Start and End cells for the maze
+     */
+    function defaultStartAndEnd(startCell, grid, endCell) {
+        startCell = grid.getCell(0, 0);
+        startCell.startCell = true;
+        endCell = grid.getCell(grid.getLength()["x"] - 1, grid.getLength()["y"] - 1);
+        endCell.endCell = true;
+    }
+
     // wait for HTML to load
     document.addEventListener('DOMContentLoaded', init)
 
 })()
+
