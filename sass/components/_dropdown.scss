@@ -1,5 +1,19 @@
+.dropdownContainer {
+    z-index: 2;
+    width: 80vh;
+    height: 80vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
 .dropdownForm {
-    height: 100%;
+    height: auto;
+    z-index: 2;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,12 +32,13 @@
     background-position: center right;
 
     border: none;
-    font-size: $dropdown-text-font-size;
     background-color: $dark-grey;
     font-family: $retro-font;
+    font-size: x-large;
     word-spacing: -10px;
-    letter-spacing: -5px;
+    //letter-spacing: -5px;
     padding: 5px;
+    margin-top: 7px;
     padding-right: 30px;
     
     option {
@@ -38,16 +53,19 @@
 
 #gridSizeList {
     width: 100%;
+    font-size: $dropdown-text-font-size;
     background-size: 10%;
     word-spacing: -20px;
 }
 
 #algorithmBtnList {
     width: 100%;
+    font-size: $dropdown-text-font-size;
     background-size: 15%;
     word-spacing: -20px;
 }
 
 #algorithmList {
     background-size: 5%;
+    background-color: $light-grey;
 }

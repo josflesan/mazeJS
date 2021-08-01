@@ -30,9 +30,9 @@
         code {
             display: grid;
             background-color: gainsboro;
-            height: 30%;
+            height: 25%;
             place-items: center;
-            width: 80%;
+            width: 70%;
         }
     }
 
@@ -83,8 +83,8 @@
     &-code {
         display: inline-block;
         white-space: pre-line;
-        font-size: large;
-        padding: 30px;
+        font-size: medium;
+        padding: 20px;
 
         a {
             cursor: pointer;

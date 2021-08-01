@@ -18,8 +18,8 @@
 
     &-base {
         width: 90%;
-        height: 100%;
-        @include bg-image-center(url('../../public/img/Chin.png'));
+        height: 20%;
+        z-index: 3;
     }
 
 }

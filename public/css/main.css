@@ -126,8 +126,21 @@ a, a:hover, a:focus, a:active {
     box-shadow: 0 0 0 5px #7E8054 inset;
     box-sizing: border-box; }
 
+.dropdownContainer {
+  z-index: 2;
+  width: 80vh;
+  height: 80vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center; }
+
 .dropdownForm {
-  height: 100%;
+  height: auto;
+  z-index: 2;
   display: flex;
   justify-content: center;
   align-items: center; }
@@ -142,12 +155,12 @@ a, a:hover, a:focus, a:active {
   background-repeat: no-repeat;
   background-position: center right;
   border: none;
-  font-size: 2em;
   background-color: #7F807A;
   font-family: "Press Start 2P", cursive;
+  font-size: x-large;
   word-spacing: -10px;
-  letter-spacing: -5px;
   padding: 5px;
+  margin-top: 7px;
   padding-right: 30px; }
   .dropdown option {
     text-align: center; }
@@ -156,16 +169,19 @@ a, a:hover, a:focus, a:active {
 
 #gridSizeList {
   width: 100%;
+  font-size: 2em;
   background-size: 10%;
   word-spacing: -20px; }
 
 #algorithmBtnList {
   width: 100%;
+  font-size: 2em;
   background-size: 15%;
   word-spacing: -20px; }
 
 #algorithmList {
-  background-size: 5%; }
+  background-size: 5%;
+  background-color: #CCCCC3; }
 
 .fullscreen-canvas-container-large {
   position: absolute;
@@ -294,13 +310,13 @@ a, a:hover, a:focus, a:active {
   position: absolute;
   width: 100vw;
   height: 100vh;
-  z-index: 2;
+  z-index: 5;
   background-color: rgba(0, 0, 0, 0.4); }
 
 .modal {
   display: none;
   position: fixed;
-  z-index: 3;
+  z-index: 6;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -382,11 +398,8 @@ a, a:hover, a:focus, a:active {
     align-items: center; }
   .monitor-base {
     width: 90%;
-    height: 100%;
-    background-image: url("../../public/img/Chin.png");
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat; }
+    height: 20%;
+    z-index: 3; }
 
 #return-button {
   height: 30px;
@@ -672,9 +685,9 @@ header {
   .profile-container code {
     display: grid;
     background-color: gainsboro;
-    height: 30%;
+    height: 25%;
     place-items: center;
-    width: 80%; }
+    width: 70%; }
 
 .profile-photo {
   display: block;
@@ -721,8 +734,8 @@ header {
 .profile-code {
   display: inline-block;
   white-space: pre-line;
-  font-size: large;
-  padding: 30px; }
+  font-size: medium;
+  padding: 20px; }
   .profile-code a {
     cursor: pointer;
     text-decoration: underline; }
