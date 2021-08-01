@@ -8,12 +8,6 @@ import { initToggle } from './components/toggle.js'
     function init() {
         let container = document.querySelector('.fullscreen-canvas-container')
 
-        // Implement toggle functionality
-        initToggle("build")
-        
-        // Implement play button functionality
-        let playbtn = document.getElementById("playbtn");
-
     }
 
     // wait for HTML to load

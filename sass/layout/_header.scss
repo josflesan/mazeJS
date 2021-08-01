@@ -13,9 +13,10 @@ header {
     &-socials {
         display: flex;
         flex-direction: row;
+        align-items: center;
         justify-content: space-between;
-        margin-top: $top-bottom-separator;
-        margin-right: $large-side-separator;
+        margin-top: 10px;
+        margin-right: $small-side-separator;
         width: 20vw;
         height: auto;
 

@@ -491,9 +491,10 @@ header {
   .banner-socials {
     display: flex;
     flex-direction: row;
+    align-items: center;
     justify-content: space-between;
-    margin-top: 5vh;
-    margin-right: 5vw;
+    margin-top: 10px;
+    margin-right: 30px;
     width: 20vw;
     height: auto; }
     .banner-socials-icon {
@@ -655,6 +656,26 @@ header {
   margin: 0;
   height: 100vh; }
 
+.profile-container {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  padding: 150px;
+  align-items: center;
+  background-color: white;
+  border: 5px solid black;
+  height: 80vh;
+  width: 80vh; }
+  .profile-container hr {
+    border-top: 5px solid black;
+    width: 100%; }
+  .profile-container code {
+    display: grid;
+    background-color: gainsboro;
+    height: 30%;
+    place-items: center;
+    width: 80%; }
+
 .profile-photo {
   display: block;
   position: absolute;
@@ -662,7 +683,51 @@ header {
   width: 20vh;
   border-radius: 100%;
   top: -10%;
-  background-color: blue; }
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid black;
+  background-image: url("../../public/img/Profile Pic.jpg");
+  opacity: 0.7;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center center;
+  opacity: 1;
+  background-size: 500px; }
+
+.profile-header-embellishment {
+  font-family: "Roboto", sans-serif;
+  font-size: small;
+  color: #7F807A; }
+
+.profile-header-name {
+  font-family: "Roboto", sans-serif;
+  font-size: xxx-large;
+  padding: 10px; }
+
+.profile-about {
+  margin-top: 10px;
+  padding: 10px;
+  font-family: "Roboto", sans-serif;
+  font-size: large;
+  font-size: 25px;
+  font-weight: lighter;
+  text-align: center; }
+  .profile-about span.bold {
+    font-weight: bold; }
+  .profile-about span.yellow {
+    color: #FEBA35; }
+
+.profile-code {
+  display: inline-block;
+  white-space: pre-line;
+  font-size: large;
+  padding: 30px; }
+  .profile-code a {
+    cursor: pointer;
+    text-decoration: underline; }
+    .profile-code a :hover {
+      font-weight: bold; }
 
 #build-bg {
   background-color: #7E8054;

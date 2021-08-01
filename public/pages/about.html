@@ -19,21 +19,37 @@
             04/ABOUT
         </h3>
 
-        <div class="theme-toggle-container">
-            <p class="theme-toggle-description">animate</p>
-            <div id="animateToggle" class="theme-toggle">
-                <div class="theme-toggle-button"></div>
-                <span id="toggle-text"></span>
-            </div>
+        <div class="banner-socials">
+            <a href="https://github.com/josflesan"><img class="banner-socials-icon" src="public/img/github_icon.png" alt="GitHub Icon"></a>
+            <a href="https://www.linkedin.com/in/josu%C3%A9-fleitas/"><img class="banner-socials-icon" src="public/img/linkedin_icon.png" alt="LinkedIn Icon"></a>
+            <a href="https://www.reddit.com/user/Joflesan"><img class="banner-socials-icon" src="public/img/reddit_icon.png" alt="Reddit Icon"></a>
         </div>
 
     </header>
 
     <div class="fullscreen-canvas-container-large">
-        <div class="fullscreen-canvas-container">
+        <div class="profile-container">
 
             <div class="profile-photo"></div>
 
+            <div class="profile-header">
+                <span class="profile-header-embellishment">Made With ❤️ By:</span>
+                <h4 class="profile-header-name">josué fleitas sánchez</h4>
+                <hr>
+            </div>
+            <p class="profile-about">
+            <span class="bold">maze<span class="yellow">JS</span></span> was made in many summer afternoons using JavaScript and SCSS <br><br>
+            I hope you enjoyed using the tool as much as I enjoyed making it :) <br><br>
+            If you want, you can check out some of my other projects on my GitHub account as well. <br><br>
+            </p>
+
+            <code>
+                <pre class="profile-code">
+                if (mazeJS === '❤️') { <br>
+                    <a href="https://github.com/josflesan">followMeOnGithub()</a><br>
+                }
+                </pre>
+            </code>
             
         </div>
     </div>
@@ -41,32 +57,7 @@
     <div id="spacer"></div>
 
     <footer class="screen-footer">
-        <div class="screen-footer-btncontainer">
-            <p class="screen-footer-btncontainer-text">grid_size</p>
-            <div class="screen-footer-sizebtn">
-                <form class="dropdownForm">
-                    <select id="gridSizeList" class="dropdown">
-                        <option>5 x 5</option>
-                        <option>10 x 10</option>
-                        <option>15 x 15</option>
-                        <option>20 x 20</option>
-                        <option>25 x 25</option>
-                    </select>
-                </form>
-            </div>
-        </div>
-        <div id="playbtn" class="screen-footer-playbtn"></div>
-        <div class="screen-footer-btncontainer">
-            <p class="screen-footer-btncontainer-text">search_algorithm</p>
-            <div class="screen-footer-sizebtn">
-                <form class="dropdownForm">
-                    <select id="algorithmBtnList" class="dropdown">
-                        <option>DFS</option>
-                        <option>BFS</option>
-                    </select>
-                </form>
-            </div>
-        </div>
+        
     </footer>
 
 </body>
