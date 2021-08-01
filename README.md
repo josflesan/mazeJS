@@ -19,12 +19,9 @@
 
 ## General Information
 - mazeJS provides a playground to explore and visualize different maze generation and maze solving algorithms.
-- The tool includes visualization screens to explore each algorithm's functionality as well as a playground
-- in which you can build and solve your own mazes
+- The tool includes visualization screens to explore each algorithm's functionality as well as a playground in which you can build and solve your own mazes
 
-- This was a personal project aimed towards improving my knowledge of maze generation and maze solving algorithms as well
-- as my javascript skills. Throughout the course of its development, I have learned about a range of different data structures,
-- algorithm efficiency and promises.
+- This was a personal project aimed towards improving my knowledge of maze generation and maze solving algorithms as well as my javascript skills. Throughout the course of its development, I have learned about a range of different data structures, algorithm efficiency and promises.
 
 
 ## Technologies Used
