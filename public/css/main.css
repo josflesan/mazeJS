@@ -169,7 +169,7 @@ a, a:hover, a:focus, a:active {
 
 #gridSizeList {
   width: 100%;
-  font-size: 2em;
+  font-size: 170%;
   background-size: 10%;
   word-spacing: -20px; }
 
@@ -678,7 +678,7 @@ header {
   display: grid;
   justify-items: center;
   align-items: center;
-  padding-top: 5%;
+  padding-top: 6%;
   flex-direction: column;
   background-color: white;
   border: 5px solid black;
