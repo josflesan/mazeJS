@@ -1,6 +1,6 @@
 import { Grid } from './components/grid.js'
 import { Algorithms } from './components/algorithms.js'
-import { createRipple } from './animations/ripple.js';
+import { createRipple } from './animations/ripple.js'
 import { setAnimate } from './components/toggle.js'
 
 let canvas, ctx, gridSize, grid, cellSize, startCell
@@ -16,7 +16,7 @@ function init() {
 
     ctx = canvas.getContext('2d')
 
-    gridSize = 50  // 20x20 grid
+    gridSize = 30  // 20x20 grid
     cellSize = canvas.height/gridSize
 
     grid = new Grid(gridSize, cellSize, canvas.height, canvas.width)
