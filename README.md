@@ -1,6 +1,6 @@
 # MazeJS
 > An Interactive Visual Maze Algorithm Tool
-> Live demo <!--[_here_](https://www.example.com).-->
+> Live demo [_here_](https://maze-js.herokuapp.com/#menu)
 
 ![Logo](https://github.com/josflesan/mazeJS/blob/main/public/img/Screenshots/mazeJS.png)
 
