@@ -468,6 +468,10 @@ class Algorithms {
 
     }
 
+    static aStarSearch(grid, update, playbtn, emptyGrid=false, startingCell=null, endingCell=null) {
+        
+    }
+
     // --------------------------------------------------------------------
 
     // ------------------------ CONTROL FUNCTIONS -------------------------

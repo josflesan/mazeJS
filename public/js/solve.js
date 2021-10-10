@@ -70,6 +70,9 @@ export function getGrid() {
                             Algorithms.breadthFirstSearch(grid, update, playbtn)
                             buttonState = "FINISHED"
                             break
+
+                        case "03":
+                            break
     
                     }
                 }
