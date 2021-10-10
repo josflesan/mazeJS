@@ -1,5 +1,5 @@
 import { Control } from '../helpers/control.js'
-import { CustomWeakMap } from '../data structures/CustomWeakMap.js'
+import { CustomWeakMap } from '../data structures/custom-weak-map.js'
 import { Stack } from '../data structures/stack.js'
 import { Queue } from '../data structures/queue.js'
 import { randomProperty } from '../helpers/misc.js'
@@ -469,7 +469,7 @@ class Algorithms {
     }
 
     static aStarSearch(grid, update, playbtn, emptyGrid=false, startingCell=null, endingCell=null) {
-        
+
     }
 
     // --------------------------------------------------------------------
