@@ -4,6 +4,7 @@ class PriorityQueue {
 
     /**
      * Constructor for PQ that initializes it to an empty list
+     * Items in the PQ qwil
      */
     constructor() {
         this._items = []
@@ -18,26 +19,59 @@ class PriorityQueue {
     heapify(i) {
         let lengthQueue = this._items.length
 
-        // Find the largest among the roots, left child and right child
-        largest = i
+        // Find the smallest among the roots, left child and right child
+        smallest = i
         leftChild = 2 * i + 1
-        rightChild = 2 * i + 1
+        rightChild = 2 * i + 2
 
-        if (leftChild < lengthQueue && this._items[i] < this._items[leftChild]) {
-            largest = leftChild
+        if (leftChild < lengthQueue && this._items[smallest].fScore > this._items[leftChild].fScore) {
+            smallest = leftChild
         }
 
-        if (rightChild < lengthQueue && this._items[largest] < this._items[rightChild]) {
-            largest = rightChild
+        if (rightChild < lengthQueue && this._items[smallest].fScore > this._items[rightChild].fScore) {
+            smallest = rightChild
         }
 
         // Swap and continue heapifying if the root is not the largest
-        if (largest != i) {
+        if (smallest != i) {
             let temp = this._items[i]
-            this._items[i] = this._items[largest]
-            this._items[largest] = temp
-            this.heapify(lengthQueue, largest)
+            this._items[i] = this._items[smallest]
+            this._items[smallest] = temp
+            this.heapify(smallest)
         }
+    }
+
+    /**
+     * Function that pops the minimum value from the PQ
+     * @return {Object} The root node of the PQ
+     */
+    popHeap() {
+        let lengthPQ = this._items.length
+
+        // Save the head of the PQ
+        let headPQ = this._items[0]
+
+        // Swap last leaf and root node
+        let temp = this._items[0]
+        this._items[0] = this._items[lengthPQ - 1]
+        this._items[lengthPQ - 1] = temp  // Move node to be deleted to end of PQ
+
+        // Remove last leaf from consideration
+        this._items.pop()
+
+        // Repair downward
+        this.heapify(0)
+
+        return headPQ
+    }
+
+    /**
+     * Function that returns the smallest value in the PQ without
+     * popping it from the Priority Queue
+     * @return {Object}  The object at the root of the heap
+     */
+    peek() {
+        return this._items[0]
     }
 
     /**
@@ -51,7 +85,7 @@ class PriorityQueue {
         } 
         else {
             this._items.push(newElement)
-            for (let i = (this._items.length / 2) - 1; i > -1; i--) {
+            for (let i = (this._items.length - 1) / 2; i > -1; i--) {
                 this.heapify(this._items, this._items.length, i)
             }
         }
