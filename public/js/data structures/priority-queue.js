@@ -83,6 +83,14 @@ class PriorityQueue {
         }
     }
     
+    /**
+     * Simple function to determine whether PQ is empty or not
+     * @returns {Boolean}   True if the PQ is empty, otherwise false
+     */
+    isEmpty() {
+        return this._items.length == 0
+    }
+
 }
 
 export { PriorityQueue }
