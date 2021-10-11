@@ -20,9 +20,9 @@ class PriorityQueue {
         let lengthQueue = this._items.length
 
         // Find the smallest among the roots, left child and right child
-        smallest = i
-        leftChild = 2 * i + 1
-        rightChild = 2 * i + 2
+        let smallest = i
+        let leftChild = 2 * i + 1
+        let rightChild = 2 * i + 2
 
         if (leftChild < lengthQueue && this._items[smallest].fScore > this._items[leftChild].fScore) {
             smallest = leftChild
@@ -123,6 +123,13 @@ class PriorityQueue {
      */
     isEmpty() {
         return this._items.length == 0
+    }
+
+    /**
+     * Function that prints out the items in the heap
+     */
+    print() {
+        console.log(this._items)
     }
 
 }
