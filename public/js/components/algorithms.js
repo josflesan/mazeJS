@@ -5,6 +5,7 @@ import { Queue } from '../data structures/queue.js'
 import { randomProperty } from '../helpers/misc.js'
 import { getAnimate, getPerfectMaze } from '../components/toggle.js'
 import { setGrid, hideSaveBtn, revealSaveBtn } from '../components/save-btn.js'
+import { PriorityQueue } from '../data structures/priority-queue.js'
 
 class Algorithms {
 
@@ -462,13 +463,180 @@ class Algorithms {
                 update(true)
             })
         }
+    }
 
+    /**
+     * Heuristic Function for the A Star algorithm which returns
+     * the Manhattan distance between two nodes
+     * @param {Cell} cell1  The origin cell
+     * @param {Cell} cell2  The destination cell
+     * @returns {Integer}   The Manhattan distance between the two
+     */
+    static aStarHeuristic(cell1, cell2) {
+        let [x1, y1] = [cell1.row, cell1.column]
+        let [x2, y2] = [cell2.row, cell2.column]
 
-
-
+        return Math.abs(x1 - x2) + Math.abs(y1 - y2)
     }
 
     static aStarSearch(grid, update, playbtn, emptyGrid=false, startingCell=null, endingCell=null) {
+        let animate = getAnimate()
+        let endOfAlgorithm = false
+
+        let startCell = startingCell
+        let endCell = endingCell
+
+        grid.resetGrid()  // Reset the state of the grid's cells
+
+        if (!startingCell) {
+            startCell = grid.getCell(0, 0)
+        }
+
+        if (!endingCell) {
+            endCell = grid.getCell(grid.getLength()["x"]-1, grid.getLength()["y"]-1)
+        }
+
+        let count = 0
+        let openSet = new PriorityQueue()
+        openSet.insert({
+            'f': 0, 
+            'count': count, 
+            'cell': startCell
+        })
+
+        let cameFrom = new WeakMap()  // Keep track of all nodes we came from to implement backtracing
+        let gScore = new WeakMap()
+        let fScore = new WeakMap()
+
+        // Initialise G Score object
+        for (let i = 0; i < grid.getLength()["y"]; i++) {
+            for (let j = 0; j < grid.getLength()["x"]; j++) {
+                let cell = grid.getCell(i, j)
+                gScore.set(cell, Infinity)
+            }
+        }
+        gScore.set(startCell, 0)  // Starting cell will have G = 0        
+
+        // Initialise F Score object
+        for (let i = 0; i < grid.getLength()["y"]; i++) {
+            for (let j = 0; j < grid.getLength()["x"]; j++) {
+                let cell = grid.getCell(i, j)
+                fScore.set(cell, Infinity)
+            }
+        }
+        fScore.set(startCell, this.aStarHeuristic(startCell, endCell))  // Starting cell F = Heuristic of Star and End node
+
+        let openSetHash = new Set()
+        openSetHash.add(startCell)
+
+        startCell.visitedCell()
+
+        const newIteration = async () => {
+            while (!openSet.isEmpty()) {
+
+                if (!Algorithms.RUN) {
+                    break
+                } 
+
+                if (animate) {
+                    await Control.sleep(Algorithms.CYCLE_WAIT_TIME)
+                }
+                
+                let currentCell = openSet.popHeap().cell  // Select the cell
+                openSetHash.delete(currentCell)
+
+                if (currentCell == endCell) {
+                    endOfAlgorithm = true
+                    break  // Make path
+                }
+
+                let neighbours = currentCell.getUnvisitedNeighbours(grid, false, emptyGrid)
+
+                Object.keys(neighbours).forEach((direction) => {
+                    let tempGScore = gScore.get(currentCell) + 1
+                    let neighbourCell = neighbours[direction]
+
+                    if (tempGScore < gScore.get(neighbourCell)) {
+                        cameFrom.set(neighbourCell, currentCell)
+                        gScore.set(neighbourCell, tempGScore)
+                        fScore.set(neighbourCell, tempGScore + this.aStarHeuristic(neighbourCell, endCell))
+
+                        if (!openSetHash.has(neighbourCell)) {
+                            count++;
+                            openSet.insert({
+                                "fScore": fScore.get(neighbourCell),
+                                "count": count,
+                                "cell": neighbourCell
+                            })
+                            openSetHash.add(neighbourCell)
+                            neighbourCell.openCell()
+                        }
+
+                    } 
+                })
+
+                openSet.print()
+
+                if (currentCell != startCell) {
+                    currentCell.closeCell()
+                }
+
+                
+                if (animate) {
+                    update(true)
+                }
+
+            }
+
+            // Backtrack from goal to start using parent link to get shortest path
+            if (Algorithms.RUN) {
+
+                let currentCell = endCell
+
+                // If end cell does not have parent, there is no solution
+                if (!cameFrom.has(currentCell)) {
+                    alert("No Solution Found!")
+                    this.finishedSolve(playbtn)
+                }
+
+                else {
+
+                    currentCell.solvedPathCell()
+
+                    while (cameFrom.has(currentCell)) {
+                        currentCell = cameFrom.get(currentCell)
+                        currentCell.solvedPathCell()
+                        if (animate) {
+                            await Control.sleep(Algorithms.CYCLE_WAIT_TIME)
+                            update(true)
+                        }
+                    }
+                    startCell.solvedPathCell()
+
+                }
+
+                update(true)
+
+                if (animate) {
+                    await Control.sleep(Algorithms.END_OF_CYCLE_WAIT_TIME)
+                }
+
+            } 
+
+            if (endOfAlgorithm && this.RUN) {
+                this.finishedSolve(playbtn)
+            }
+        }
+
+        if (Algorithms.RUN) {
+            newIteration().then(() => {
+                grid.resetGrid(true)
+                update(true)
+            })
+        }
+
+        // return false
+        
 
     }
 
