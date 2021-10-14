@@ -35,7 +35,7 @@ class PriorityQueue {
             this._items[i] = this._items[smallest]
             this._items[smallest] = temp
 
-            this.minHeapify(smallest)
+            this.minHeapifyDown(smallest)
         }
     }
 
@@ -68,27 +68,6 @@ class PriorityQueue {
                 break
             }
         }
-
-        // // Find the smallest among the roots, left child and right child
-        // let smallest = i
-        // let leftChild = 2 * i + 1
-        // let rightChild = 2 * i + 2
-
-        // if (leftChild < lengthQueue && this._items[smallest].fScore > this._items[leftChild].fScore) {
-        //     smallest = leftChild
-        // }
-
-        // if (rightChild < lengthQueue && this._items[smallest].fScore > this._items[rightChild].fScore) {
-        //     smallest = rightChild
-        // }
-
-        // // Swap and continue heapifying if the root is not the largest
-        // if (smallest != i) {
-        //     let temp = this._items[i]
-        //     this._items[i] = this._items[smallest]
-        //     this._items[smallest] = temp
-        //     this.heapify(smallest)
-        // }
     }
 
     /**
