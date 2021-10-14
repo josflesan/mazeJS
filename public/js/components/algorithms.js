@@ -604,6 +604,101 @@ class Algorithms {
         }
     }
 
+    static dijkstra(grid, update, playbtn, emptyGrid=false, startingCell=null, endingCell=null) {
+        let animate = getAnimate()
+        let endOfAlgorithm = false
+        grid.resetGrid()  // Reset the state of the grid's cells
+
+        let startCell = startingCell? startingCell : grid.getCell(0, 0)
+        let endCell = endingCell? endingCell : grid.getCell(grid.getLength()["x"]-1, grid.getLength()["y"]-1)
+
+        startCell.gScore = 0
+        let pq = new PriorityQueue()
+        pq.insert(startCell)
+
+        const newIteration = async () => {
+            while (!pq.isEmpty()) {
+
+                if (!Algorithms.RUN) {
+                    break
+                } 
+
+                if (animate) {
+                    await Control.sleep(Algorithms.CYCLE_WAIT_TIME)
+                }
+
+                let currentCell = pq.popHeap()
+                currentCell.visitedCell()
+
+                if (currentCell == endCell) {
+                    endOfAlgorithm = true
+                    break
+                }
+
+                let neighbours = currentCell.getUnvisitedNeighbours(grid, false, emptyGrid)
+                Object.keys(neighbours).forEach((direction) => {
+                    let neighbourCell = neighbours[direction]
+                    let newGScore = currentCell.gScore + 1
+
+                    if (newGScore < neighbourCell.gScore) {
+                        neighbourCell.gScore = newGScore
+                        neighbourCell.parent = currentCell
+                        pq.insert(neighbourCell)
+                        neighbourCell.selectCell()
+                    }
+                })
+
+                if (animate) {
+                    update(true)
+                }
+
+            }
+
+            // Backtrack from goal to start using parent link to get shortest path
+            if (Algorithms.RUN) {
+
+                let lastPathCell = endCell
+
+                // If end cell does not have parent, there is no solution
+                if (!lastPathCell.parent) {
+                    alert("No Solution Found!")
+                    this.finishedSolve(playbtn)
+                }
+
+                else {
+                    while (lastPathCell != startCell) {
+                        lastPathCell.solvedPathCell()
+                        lastPathCell = lastPathCell.parent
+                        if (animate) {
+                            await Control.sleep(Algorithms.CYCLE_WAIT_TIME)
+                            update(true)
+                        }
+                    }
+                    startCell.solvedPathCell()
+                }
+
+                update(true)
+
+                if (animate) {
+                    await Control.sleep(Algorithms.END_OF_CYCLE_WAIT_TIME)
+                }
+
+            }
+
+            if (endOfAlgorithm && this.RUN) {
+                this.finishedSolve(playbtn)
+            }
+        }
+
+        if (Algorithms.RUN) {
+            newIteration().then(() => {
+                grid.resetGrid(true)
+                update(true)
+            })
+        }
+
+    }
+
     // --------------------------------------------------------------------
 
     // ------------------------ CONTROL FUNCTIONS -------------------------
