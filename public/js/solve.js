@@ -69,6 +69,11 @@ export function getGrid() {
                             Algorithms.aStar(grid, update, playbtn)
                             buttonState = "FINISHED"
                             break
+                        
+                        case "04":
+                            Algorithms.dijkstra(grid, update, playbtn)
+                            buttonState = "FINISHED"
+                            break
     
                     }
                 }
