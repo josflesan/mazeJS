@@ -68,6 +68,10 @@ import { initToggle } from './components/toggle.js'
                     Algorithms.aStar(grid, update, playbtn, true, startCell, endCell)
                     break
 
+                case "Dijkstra":
+                    Algorithms.dijkstra(grid, update, playbtn, true, startCell, endCell)
+                    break
+
             }
             
             if (buttonState == "PAUSED") {
