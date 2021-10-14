@@ -66,7 +66,7 @@ export function getGrid() {
                             break
 
                         case "03":
-                            Algorithms.aStarSearch(grid, update, playbtn)
+                            Algorithms.aStar(grid, update, playbtn)
                             buttonState = "FINISHED"
                             break
     

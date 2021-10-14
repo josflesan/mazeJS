@@ -42,6 +42,9 @@ class Cell {
         this.closed = false;
 
         this.parent = null;
+        this.fScore = Infinity;
+        this.gScore = Infinity;
+        this.hScore = 0;        
 
         this.GRID_SIZE = gridSize
 
@@ -164,6 +167,14 @@ class Cell {
     }
 
     /**
+     * Function that returns the position of a cell in the grid
+     * @returns {List[Integer]}     The two coordinates of the cell
+     */
+    getPosition() {
+        return [this.row, this.column]
+    }
+
+    /**
      * Function that returns the different neighbouring cells of a particular
      * Cell object.
      * @param {Grid} grid   Grid object modelling the grid
@@ -275,6 +286,22 @@ class Cell {
         }
     
         return filtered;
+    }
+
+    /**
+     * Getter function that returns the f score of the particular cell
+     * @returns {Integer}   The f score of this cell
+     */
+    setFScore() {
+        this.fScore = this.gScore + this.hScore
+    }
+
+    /**
+     * Getter function that returns the g score of the particular cell
+     * @returns {Integer}   The g score of this cell
+     */
+    getGScore() {
+        return this._gScore
     }
 
     /**
