@@ -4,16 +4,10 @@ import { Algorithms } from './components/algorithms.js'
 import { initToggle, updateToggle } from './components/toggle.js'
 import { handleLoadBtn } from './components/load-btn.js'
 
-let canvas, ctx, cellSize, gridSize, grid, container, playbtn, animateToggle
+let canvas, ctx, grid, container, playbtn, animateToggle
 let buttonState = "PAUSED"
 
 export function setGrid(maze) {
-
-    // if (!grid) {
-    //     grid = maze
-    // } else {
-    //     grid = maze
-    // }
     grid = maze
     updateToggle(animateToggle, "solve")
  
@@ -68,6 +62,11 @@ export function getGrid() {
     
                         case "02":
                             Algorithms.breadthFirstSearch(grid, update, playbtn)
+                            buttonState = "FINISHED"
+                            break
+
+                        case "03":
+                            Algorithms.aStar(grid, update, playbtn)
                             buttonState = "FINISHED"
                             break
     

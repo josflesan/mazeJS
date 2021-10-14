@@ -62,6 +62,11 @@ import { initToggle } from './components/toggle.js'
 
                 case "BFS":
                     Algorithms.breadthFirstSearch(grid, update, playbtn, true, startCell, endCell)
+                    break
+
+                case "A Star":
+                    Algorithms.aStar(grid, update, playbtn, true, startCell, endCell)
+                    break
 
             }
             

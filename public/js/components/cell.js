@@ -3,11 +3,13 @@ class Cell {
     VISITED_COLOUR = '#CCCCC3'
     SELECTED_COLOUR = '#FCE196'
     NO_NEIGHBOUR_COLOUR = '#7E8054'
-    PATH_COLOUR = '#86fe6e'
+    PATH_COLOUR = '#22ABFA'
     HOVERED_COLOUR = '#aea4a4'
     WALL_CELL_COLOUR = '#000000'
     START_CELL_COLOUR = '#fea947'
     END_CELL_COLOUR = '#477ffe'
+    OPEN_CELL_COLOUR = '#69F45D'
+    CLOSED_CELL_COLOUR = '#FC1008'
 
     GRID_SIZE = null
 
@@ -36,8 +38,13 @@ class Cell {
         this.wallCell = false;
         this.startCell = false;
         this.endCell = false;
+        this.open = false;
+        this.closed = false;
 
         this.parent = null;
+        this.fScore = Infinity;
+        this.gScore = Infinity;
+        this.hScore = 0;        
 
         this.GRID_SIZE = gridSize
 
@@ -160,6 +167,14 @@ class Cell {
     }
 
     /**
+     * Function that returns the position of a cell in the grid
+     * @returns {List[Integer]}     The two coordinates of the cell
+     */
+    getPosition() {
+        return [this.row, this.column]
+    }
+
+    /**
      * Function that returns the different neighbouring cells of a particular
      * Cell object.
      * @param {Grid} grid   Grid object modelling the grid
@@ -274,6 +289,22 @@ class Cell {
     }
 
     /**
+     * Getter function that returns the f score of the particular cell
+     * @returns {Integer}   The f score of this cell
+     */
+    setFScore() {
+        this.fScore = this.gScore + this.hScore
+    }
+
+    /**
+     * Getter function that returns the g score of the particular cell
+     * @returns {Integer}   The g score of this cell
+     */
+    getGScore() {
+        return this._gScore
+    }
+
+    /**
      * Function that determines whether a Cell object has an unvisited
      * neighbour.
      * @param {Grid} grid   Grid object modelling the grid
@@ -375,6 +406,22 @@ class Cell {
     }
 
     /**
+     * Function that marks Cell in the grid as open
+     */
+    openCell() {
+        this.open = true;
+        this.closed = false;
+    }
+
+    /**
+     * Function that marks Cell in the grid as closed
+     */
+    closeCell() {
+        this.closed = true;
+        this.open = false;
+    }
+
+    /**
      * Function that colours a cell yellow if it is currently selected 
      * or blue if it has been visited by the algorithm
      * @param {CanvasRenderingContext2D} ctx    HTML5 Canvas Rendering Context 
@@ -404,7 +451,13 @@ class Cell {
         } else if (this.endCell) {
             ctx.fillStyle = this.END_CELL_COLOUR
             ctx.fillRect(this.x, this.y, this.size, this.size)
-        }
+        } else if (this.closed) {
+            ctx.fillStyle = this.CLOSED_CELL_COLOUR
+            ctx.fillRect(this.x, this.y, this.size, this.size)
+        }else if (this.open) {
+            ctx.fillStyle = this.OPEN_CELL_COLOUR
+            ctx.fillRect(this.x, this.y, this.size, this.size)
+        } 
         
     }
 
@@ -416,6 +469,8 @@ class Cell {
         this.visited = false;
         this.selected = false;
         this.deadEnd = false;
+        this.open = false;
+        this.closed = false;
 
         this.walls = {
             "top": true,
@@ -432,6 +487,8 @@ class Cell {
         this.visited = false;
         this.selected = false;
         this.deadEnd = false;
+        this.closed = false;
+        this.open = false;
         if (!keepPath) this.pathCell = false;
         this.hoveredCell = false;
     }

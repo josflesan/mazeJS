@@ -1,10 +1,11 @@
 import { Control } from '../helpers/control.js'
-import { CustomWeakMap } from '../data structures/CustomWeakMap.js'
+import { CustomWeakMap } from '../data structures/custom-weak-map.js'
 import { Stack } from '../data structures/stack.js'
 import { Queue } from '../data structures/queue.js'
 import { randomProperty } from '../helpers/misc.js'
 import { getAnimate, getPerfectMaze } from '../components/toggle.js'
 import { setGrid, hideSaveBtn, revealSaveBtn } from '../components/save-btn.js'
+import { PriorityQueue } from '../data structures/priority-queue.js'
 
 class Algorithms {
 
@@ -462,10 +463,145 @@ class Algorithms {
                 update(true)
             })
         }
+    }
+
+    /**
+     * Heuristic Function for the A Star algorithm which returns
+     * the Manhattan distance between two nodes
+     * @param {Cell} cell1  The origin cell
+     * @param {Cell} cell2  The destination cell
+     * @returns {Integer}   The Manhattan distance between the two
+     */
+    static aStarHeuristic(cell1, cell2) {
+        let [x1, y1] = [cell1.column, cell1.row]
+        let [x2, y2] = [cell2.column, cell2.row]
+
+        return Math.abs(x1 - x2) + Math.abs(y1 - y2)
+    }
+
+    static aStar(grid, update, playbtn, emptyGrid=false, startingCell=null, endingCell=null) {
+        let animate = getAnimate()
+        let endOfAlgorithm = false
+        grid.resetGrid()  // Reset the state of the grid's cells
+
+        let startCell = startingCell
+        let endCell = endingCell
+
+        if (!startingCell) {
+            startCell = grid.getCell(0, 0)
+        }
+
+        if (!endingCell) {
+            endCell = grid.getCell(grid.getLength()["x"]-1, grid.getLength()["y"]-1)
+        }
+
+        let openSet = new PriorityQueue()
+        let closedSet = new Set()
+        openSet.insert(startCell)
+
+        startCell.gScore = 0
+        startCell.fScore = this.aStarHeuristic(startCell, endCell)
+
+        startCell.openCell()        
+
+        const newIteration = async () => {
+            // While there are open cells...
+            while (!openSet.isEmpty()) {
+
+                if (!Algorithms.RUN) {
+                    break
+                } 
+
+                if (animate) {
+                    await Control.sleep(Algorithms.CYCLE_WAIT_TIME)
+                }
+
+                // Find the node in the open set with the lowest f cost
+                let currentNode = openSet.popHeap()  // Get the node at the top of the heap and remove from heap
+
+                closedSet.add(currentNode)
+                currentNode.closeCell()
+
+                if (currentNode == endCell) {
+                    endOfAlgorithm = true
+                    break
+                }
+
+                let neighbours = currentNode.getUnvisitedNeighbours(grid, false, emptyGrid)
+
+                Object.keys(neighbours).forEach((direction) => {
+                    let neighbourCell = neighbours[direction]
+
+                    // If neighbour is in closed list, skip ahead
+                    if (!closedSet.has(neighbourCell)) {
+                        let newGCost = currentNode.gScore + this.aStarHeuristic(currentNode, neighbourCell)
+                        if (newGCost < neighbourCell.gScore || !openSet.contains(neighbourCell)) {
+                            neighbourCell.gScore = newGCost
+                            neighbourCell.fScore = neighbourCell.gScore + this.aStarHeuristic(neighbourCell, endCell)
+                            neighbourCell.parent = currentNode
+    
+                            if (!openSet.contains(neighbourCell)) {
+                                openSet.insert(neighbourCell)
+                                neighbourCell.openCell()
+                            }
+                        }   
+                    }
+
+                })
+
+                if (animate) {
+                    update(true)
+                }
+
+                if (currentNode != startCell) {
+                    currentNode.closeCell()
+                }
 
 
+            }
+            
+            // Backtrack from goal to start using parent link to get shortest path
+            if (Algorithms.RUN) {
 
+                let lastPathCell = endCell
 
+                // If end cell does not have parent, there is no solution
+                if (!lastPathCell.parent) {
+                    alert("No Solution Found!")
+                    this.finishedSolve(playbtn)
+                }
+
+                else {
+                    while (lastPathCell != startCell) {
+                        lastPathCell.solvedPathCell()
+                        lastPathCell = lastPathCell.parent
+                        if (animate) {
+                            await Control.sleep(Algorithms.CYCLE_WAIT_TIME)
+                            update(true)
+                        }
+                    }
+                    startCell.solvedPathCell()
+                }
+
+                update(true)
+
+                if (animate) {
+                    await Control.sleep(Algorithms.END_OF_CYCLE_WAIT_TIME)
+                }
+
+            }
+
+            if (endOfAlgorithm && this.RUN) {
+                this.finishedSolve(playbtn)
+            }
+        }
+
+        if (Algorithms.RUN) {
+            newIteration().then(() => {
+                grid.resetGrid(true)
+                update(true)
+            })
+        }
     }
 
     // --------------------------------------------------------------------
